@@ -2,12 +2,16 @@
   <div class="home">
     <Test />
     {{ message }}
+    {{ sessionId }}
+    <button class="h-8 w-32" @click="callApi">Spustit test</button>
   </div>
 </template>
 
 <script>
 import Test from "@/components/Test";
-import axios from "axios";
+import api from "../services/api";
+import { mapActions } from "vuex";
+
 export default {
   name: "Home",
   components: {
@@ -20,41 +24,13 @@ export default {
     };
   },
   async created() {
-    await this.getId();
-    await this.askAssistant("");
+    await this.getSessionId();
+    this.sessionId = this.$store.state.sessionId;
   },
   methods: {
-    async getId() {
-      this.sessionId = await axios.get("http://localhost:3000/api/session");
-      // this.sessionId = data.result.session_id;
-      // await this.askAssistant("", sess.data.result.session_id);
-    },
-    askAssistant(msg) {
-      console.log(this.sessionId)
-      axios
-        .post("http://localhost:3000/api/message", {
-          session_id: this.sessionId.data.result.session_id,
-          input: {
-            message_type: "text",
-            text: msg
-          },
-          global: {
-            system: {
-              turn_count: 1
-            }
-          }
-        })
-        .then(res => {
-          console.log(res.data);
-          this.message = res.data.result.output;
-          // if (res.data.output.generic[0]) {
-          //   this.watsonResponse = res.data.output.generic[0].text;
-          //   if (res.data.output.generic[1]) {
-          //     this.watsonResponse =
-          //       this.watsonResponse + " " + res.data.output.generic[1].text;
-          //   }
-          // }
-        });
+    ...mapActions(["getSessionId"]),
+    async callApi() {
+      this.message = await api.askAssistant("", this.$store.state.sessionId);
     }
   }
 };
