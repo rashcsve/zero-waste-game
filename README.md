@@ -65,6 +65,8 @@ This app uses the [Watson Assistant V2 API](https://cloud.ibm.com/apidocs/assist
 -->
 ## Running locally
 
+### Server
+Make sure you have a valid IBM Cloud account and a Watson Assistant with all credentials (ApiKey, URL, username, password).  
 1. Install the dependencies
 
     ```
@@ -77,7 +79,23 @@ This app uses the [Watson Assistant V2 API](https://cloud.ibm.com/apidocs/assist
     npm start
     ```
 
-1. View the application in a browser at `localhost:3000`
+1. Server is now running at `localhost:3000`
+
+### Client
+ 
+1. Install the dependencies
+
+    ```
+    npm install
+    ```
+
+1. Run the application
+
+    ```
+    npm serve
+    ```
+
+1. View the application frontend in a browser at `localhost:8080`
 <!---
 ## Deploying to IBM Cloud as a Cloud Foundry Application
 1. Login to IBM Cloud with the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli/index.html#overview)
