@@ -16,13 +16,15 @@
  */
 
 'use strict';
-
+/* eslint-disable */
 var express = require('express'); // app server
 var bodyParser = require('body-parser'); // parser for post requests
 var AssistantV2 = require('ibm-watson/assistant/v2'); // watson sdk
 const { IamAuthenticator, BearerTokenAuthenticator } = require('ibm-watson/auth');
 
 var app = express();
+const cors = require('cors'); 
+app.use(cors());
 require('./health/health')(app);
 
 // Bootstrap application settings
@@ -65,11 +67,10 @@ app.post('/api/message', function(req, res) {
   }
 
   var textIn = '';
-
+  
   if (req.body.input) {
     textIn = req.body.input.text;
   }
-
   var payload = {
     assistantId: assistantId,
     sessionId: req.body.session_id,
