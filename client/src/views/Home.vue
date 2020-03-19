@@ -1,37 +1,31 @@
 <template>
-  <div class="home">
-    <Test />
-    {{ message }}
+  <div>
+    <!-- Send data on first load - output from watson -->
+    <Initial v-if="sessionId" />
     {{ sessionId }}
-    <button class="h-8 w-32" @click="callApi">Spustit test</button>
   </div>
 </template>
 
 <script>
-import Test from "@/components/Test";
-import api from "../services/api";
 import { mapActions } from "vuex";
+import Initial from "../components/Initial";
 
 export default {
   name: "Home",
   components: {
-    Test
+    Initial
   },
   data() {
     return {
-      sessionId: null,
-      message: null
+      sessionId: null
     };
   },
   async created() {
-    await this.getSessionId();
-    this.sessionId = this.$store.state.sessionId;
+    // await this.getSessionId();
+    // this.sessionId = this.$store.state.sessionId;
   },
   methods: {
-    ...mapActions(["getSessionId"]),
-    async callApi() {
-      this.message = await api.askAssistant("", this.$store.state.sessionId);
-    }
+    ...mapActions(["getSessionId"])
   }
 };
 </script>

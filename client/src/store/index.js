@@ -5,6 +5,13 @@ import api from "../services/api";
 
 Vue.use(Vuex);
 
+/*
+  TODO: Add state for: 
+          sessionID (?)
+          progressBar
+          each level 3 states
+          test (boolean)
+*/
 export default new Vuex.Store({
   state: {
     sessionId: null
