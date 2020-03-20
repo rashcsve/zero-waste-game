@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" class="flex flex-col h-full">
     <navigation />
-    <div class="flex justify-center">
+    <div class="flex justify-between h-full">
       <chat-window />
       <router-view />
     </div>

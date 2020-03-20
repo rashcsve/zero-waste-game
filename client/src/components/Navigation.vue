@@ -1,6 +1,6 @@
 <template>
-  <nav class="flex flex-wrap items-center justify-between px-24 py-6 bg-gray-300">
-    <div class="flex items-center flex-shrink-0 mr-6 text-gray-600">
+  <nav class="flex flex-wrap items-center justify-between h-24 px-24 py-6 bg-gray-300">
+    <div class="flex items-center flex-shrink-0 mr-6 text-gray-700">
       <router-link :to="{name: 'Home'}" class="text-xl font-semibold tracking-tight">Zero Waste</router-link>
       <div class="flex flex-wrap p-4">
         <progress-bar :percentage="contentProgress" class="h-5">

@@ -31,7 +31,7 @@ export default {
   @apply text-gray-700 border-gray-700;
 }
 .current {
-  @apply border-gray-600;
+  @apply border-gray-700;
 }
 .disabled {
   @apply text-gray-500 cursor-not-allowed pointer-events-none;
