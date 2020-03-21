@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="flex flex-col h-full">
     <navigation />
-    <div class="flex justify-between h-full">
+    <div class="flex justify-between h-full container-max-height">
       <chat-window />
       <router-view />
     </div>
@@ -18,3 +18,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.container-max-height {
+  max-height: calc(100vh - 96px);
+}
+</style>

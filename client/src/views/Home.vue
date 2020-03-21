@@ -1,23 +1,38 @@
 <template>
-  <div>
-    <!-- Send data on first load - output from watson -->
-    <Initial v-if="sessionId" />
-    {{ sessionId }}
-  </div>
+  <!-- Send data on first load - output from watson TODO: Modal window for test -->
+  <!-- <Initial v-if="sessionId" /> -->
+  <!-- {{ sessionId }} -->
+  <info-window>
+    <general-info v-if="true" />
+    <recycle />
+    <reuse />
+    <reduce-refuse />
+  </info-window>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import Initial from "../components/Initial";
+// import Initial from "../components/Initial";
+import GeneralInfo from "../components/levels/GeneralInfo";
+import Recycle from "../components/levels/Recycle";
+import Reuse from "../components/levels/Reuse";
+import ReduceRefuse from "../components/levels/ReduceRefuse";
+import InfoWindow from "../components/InfoWindow";
 
 export default {
   name: "Home",
   components: {
-    Initial
+    // Initial,
+    InfoWindow,
+    Recycle,
+    Reuse,
+    GeneralInfo,
+    ReduceRefuse
   },
   data() {
     return {
-      sessionId: null
+      sessionId: null,
+      firstLevel: true // Store var ?
     };
   },
   async created() {

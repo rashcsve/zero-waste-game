@@ -1,7 +1,7 @@
 <template>
-  <section class="w-2/4 p-10">
-    <div class="flex flex-col flex-1 h-full p-6 overflow-auto">
-      <h2 class="mx-3 my-2 text-xl font-bold text-center text-gray-700">Info Window</h2>
+  <main class="w-3/5 p-6 pb-10 pr-10">
+    <div class="flex flex-col flex-1 h-full overflow-auto">
+      <slot />
     </div>
-  </section>
+  </main>
 </template>

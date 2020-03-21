@@ -1,7 +1,11 @@
 module.exports = {
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        map: "500px"
+      }
+    }
   },
   variants: {},
-  plugins: [],
-}
+  plugins: []
+};

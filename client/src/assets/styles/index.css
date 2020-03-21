@@ -1,6 +1,20 @@
 @tailwind base;
-html, body {
+html,
+body {
   height: 100%;
+  @apply text-base text-gray-700;
+}
+a {
+  @apply font-semibold;
+}
+a:hover {
+  @apply text-gray-800;
+}
+h2 {
+  @apply text-2xl font-bold leading-loose text-center;
+}
+h3 {
+  @apply text-lg leading-relaxed;
 }
 @tailwind components;
 @tailwind utilities;
