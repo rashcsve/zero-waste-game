@@ -1,35 +1,26 @@
 <template>
   <section class="w-2/5 p-10">
     <div class="flex flex-col flex-1 h-full p-6 overflow-auto bg-gray-200">
-      <h2 class="mx-3 my-2 text-xl font-bold text-center text-gray-700">Tvůj Asistent</h2>
-      <div class="flex-grow">
-        <!-- Bot Message -->
-        <div class="flex max-w-sm mb-2">
-          <div class="px-3 py-4 bg-gray-100 rounded">
-            <p class="text-sm font-bold text-teal">Chatbot Assistant</p>
-            <p class="mt-1 text-sm">Hi everyone! Glad you could join! I am making a new movie.</p>
-            <!-- <p class="mt-1 text-xs text-right text-grey-dark">12:45 pm</p> -->
-          </div>
-        </div>
-        <!-- User Message -->
-        <div class="flex justify-end mb-2">
-          <div class="px-3 py-4 bg-white rounded">
-            <p class="mt-1 text-sm">Hi guys.</p>
-            <!-- <p class="mt-1 text-xs text-right text-grey-dark">12:45 pm</p> -->
-          </div>
-        </div>
-      </div>
+      <!-- TODO Add title -->
+      <!-- <h2 class="mx-3 my-2 text-xl font-bold text-center text-gray-700">Tvůj Asistent</h2> -->
+      <!-- Message Feed -->
+      <message-list :feed="feed" />
       <!-- Input -->
       <div class="flex items-center py-4 bg-grey-lighter">
         <div class="flex flex-1">
           <input
             class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none"
             type="text"
+            name="message"
+            placeholder="Napiš..."
+            v-model="userMessage"
+            @keyup.enter.prevent="sendUserMessage"
           />
           <!-- Button -->
-          <!-- TODO: Add icon instead of Odeslat text -->
+          <!-- TODO Add icon instead of Odeslat text -->
           <button
             type="button"
+            @click="sendUserMessage"
             class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-gray-300 focus:shadow-outline-gray active:bg-gray-50 active:text-gray-800"
           >Odeslat</button>
         </div>
@@ -39,6 +30,82 @@
 </template>
 
 <script>
-export default {};
+import api from "../services/api";
+import { mapMutations } from "vuex";
+import MessageList from "./messages/MessageList";
+export default {
+  components: {
+    MessageList
+  },
+  data() {
+    return {
+      feed: [],
+      userMessage: "",
+      chatbotMessage: ""
+    };
+  },
+  created() {
+    const firstQuestion = this.$store.state.firstChatbotQuestion;
+    if (firstQuestion) {
+      this.pushToFeed(this.addAuthorToMessage("chatbot", firstQuestion));
+    }
+  },
+  methods: {
+    ...mapMutations([
+      "setFirstLevel",
+      "setInitialTestStatus",
+      "setChatbotFirstQuestion"
+    ]),
+    pushToFeed(msg) {
+      this.feed.push(msg);
+    },
+    addAuthorToMessage(author, msg) {
+      const messageWithAuthor = { author: author, contents: msg };
+      return messageWithAuthor;
+    },
+    sendUserMessage() {
+      if (!this.userMessage || this.userMessage === "") {
+        // TODO Add error validation
+        return;
+      }
+      // Add message to feed
+      let userFullMessage = this.addAuthorToMessage("user", this.userMessage);
+      this.pushToFeed(userFullMessage);
+
+      // call API
+      this.callApi(this.userMessage);
+    },
+    async callApi(msg) {
+      const message = await api.askAssistant(msg, this.$store.state.sessionId);
+      this.userMessage = "";
+      // Got an assistant message
+      if (message) {
+        console.log(message);
+        for (const m in message.generic) {
+          this.chatbotMessage = message.generic[m].text;
+          // Parse the answer and route if needed
+          this.parseChatbotAnswer(this.chatbotMessage);
+          // Add message to the feed
+          const chatbotFullMessage = this.addAuthorToMessage(
+            "chatbot",
+            this.chatbotMessage
+          );
+          this.pushToFeed(chatbotFullMessage);
+        }
+      }
+    },
+    parseChatbotAnswer(msg) {
+      // TODO Parse all levels
+      if (msg === "Vítám na první úrovni!") {
+        this.setChatbotFirstQuestion(msg);
+        this.setFirstLevel(true);
+        this.$emit("setInitialStatus", true);
+      } else if (msg === "Vítám na druhé úrovni!") {
+        console.log("druha uroven");
+      }
+      console.log("meow");
+    }
+  }
+};
 </script>
 

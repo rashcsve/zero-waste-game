@@ -16,5 +16,17 @@ h2 {
 h3 {
   @apply text-lg leading-relaxed;
 }
+button {
+  @apply flex items-center justify-center w-40 h-12 px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-gray-600 border border-transparent rounded-md;
+}
+button:focus {
+  @apply border-gray-700 outline-none;
+}
+button:hover {
+  @apply bg-gray-500;
+}
+button:active {
+  @apply bg-gray-700;
+}
 @tailwind components;
 @tailwind utilities;

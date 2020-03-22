@@ -2,7 +2,8 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        map: "500px"
+        map: "500px",
+        modal: "700px"
       }
     }
   },

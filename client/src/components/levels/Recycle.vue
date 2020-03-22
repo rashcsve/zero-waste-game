@@ -40,7 +40,7 @@
     </div>
     <!-- Sekce "Třídění a kontejnery" -->
     <div v-if="containers || all">
-      <container :container="item" v-for="item in containersData" :key="item.color" />
+      <recycle-container :container="item" v-for="item in containersData" :key="item.color" />
     </div>
     <!-- Sekce "Mapa" -->
     <div v-if="map || all">
@@ -51,10 +51,10 @@
 </template>
 
 <script>
-import Container from "../Container";
+import RecycleContainer from "../RecycleContainer";
 export default {
   components: {
-    Container
+    RecycleContainer
   },
   data() {
     return {

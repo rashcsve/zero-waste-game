@@ -1,7 +1,11 @@
 <template>
   <div id="app" class="flex flex-col h-full">
     <navigation />
-    <div class="flex justify-between h-full container-max-height">
+    <div v-if="sessionId && !getTestStatus">
+      <Initial v-if="!initialTestWasDone" />
+      <modal v-else />
+    </div>
+    <div v-if="getTestStatus" class="flex justify-between h-full container-max-height">
       <chat-window />
       <router-view />
     </div>
@@ -10,11 +14,37 @@
 <script>
 import Navigation from "./components/Navigation";
 import ChatWindow from "./components/ChatWindow";
+import Initial from "./components/Initial";
+import Modal from "./components/Modal";
 
+import { mapActions } from "vuex";
 export default {
   components: {
     Navigation,
-    ChatWindow
+    ChatWindow,
+    Initial,
+    Modal
+  },
+  data() {
+    return {
+      sessionId: null
+    };
+  },
+  async created() {
+    await this.getSessionId();
+    this.sessionId = this.$store.state.sessionId;
+    console.log(this.sessionId);
+  },
+  computed: {
+    getTestStatus() {
+      return this.$store.state.firstLevel;
+    },
+    initialTestWasDone() {
+      return this.$store.state.initialTestWasDone;
+    }
+  },
+  methods: {
+    ...mapActions(["getSessionId"])
   }
 };
 </script>

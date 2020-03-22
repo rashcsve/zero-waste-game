@@ -11,34 +11,36 @@ const routes = [
     component: Home
   },
   {
-    path: "/initial-test",
-    name: "InitialTest",
-    component: () =>
-      import(/* webpackChunkName: "InitialTest" */ "../views/InitialTest.vue")
-  },
-  {
     path: "/general-info",
     name: "GeneralInfo",
     component: () =>
-      import(/* webpackChunkName: "InitialTest" */ "../components/levels/GeneralInfo.vue")
+      import(
+        /* webpackChunkName: "InitialTest" */ "../components/levels/GeneralInfo.vue"
+      )
   },
   {
     path: "/recycle",
     name: "Recycle",
     component: () =>
-      import(/* webpackChunkName: "InitialTest" */ "../components/levels/Recycle.vue")
+      import(
+        /* webpackChunkName: "InitialTest" */ "../components/levels/Recycle.vue"
+      )
   },
   {
     path: "/reuse",
     name: "Reuse",
     component: () =>
-      import(/* webpackChunkName: "InitialTest" */ "../components/levels/Reuse.vue")
+      import(
+        /* webpackChunkName: "InitialTest" */ "../components/levels/Reuse.vue"
+      )
   },
   {
     path: "/reduce-refuse",
     name: "ReduceRefuse",
     component: () =>
-      import(/* webpackChunkName: "InitialTest" */ "../components/levels/ReduceRefuse.vue")
+      import(
+        /* webpackChunkName: "InitialTest" */ "../components/levels/ReduceRefuse.vue"
+      )
   }
 ];
 
