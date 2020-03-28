@@ -62,9 +62,11 @@ export default {
     async callApi(msg) {
       const message = await api.askAssistant(msg, this.$store.state.sessionId);
       console.log(message);
-      // TODO Unnecessary condition
-      if (message.intents[0].intent === "Initial_Test-Start") {
-        this.setChatbotFirstQuestion(message.generic[0].text);
+      if (message.output.intents[0].intent === "Initial_Test-Start") {
+        this.setChatbotFirstQuestion({
+          firstMessage: "Vítám na úvodním testu!",
+          secondMessage: message.output.generic[0].text
+        });
         this.showChatWindow = true;
       }
     }

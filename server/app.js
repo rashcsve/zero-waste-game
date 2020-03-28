@@ -75,9 +75,13 @@ app.post('/api/message', function(req, res) {
     assistantId: assistantId,
     sessionId: req.body.session_id,
     input: {
-      message_type: 'text',
+      message_type: "text",
       text: textIn,
+      options: {
+        return_context: true
+      }
     },
+    context: {}
   };
 
   // Send the input to the assistant service
@@ -86,6 +90,7 @@ app.post('/api/message', function(req, res) {
       const status = err.code !== undefined && err.code > 0 ? err.code : 500;
       return res.status(status).json(err);
     }
+    console.log(data);
     return res.json(data);
   });
 });

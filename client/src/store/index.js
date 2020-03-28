@@ -21,7 +21,7 @@ export default new Vuex.Store({
     secondLevel: false,
     thirdLevel: false,
     fourthLevel: false,
-    firstChatbotQuestion: ""
+    firstChatbotQuestion: {}
   },
   mutations: {
     setSessionId(state, payload) {
@@ -46,8 +46,9 @@ export default new Vuex.Store({
     setFourthLevel(state, payload) {
       state.fourthLevel = payload;
     },
-    setChatbotFirstQuestion(state, payload) {
-      state.firstChatbotQuestion = payload;
+    setChatbotFirstQuestion(state, { firstMessage, secondMessage }) {
+      state.firstChatbotQuestion.firstMessage = firstMessage;
+      state.firstChatbotQuestion.secondMessage = secondMessage;
     }
   },
   actions: {

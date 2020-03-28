@@ -17,7 +17,7 @@ async function askAssistant(msg, sessionId) {
       text: msg
     }
   });
-  return message.data.result.output;
+  return message.data.result;
   // if (res.data.output.generic[0]) {
   //   this.watsonResponse = res.data.output.generic[0].text;
   //   if (res.data.output.generic[1]) {

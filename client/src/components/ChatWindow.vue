@@ -46,8 +46,11 @@ export default {
   },
   created() {
     const firstQuestion = this.$store.state.firstChatbotQuestion;
+    // TODO Add parse for an options (method or compote)
     if (firstQuestion) {
-      this.pushToFeed(this.addAuthorToMessage("chatbot", firstQuestion));
+      Object.values(firstQuestion).forEach(msg =>
+        this.pushToFeed(this.addAuthorToMessage("chatbot", msg))
+      );
     }
   },
   methods: {
@@ -76,32 +79,47 @@ export default {
       this.callApi(this.userMessage);
     },
     async callApi(msg) {
-      const message = await api.askAssistant(msg, this.$store.state.sessionId);
+      let message = await api.askAssistant(msg, this.$store.state.sessionId);
       this.userMessage = "";
+      console.log("chb msg");
+      console.log(message);
       // Got an assistant message
       if (message) {
-        console.log(message);
-        for (const m in message.generic) {
-          this.chatbotMessage = message.generic[m].text;
-          // Parse the answer and route if needed
-          this.parseChatbotAnswer(this.chatbotMessage);
-          // Add message to the feed
-          const chatbotFullMessage = this.addAuthorToMessage(
-            "chatbot",
-            this.chatbotMessage
-          );
-          this.pushToFeed(chatbotFullMessage);
+        // Parse the answer and route if needed
+        if (
+          message.context.skills["main skill"].user_defined["next-level"] ===
+          true
+        ) {
+          const nextLevel =
+            message.context.skills["main skill"].user_defined.level;
+          this.parseChatbotAnswer(message, nextLevel);
+        } else {
+          // Show the messages and continue the conveersation
+          for (const m in message.output.generic) {
+            this.chatbotMessage = message.output.generic[m].text;
+            // Add message to the feed
+            const chatbotFullMessage = this.addAuthorToMessage(
+              "chatbot",
+              this.chatbotMessage
+            );
+            this.pushToFeed(chatbotFullMessage);
+          }
         }
       }
     },
-    parseChatbotAnswer(msg) {
+    parseChatbotAnswer(msg, level) {
       // TODO Parse all levels
-      if (msg === "Vítám na první úrovni!") {
-        this.setChatbotFirstQuestion(msg);
+      console.log("parse");
+      console.log(msg);
+      if (level === "first") {
+        this.setChatbotFirstQuestion({
+          firstMessage: msg.output.generic[0].text,
+          secondMessage: msg.output.generic[1]
+        });
         this.setFirstLevel(true);
         this.$emit("setInitialStatus", true);
-      } else if (msg === "Vítám na druhé úrovni!") {
-        console.log("druha uroven");
+        // } else if (msg === "Vítám na druhé úrovni!") {
+        //   console.log("druha uroven");
       }
       console.log("meow");
     }

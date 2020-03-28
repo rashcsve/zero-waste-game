@@ -24,9 +24,10 @@ export default {
   methods: {
     async callApi() {
       const message = await api.askAssistant("", this.$store.state.sessionId);
+      console.log(message);
       if (message) {
-        this.title = message.generic[0].text;
-        this.button = message.generic[1].options[0].label;
+        this.title = message.output.generic[0].text;
+        this.button = message.output.generic[1].options[0].label;
       }
     }
   }
