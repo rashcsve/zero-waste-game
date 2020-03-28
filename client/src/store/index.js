@@ -17,44 +17,38 @@ export default new Vuex.Store({
     sessionId: null,
     initialTestWasDone: false,
     test: false,
+    active: "",
     levels: {
       first: {
         active: false,
-        show: ""
+        show: "",
+        progress: 0
       },
       second: {
         active: false,
-        show: ""
+        show: "",
+        progress: 25
       },
-      third: { active: false, show: "" },
-      last: { active: false, show: "" }
+      third: { active: false, show: "", progress: 50 },
+      last: { active: false, show: "", progress: 75 }
     },
     firstChatbotQuestion: {}
   },
   getters: {
-    getFirstLevelActive(state) {
-      return state.levels.first.active;
+    getFirstLevel(state) {
+      return state.levels.first;
     },
-    getSecondLevelActive(state) {
-      return state.levels.second.active;
+    getSecondLevel(state) {
+      return state.levels.second;
     },
-    getThirdLevelActive(state) {
-      return state.levels.third.active;
+    getThirdLevel(state) {
+      return state.levels.third;
     },
-    getLastLevelActive(state) {
-      return state.levels.last.active;
+    getLastLevel(state) {
+      return state.levels.last;
     },
-    getFirstLevelShow(state) {
-      return state.levels.first.show;
-    },
-    getSecondLevelShow(state) {
-      return state.levels.second.show;
-    },
-    getThirdLevelShow(state) {
-      return state.levels.third.show;
-    },
-    getLastLevelShow(state) {
-      return state.levels.last.show;
+    getActiveLevel(state) {
+      return state.active;
     }
   },
   mutations: {
@@ -72,6 +66,7 @@ export default new Vuex.Store({
       Object.keys(state.levels).forEach(lvl => {
         if (lvl === payload) {
           state.levels[lvl].active = true;
+          state.active = lvl;
         } else {
           state.levels[lvl].active = false;
         }

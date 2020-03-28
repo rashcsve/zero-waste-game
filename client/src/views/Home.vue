@@ -1,9 +1,9 @@
 <template>
   <info-window>
-    <general-info v-if="getFirstLevelActive" />
-    <recycle v-if="getSecondLevelActive" />
-    <reuse v-if="getThirdLevelActive" />
-    <reduce-refuse v-if="getLastLevelActive" />
+    <general-info v-if="getFirstLevel.active" />
+    <recycle v-if="getSecondLevel.active" />
+    <reuse v-if="getThirdLevel.active" />
+    <reduce-refuse v-if="getLastLevel.active" />
   </info-window>
 </template>
 
@@ -27,10 +27,10 @@ export default {
   },
   computed: {
     ...mapGetters([
-      "getFirstLevelActive",
-      "getSecondLevelActive",
-      "getThirdLevelActive",
-      "getLastLevelActive"
+      "getFirstLevel",
+      "getSecondLevel",
+      "getThirdLevel",
+      "getLastLevel"
     ])
   }
 };

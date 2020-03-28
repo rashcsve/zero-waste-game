@@ -1,11 +1,11 @@
 <template>
   <div id="app" class="flex flex-col h-full">
     <navigation />
-    <div v-if="sessionId && !getFirstLevelActive">
+    <div v-if="sessionId && !getFirstLevel.active">
       <Initial v-if="!initialTestWasDone" />
       <modal v-else />
     </div>
-    <div v-if="getFirstLevelActive" class="flex justify-between h-full container-max-height">
+    <div v-if="getFirstLevel.active" class="flex justify-between h-full container-max-height">
       <router-view />
       <chat-window />
     </div>
@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     // TODO Change or remove the condition for the first level
-    ...mapGetters(["getFirstLevelActive"]),
+    ...mapGetters(["getFirstLevel"]),
     initialTestWasDone() {
       return this.$store.state.initialTestWasDone;
     }

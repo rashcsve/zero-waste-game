@@ -155,12 +155,12 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getFirstLevelShow"]), 
+    ...mapGetters(["getFirstLevel"]), 
     showInfo() {
-      return this.getFirstLevelShow === "info";
+      return this.getFirstLevel.show === "info";
     },
     showTest() {
-      return this.getFirstLevelShow === "test";
+      return this.getFirstLevel.show === "test";
     }
   }
 };
