@@ -17,34 +17,50 @@ export default new Vuex.Store({
     sessionId: null,
     initialTestWasDone: false,
     test: false,
-    firstLevel: false,
-    secondLevel: false,
-    thirdLevel: false,
-    fourthLevel: false,
+    levels: {
+      first: {
+        active: false,
+        show: false
+      },
+      second: {
+        active: false,
+        show: false
+      },
+      third: { active: false, show: false },
+      last: { active: false, show: false }
+    },
     firstChatbotQuestion: {}
   },
   mutations: {
     setSessionId(state, payload) {
       state.sessionId = payload;
     },
+    // TODO: Dont use it now. Remove after consultation with Naplava (setInit and setTest)
     setInitialTestStatus(state, payload) {
       state.initialTestWasDone = payload;
     },
-    // TODO: Rename. State for the test modal
     setTest(state, payload) {
       state.test = payload;
     },
-    setFirstLevel(state, payload) {
-      state.firstLevel = payload;
+    setLevelActive(state, payload) {
+      Object.keys(state.levels).forEach(lvl => {
+        if (lvl === payload) {
+          state.levels[lvl].active = true;
+        } else {
+          state.levels[lvl].active = false;
+        }
+      });
     },
-    setSecondLevel(state, payload) {
-      state.secondLevel = payload;
-    },
-    setThirdLevel(state, payload) {
-      state.thirdLevel = payload;
-    },
-    setFourthLevel(state, payload) {
-      state.fourthLevel = payload;
+    setLevelShow(state, { show, level }) {
+      let curLevel = {};
+      Object.keys(state.levels).forEach(lvl => {
+        if (state.levels[lvl].active === true) {
+          curLevel = lvl;
+        }
+      });
+      if (curLevel === level) {
+        state.levels[curLevel].show = show;
+      }
     },
     setChatbotFirstQuestion(state, { firstMessage, secondMessage }) {
       state.firstChatbotQuestion.firstMessage = firstMessage;
@@ -53,16 +69,8 @@ export default new Vuex.Store({
   },
   actions: {
     async getSessionId({ commit }) {
-      let sessionId;
-      // TODO Ask about client storage to store the session id for multiple 
-      // if (localStorage.getItem("sessionId")) {
-      //   sessionId = localStorage.getItem("sessionId");
-      // } else {
-      sessionId = await api.getId();
-      localStorage.setItem("sessionId", JSON.stringify(sessionId));
-      // }
+      const sessionId = await api.getId();
       commit("setSessionId", sessionId);
     }
-  },
-  modules: {}
+  }
 });

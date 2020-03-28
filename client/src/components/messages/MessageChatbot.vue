@@ -5,9 +5,9 @@
       <p class="text-sm text-teal">Zero Waste Guru - Asistent</p>
       <p v-if="textMessage" class="mt-1 text-sm font-bold">{{ textMessage }}</p>
       <div v-if="optionMessage">
-        <p class="mt-1 font-bold text-md">{{ optionMessage.title }}</p>
+        <p class="mt-1 mb-2 font-bold text-md">{{ optionMessage.title }}</p>
         <ul>
-          <li v-for="(opt, i) in optionMessage.options" :key="i">
+          <li v-for="(opt, i) in optionMessage.options" :key="i" class="mb-2">
             <button @click="sendToMessageList(opt.value.input.text)">{{ opt.label }}</button>
           </li>
         </ul>

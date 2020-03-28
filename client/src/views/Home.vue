@@ -25,16 +25,16 @@ export default {
   },
   computed: {
     isFirstLevel() {
-      return this.$store.state.firstLevel;
+      return this.$store.state.levels.first.active;
     },
     isSecondLevel() {
-      return this.$store.state.secondLevel;
+      return this.$store.state.levels.second.active;
     },
     isThirdLevel() {
-      return this.$store.state.thirdLevel;
+      return this.$store.state.levels.third.active;
     },
     isFourthLevel() {
-      return this.$store.state.fourthLevel;
+      return this.$store.state.levels.last.active;
     }
   }
 };

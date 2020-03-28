@@ -1,35 +1,81 @@
 <template>
-  <modal :title="title" :button="button" />
+  <!-- <modal :title="title" :button="button" /> -->
+  <div
+    class="fixed inset-x-0 bottom-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center"
+  >
+    <!-- Background Overlay -->
+    <div class="fixed inset-0 transition-opacity">
+      <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+    <!-- Modal Window -->
+    <div
+      class="px-4 pt-5 pb-8 mx-auto overflow-hidden transition-all transform bg-white rounded-lg shadow-xl h-modal sm:max-w-screen-xl sm:w-full sm:p-6"
+    >
+      <div class="flex items-center justify-center">
+        <!-- <h3 class="ml-4 text-2xl font-bold">{{ title }}</h3> -->
+      </div>
+      <!-- For the initial test - first question to start the game -->
+      <div v-if="!showChatWindow" class="flex flex-col items-center">
+        <h2
+          class="mb-4 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate"
+        >{{ title }}</h2>
+        <button @click="callApi(firstUserAnswerToStartTheGame)">{{ button }}</button>
+      </div>
+      <!-- Usual test chat window -->
+      <chat-window v-if="showChatWindow" class="w-full h-full" />
+    </div>
+  </div>
 </template>
 
 <script>
-import Modal from "../components/Modal";
-
+// import Modal from "../components/Modal";
+import ChatWindow from "./ChatWindow";
 import api from "../services/api";
+import { mapMutations } from "vuex";
 
 export default {
+  // components: {
+  //   Modal
+  // },
   components: {
-    Modal
+    ChatWindow
   },
   data() {
     return {
       button: "",
-      title: ""
+      title: "",
+      showChatWindow: false,
+      firstUserAnswerToStartTheGame: "Chci zjistit úroveň znalostí"
     };
   },
   created() {
     // Firts call to Watson API
-    this.callApi();
+    this.callApi("");
   },
   methods: {
-    async callApi() {
-      const message = await api.askAssistant("", this.$store.state.sessionId);
+    ...mapMutations(["setChatbotFirstQuestion"]),
+    async callApi(msg) {
+      const message = await api.askAssistant(msg, this.$store.state.sessionId);
       console.log(message);
-      if (message) {
+      if (message.output.intents.length !== 0 && message.output.intents[0].intent === "Initial_Test-Start") {
+        this.setChatbotFirstQuestion({
+          firstMessage: "Vítám na úvodním testu!",
+          secondMessage: message.output.generic[0]
+        });
+        this.showChatWindow = true;
+      } else if (message) {
         this.title = message.output.generic[0].text;
         this.button = message.output.generic[1].options[0].label;
       }
-    }
+    },
+    // async callApi() {
+    //   const message = await api.askAssistant("", this.$store.state.sessionId);
+    //   console.log(message);
+    //   if (message) {
+    //     this.title = message.output.generic[0].text;
+    //     this.button = message.output.generic[1].options[0].label;
+    //   }
+    // }
   }
 };
 </script>

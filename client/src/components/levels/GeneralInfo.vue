@@ -1,82 +1,75 @@
 <template>
   <section>
     <h2>{{ title }}</h2>
-    <!-- Sekce "Co je Zero Waste" -->
-    <div v-if="whatIsIt || all" class="mb-6">
-      <h3 class="mb-2">Co je Zero Waste?</h3>
-      <div class="flex">
-        <img src="../../assets/images/zero-waste.png" alt="zero-waste" />
-        <p>
-          "
-          <b>Zero Waste</b> (česky “život bez odpadů”) je
-          <i>soubor zásad nebo životní styl zaměřený na předcházení a minimalizaci vzniku odpadů</i> a znovu používání zdrojů.”
-          <br />
-          <br />
-          <b>Hlavní cíl</b> je
-          <i>minimalizace vzniku odpadu</i>, znovu používání zdrojů.
-        </p>
-      </div>
-      <p>
-        Podle
-        <a
-          href="https://ekolist.cz/cz/zpravodajstvi/zpravy/produkce-odpadu-v-cr-roste-problemem-je-skladkovani"
-          target="_blank"
-        >ecolist</a>
-        celková produkce komunálních odpadů za rok 2018 v České republice meziročně vzrostla na zhruba
-        <i>5,782 milionu tun</i>.
-      </p>
-    </div>
-    <!-- Sekce "5R" -->
-    <div v-if="fiveR || all" class="mb-6">
-      <h3 class="mb-2">5R nebo 5Z</h3>
-      <ul>
-        <li class="flex items-center mb-4" v-for="item in fiveRData" :key="item.icon">
-          <img
-            v-if="!item.alignRight"
-            :src="require(`../../assets/images/${item.icon}.png`)"
-            :alt="item.cion"
-            class="w-24 h-24 mr-4"
-          />
+    <div v-if="showInfo || showTest">
+      <!-- Sekce "Co je Zero Waste" -->
+      <div class="mb-6">
+        <h3 class="mb-2">Co je Zero Waste?</h3>
+        <div class="flex">
+          <img src="../../assets/images/zero-waste.png" alt="zero-waste" />
           <p>
-            <b>{{ item.title }}</b>
+            <b>Zero Waste</b> (česky “život bez odpadů”) je
+            <i>soubor zásad nebo životní styl zaměřený na předcházení a minimalizaci vzniku odpadů</i> a znovu používání zdrojů.
             <br />
-            <i>{{ item.mainIdea }}</i>
-            {{ item. perex }}
+            <br />
+            <b>Hlavní cíl</b> je
+            <i>minimalizace vzniku odpadu</i>, znovu používání zdrojů.
           </p>
-          <img
-            v-if="item.alignRight"
-            :src="require(`../../assets/images/${item.icon}.png`)"
-            :alt="item.cion"
-            class="w-24 h-24 ml-4"
-          />
-        </li>
-      </ul>
-    </div>
-    <!-- Sekce "Výhody" -->
-    <div v-if="advantages || all" class="mb-6">
-      <h3 class="mb-2">Výhody</h3>
-      <div class="flex">
-        <div
-          class="flex flex-col items-center w-1/3"
-          v-for="(advantage, index) in advantagesData"
-          :key="index"
-        >
-          <div class="flex w-24 h-24">
+        </div>
+      </div>
+      <!-- Sekce "5R" -->
+      <div class="mb-6">
+        <h3 class="mb-2">5R nebo 5Z</h3>
+        <ul>
+          <li class="flex items-center mb-4" v-for="item in fiveRData" :key="item.icon">
             <img
-              :src="require(`../../assets/images/${advantage.icon}.png`)"
-              :alt="advantage.icon"
-              class="mb-2"
+              v-if="!item.alignRight"
+              :src="require(`../../assets/images/${item.icon}.png`)"
+              :alt="item.cion"
+              class="w-24 h-24 mr-4"
             />
+            <p>
+              <b>{{ item.title }}</b>
+              <br />
+              <i>{{ item.mainIdea }}</i>
+              {{ item. perex }}
+            </p>
+            <img
+              v-if="item.alignRight"
+              :src="require(`../../assets/images/${item.icon}.png`)"
+              :alt="item.cion"
+              class="w-24 h-24 ml-4"
+            />
+          </li>
+        </ul>
+      </div>
+      <!-- Sekce "Výhody" -->
+      <div class="mb-6">
+        <h3 class="mb-2">Výhody</h3>
+        <div class="flex">
+          <div
+            class="flex flex-col items-center w-1/3"
+            v-for="(advantage, index) in advantagesData"
+            :key="index"
+          >
+            <div class="flex w-24 h-24">
+              <img
+                :src="require(`../../assets/images/${advantage.icon}.png`)"
+                :alt="advantage.icon"
+                class="mb-2"
+              />
+            </div>
+            <p>
+              <b>{{ advantage.title }}</b>
+            </p>
+            <ul class="p-2">
+              <li class="text-center" v-for="item in advantage.items" :key="item">{{ item }}</li>
+            </ul>
           </div>
-          <p>
-            <b>{{ advantage.title }}</b>
-          </p>
-          <ul class="p-2">
-            <li class="text-center" v-for="item in advantage.items" :key="item">{{ item }}</li>
-          </ul>
         </div>
       </div>
     </div>
+    <img v-else src="../../assets/images/gif/planet.gif" alt="planet-gif" class="mx-auto" />
   </section>
 </template>
 
@@ -85,10 +78,6 @@ export default {
   data() {
     return {
       title: "Obecné Informace",
-      whatIsIt: false,
-      fiveR: false,
-      advantages: false,
-      all: true,
       fiveRData: [
         {
           icon: "refuse",
@@ -163,6 +152,14 @@ export default {
         }
       ]
     };
+  },
+  computed: {
+    showInfo() {
+      return this.$store.state.levels.first.show === "info";
+    },
+    showTest() {
+      return this.$store.state.levels.first.show === "test";
+    }
   }
 };
 </script>

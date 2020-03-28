@@ -3,7 +3,7 @@ module.exports = {
     extend: {
       height: {
         map: "500px",
-        modal: "700px"
+        modal: "720px"
       }
     }
   },

@@ -33,11 +33,10 @@ export default {
   async created() {
     await this.getSessionId();
     this.sessionId = this.$store.state.sessionId;
-    console.log(this.sessionId);
   },
   computed: {
     getTestStatus() {
-      return this.$store.state.firstLevel;
+      return this.$store.state.levels.first.active;
     },
     initialTestWasDone() {
       return this.$store.state.initialTestWasDone;
