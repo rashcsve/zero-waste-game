@@ -3,7 +3,7 @@
   <router-link
     :to="{name: level.routeLink}"
     class="btn-level"
-    :class="{'active': active, 'current': current, 'disabled': disabled && !current}"
+    :class="{'active': level.active, 'current': current, 'disabled': level.disabled && !current}"
   >{{ level.title }}</router-link>
 </template>
 
@@ -14,17 +14,9 @@ export default {
       type: Object,
       default: () => {}
     },
-    active: {
-      type: Boolean,
-      default: false
-    },
     current: {
       type: Boolean,
       default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: true
     }
   }
 };

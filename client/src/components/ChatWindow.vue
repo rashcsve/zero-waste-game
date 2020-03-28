@@ -105,6 +105,7 @@ export default {
         ) {
           const nextLevel =
             message.context.skills["main skill"].user_defined.level;
+          console.log(nextLevel);
           this.routeToNextLevel(message, nextLevel);
         } else {
           // Show the messages and continue the conveersation

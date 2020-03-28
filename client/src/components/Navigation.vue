@@ -34,30 +34,31 @@ export default {
         title: "Obecné Info",
         routeLink: "GeneralInfo",
         active: false,
-        disabled: false
+        disabled: true
       },
       secondLevel: {
         title: "Recyklace",
         routeLink: "Recycle",
         active: false,
-        disabled: false
+        disabled: true
       },
       thirdLevel: {
         title: "Znovupoužití",
         routeLink: "Reuse",
         active: false,
-        disabled: false
+        disabled: true
       },
       lastLevel: {
         title: "Zredukování a zamitnutí",
         routeLink: "ReduceRefuse",
         active: false,
-        disabled: false
+        disabled: true
       }
     };
   },
   watch: {
     getActiveLevel(newValue, oldValue) {
+      console.log(oldValue);
       if (newValue === "first") {
         this.firstLevel.active = true;
         this.firstLevel.disabled = false;
