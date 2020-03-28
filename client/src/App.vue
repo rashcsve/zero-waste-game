@@ -6,8 +6,8 @@
       <modal v-else />
     </div>
     <div v-if="getTestStatus" class="flex justify-between h-full container-max-height">
-      <chat-window />
       <router-view />
+      <chat-window />
     </div>
   </div>
 </template>

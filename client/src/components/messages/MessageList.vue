@@ -1,7 +1,7 @@
 <template>
   <transition-group name="messages-list" tag="div">
     <div v-for="(message, index) in feed" :key="index" class="flex-grow">
-      <message-chatbot v-if="message.author === 'chatbot'" :message="message.contents" />
+      <message-chatbot @selectedOption="sendToChatWindow" v-if="message.author === 'chatbot'" :textMessage="message.textMessage" :optionMessage="message.optionMessage" />
       <message-user v-else :message="message.contents" />
     </div>
   </transition-group>
@@ -22,6 +22,11 @@ export default {
       type: Array,
       default: () => [],
       required: false
+    }
+  },
+  methods: {
+    sendToChatWindow(message) {
+      this.$emit("selectedOption", message);
     }
   }
 };

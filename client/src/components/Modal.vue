@@ -61,11 +61,10 @@ export default {
     ...mapMutations(["setChatbotFirstQuestion"]),
     async callApi(msg) {
       const message = await api.askAssistant(msg, this.$store.state.sessionId);
-      console.log(message);
       if (message.output.intents[0].intent === "Initial_Test-Start") {
         this.setChatbotFirstQuestion({
           firstMessage: "Vítám na úvodním testu!",
-          secondMessage: message.output.generic[0].text
+          secondMessage: message.output.generic[0]
         });
         this.showChatWindow = true;
       }

@@ -4,7 +4,7 @@
       <!-- TODO Add title -->
       <!-- <h2 class="mx-3 my-2 text-xl font-bold text-center text-gray-700">Tvůj Asistent</h2> -->
       <!-- Message Feed -->
-      <message-list :feed="feed" />
+      <message-list :feed="feed" @selectedOption="setUserMessage" />
       <!-- Input -->
       <div class="flex items-center py-4 bg-grey-lighter">
         <div class="flex flex-1">
@@ -59,11 +59,23 @@ export default {
       "setInitialTestStatus",
       "setChatbotFirstQuestion"
     ]),
+    setUserMessage(msg) {
+      this.userMessage = msg;
+      this.sendUserMessage();
+    },
     pushToFeed(msg) {
       this.feed.push(msg);
     },
     addAuthorToMessage(author, msg) {
-      const messageWithAuthor = { author: author, contents: msg };
+      // Parse cahtbot message
+      let messageWithAuthor = {};
+      if (msg.response_type === "text") { 
+        messageWithAuthor = { author: author, textMessage: msg.text };
+      } else if (typeof msg === "string") {
+        messageWithAuthor = { author: author, textMessage: msg };
+      } else {
+        messageWithAuthor = { author: author, optionMessage: msg };
+      }
       return messageWithAuthor;
     },
     sendUserMessage() {
@@ -72,7 +84,7 @@ export default {
         return;
       }
       // Add message to feed
-      let userFullMessage = this.addAuthorToMessage("user", this.userMessage);
+      let userFullMessage = { author:"user", contents: this.userMessage };
       this.pushToFeed(userFullMessage);
 
       // call API
@@ -92,28 +104,30 @@ export default {
         ) {
           const nextLevel =
             message.context.skills["main skill"].user_defined.level;
-          this.parseChatbotAnswer(message, nextLevel);
+          this.routeToNextLevel(message, nextLevel);
         } else {
           // Show the messages and continue the conveersation
           for (const m in message.output.generic) {
-            this.chatbotMessage = message.output.generic[m].text;
+            this.chatbotMessage = message.output.generic[m];
             // Add message to the feed
             const chatbotFullMessage = this.addAuthorToMessage(
               "chatbot",
-              this.chatbotMessage
+              { ...this.chatbotMessage}
             );
+            console.log("chatbotFullMessage");
+            console.log(chatbotFullMessage);
             this.pushToFeed(chatbotFullMessage);
           }
         }
       }
     },
-    parseChatbotAnswer(msg, level) {
+    routeToNextLevel(msg, level) {
       // TODO Parse all levels
       console.log("parse");
       console.log(msg);
       if (level === "first") {
         this.setChatbotFirstQuestion({
-          firstMessage: msg.output.generic[0].text,
+          firstMessage: msg.output.generic[0],
           secondMessage: msg.output.generic[1]
         });
         this.setFirstLevel(true);
