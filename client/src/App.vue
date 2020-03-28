@@ -1,11 +1,11 @@
 <template>
   <div id="app" class="flex flex-col h-full">
     <navigation />
-    <div v-if="sessionId && !getTestStatus">
+    <div v-if="sessionId && !getFirstLevelActive">
       <Initial v-if="!initialTestWasDone" />
       <modal v-else />
     </div>
-    <div v-if="getTestStatus" class="flex justify-between h-full container-max-height">
+    <div v-if="getFirstLevelActive" class="flex justify-between h-full container-max-height">
       <router-view />
       <chat-window />
     </div>
@@ -17,7 +17,7 @@ import ChatWindow from "./components/ChatWindow";
 import Initial from "./components/Initial";
 import Modal from "./components/Modal";
 
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     Navigation,
@@ -35,9 +35,8 @@ export default {
     this.sessionId = this.$store.state.sessionId;
   },
   computed: {
-    getTestStatus() {
-      return this.$store.state.levels.first.active;
-    },
+    // TODO Change or remove the condition for the first level
+    ...mapGetters(["getFirstLevelActive"]),
     initialTestWasDone() {
       return this.$store.state.initialTestWasDone;
     }

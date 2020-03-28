@@ -9,7 +9,6 @@ async function getId() {
 }
 
 async function askAssistant(msg, sessionId) {
-  console.log(sessionId);
   const message = await axios.post(`${API_URL}api/message`, {
     session_id: sessionId,
     input: {
@@ -18,13 +17,6 @@ async function askAssistant(msg, sessionId) {
     }
   });
   return message.data.result;
-  // if (res.data.output.generic[0]) {
-  //   this.watsonResponse = res.data.output.generic[0].text;
-  //   if (res.data.output.generic[1]) {
-  //     this.watsonResponse =
-  //       this.watsonResponse + " " + res.data.output.generic[1].text;
-  //   }
-  // }
 }
 
 export default { getId, askAssistant };

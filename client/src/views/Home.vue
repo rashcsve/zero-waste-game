@@ -1,9 +1,9 @@
 <template>
   <info-window>
-    <general-info v-if="isFirstLevel" />
-    <recycle v-if="isSecondLevel" />
-    <reuse v-if="isThirdLevel" />
-    <reduce-refuse v-if="isFourthLevel" />
+    <general-info v-if="getFirstLevelActive" />
+    <recycle v-if="getSecondLevelActive" />
+    <reuse v-if="getThirdLevelActive" />
+    <reduce-refuse v-if="getLastLevelActive" />
   </info-window>
 </template>
 
@@ -13,6 +13,8 @@ import Recycle from "../components/levels/Recycle";
 import Reuse from "../components/levels/Reuse";
 import ReduceRefuse from "../components/levels/ReduceRefuse";
 import InfoWindow from "../components/InfoWindow";
+
+import { mapGetters } from "vuex";
 
 export default {
   name: "Home",
@@ -24,18 +26,12 @@ export default {
     ReduceRefuse
   },
   computed: {
-    isFirstLevel() {
-      return this.$store.state.levels.first.active;
-    },
-    isSecondLevel() {
-      return this.$store.state.levels.second.active;
-    },
-    isThirdLevel() {
-      return this.$store.state.levels.third.active;
-    },
-    isFourthLevel() {
-      return this.$store.state.levels.last.active;
-    }
+    ...mapGetters([
+      "getFirstLevelActive",
+      "getSecondLevelActive",
+      "getThirdLevelActive",
+      "getLastLevelActive"
+    ])
   }
 };
 </script>

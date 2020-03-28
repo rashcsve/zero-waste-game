@@ -74,6 +74,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -154,11 +155,12 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["getFirstLevelShow"]), 
     showInfo() {
-      return this.$store.state.levels.first.show === "info";
+      return this.getFirstLevelShow === "info";
     },
     showTest() {
-      return this.$store.state.levels.first.show === "test";
+      return this.getFirstLevelShow === "test";
     }
   }
 };

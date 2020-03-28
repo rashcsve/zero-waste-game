@@ -20,16 +20,42 @@ export default new Vuex.Store({
     levels: {
       first: {
         active: false,
-        show: false
+        show: ""
       },
       second: {
         active: false,
-        show: false
+        show: ""
       },
-      third: { active: false, show: false },
-      last: { active: false, show: false }
+      third: { active: false, show: "" },
+      last: { active: false, show: "" }
     },
     firstChatbotQuestion: {}
+  },
+  getters: {
+    getFirstLevelActive(state) {
+      return state.levels.first.active;
+    },
+    getSecondLevelActive(state) {
+      return state.levels.second.active;
+    },
+    getThirdLevelActive(state) {
+      return state.levels.third.active;
+    },
+    getLastLevelActive(state) {
+      return state.levels.last.active;
+    },
+    getFirstLevelShow(state) {
+      return state.levels.first.show;
+    },
+    getSecondLevelShow(state) {
+      return state.levels.second.show;
+    },
+    getThirdLevelShow(state) {
+      return state.levels.third.show;
+    },
+    getLastLevelShow(state) {
+      return state.levels.last.show;
+    }
   },
   mutations: {
     setSessionId(state, payload) {

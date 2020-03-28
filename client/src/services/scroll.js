@@ -1,7 +1,6 @@
 export function scrollToBottom(el) {
   setTimeout(function() {
     const scrollContainer = document.getElementById(el);
-    console.log(scrollContainer.scrollTop);
     const isScrolledToBottom =
       scrollContainer.scrollHeight - scrollContainer.clientHeight <=
       scrollContainer.scrollTop + 1;
