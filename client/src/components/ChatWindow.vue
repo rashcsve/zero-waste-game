@@ -41,7 +41,8 @@ export default {
     return {
       feed: [],
       userMessage: "",
-      chatbotMessage: ""
+      chatbotMessage: "",
+      showModal: false
     };
   },
   created() {
@@ -60,6 +61,7 @@ export default {
       "setFirstVars",
       "setLevelShow",
       "setLevelActive",
+      "setInitialTestStatus",
       "setChatbotFirstQuestion"
     ]),
     setUserMessage(msg) {
@@ -97,6 +99,7 @@ export default {
       let message = await api.askAssistant(msg, this.$store.state.sessionId);
       this.userMessage = "";
       // Got an assistant message
+      console.log(message.context.skills["main skill"]);
       if (message) {
         // Parse the answer and route to the next level if needed
         if (
@@ -105,7 +108,6 @@ export default {
         ) {
           const nextLevel =
             message.context.skills["main skill"].user_defined.level;
-          console.log(nextLevel);
           this.routeToNextLevel(message, nextLevel);
         } else {
           // Show the messages and continue the conveersation
@@ -141,12 +143,21 @@ export default {
       }
     },
     routeToNextLevel(msg, level) {
-      this.setChatbotFirstQuestion({
-        firstMessage: msg.output.generic[0],
-        secondMessage: msg.output.generic[1]
-      });
+      // TODO Add getter
+      if (!this.$store.state.initialTestWasDone) {
+        this.setChatbotFirstQuestion({
+          firstMessage: msg.output.generic[0],
+          secondMessage: msg.output.generic[1]
+        });
+      } else {
+        this.pushToFeed(this.addAuthorToMessage("chatbot", msg.output.generic[0]))
+        this.pushToFeed(this.addAuthorToMessage("chatbot", msg.output.generic[1]))
+
+        // TODO Think about clear the actual messages
+        scrollToBottom("chat-window");
+      }
       this.setLevelActive(level);
-      this.$emit("setInitialStatus", true);
+      this.setInitialTestStatus(true);
     }
   }
 };

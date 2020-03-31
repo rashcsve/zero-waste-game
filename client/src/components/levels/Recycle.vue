@@ -174,7 +174,7 @@ export default {
         {
           color: "green",
           colorName: "Zelený",
-          image: "glass-color",
+          image: "glass-white", // TODO Add glass color image
           title: "Barevné sklo",
           perex:
             "Z hlediska tzv. ekologičnosti je sklo v současnosti optimální obalový materiál. Nejmenší zlo, řečeno jinak.",

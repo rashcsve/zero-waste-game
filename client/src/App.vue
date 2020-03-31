@@ -41,7 +41,6 @@ export default {
       return this.$store.state.initialTestWasDone;
     },
     closeModal() {
-      console.log(this.getActiveLevel !== "");
       if (this.getActiveLevel !== "") {
         return true;
       }
