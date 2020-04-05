@@ -20,7 +20,7 @@ export default {
     this.setShowHomepageStatus(true);
   },
   methods: {
-    ...mapMutations(["setShowHomepageStatus"]),
+    ...mapMutations(["setShowHomepageStatus"])
   }
 };
 </script>

@@ -1,6 +1,9 @@
 <template>
-  <section class="w-1/2 p-10">
-    <div class="flex flex-col flex-1 h-full p-6 overflow-auto bg-gray-200" id="chat-window">
+  <section class="w-1/2 mr-10 mb-10">
+    <div
+      class="flex flex-col flex-1 h-full p-6 overflow-auto bg-gray-200"
+      id="chat-window"
+    >
       <!-- Message Feed -->
       <message-list :feed="feed" @selectedOption="setUserMessage" />
       <!-- Input -->
@@ -19,7 +22,9 @@
             type="button"
             @click="sendUserMessage"
             class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-gray-300 focus:shadow-outline-gray active:bg-gray-50 active:text-gray-800"
-          >Odeslat</button>
+          >
+            Odeslat
+          </button>
         </div>
       </div>
     </div>

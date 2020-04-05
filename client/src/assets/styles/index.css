@@ -2,31 +2,108 @@
 html,
 body {
   height: 100%;
-  @apply text-base text-gray-700;
+  @apply text-base text-gray-500;
 }
-a {
-  @apply font-semibold;
-}
-a:hover {
-  @apply text-gray-800;
+h1 {
+  @apply font-bold tracking-tight leading-extra-tight text-h1 text-title;
 }
 h2 {
-  @apply text-2xl font-bold leading-loose text-center;
+  @apply text-5xl font-bold text-title;
 }
 h3 {
-  @apply text-lg leading-relaxed;
+  @apply text-3xl leading-relaxed;
 }
-button {
-  @apply flex items-center justify-center w-40 h-12 px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-gray-600 border border-transparent rounded-md;
-}
-button:focus {
-  @apply border-gray-700 outline-none;
-}
-button:hover {
-  @apply bg-gray-500;
-}
-button:active {
-  @apply bg-gray-700;
+h4 {
+  @apply text-3xl font-bold text-green-500;
 }
 @tailwind components;
+.button {
+  @apply flex items-center justify-center w-40 h-12 px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-yellow-500 rounded-full shadow-xl;
+}
+.button:focus {
+  @apply border-yellow-400 outline-none;
+}
+.button:hover {
+  @apply bg-yellow-400;
+}
+.button:active {
+  @apply bg-yellow-400;
+}
+.nav-link {
+  @apply h-10 mt-2 ml-8 whitespace-no-wrap;
+}
+.nav-link:hover {
+  @apply text-yellow-500;
+}
+.nav-link--disabled {
+  @apply text-gray-400;
+}
+.nav-link--disabled:hover {
+  @apply text-gray-400 cursor-not-allowed pointer-events-none;
+}
+.nav-link--active {
+  @apply text-yellow-500;
+  position: relative;
+}
+.nav-link--active::after {
+  content: "";
+  background: url("../icons/dot.svg") no-repeat;
+  width: 5px;
+  height: 5px;
+  position: relative;
+  top: 0.25rem;
+  left: 50%;
+  display: flex;
+}
+.nav-link--not-link {
+  @apply cursor-not-allowed pointer-events-none;
+}
+.main-idea {
+  @apply px-10 py-4 text-center bg-green-100 rounded-full;
+}
+.question {
+  @apply flex items-center w-48 h-12 px-6 py-2 bg-green-100 rounded-full shadow-xl;
+  position: relative;
+}
+.question:after {
+  content: "";
+  background: url("../icons/arrow.svg") no-repeat;
+  background-size: contain;
+  height: 14px;
+  width: 8px;
+  display: flex;
+  position: relative;
+  right: 0;
+} 
+.question:hover {
+  @apply bg-gray-100 cursor-pointer;
+}
+.question--active {
+  @apply bg-gray-100;
+}
+.answer {
+  @apply px-6 py-4 bg-gray-100 rounded-25;
+  max-width: 24rem;
+  height: 250px;
+}
+/* Vue Carousel */
+.VueCarousel-navigation-button {
+  top: 35% !important;
+} 
+.VueCarousel-navigation--disabled {
+  display: none !important;
+}
+.VueCarousel-navigation-prev {
+  left: 1rem !important;
+  background: url("../icons/arrow-left.svg") no-repeat;
+  height: 30px;
+}
+.VueCarousel-navigation-next {
+  right: 1.5rem !important;
+  background: url("../icons/arrow.svg") no-repeat;
+  height: 30px;
+}
+.VueCarousel-dot-container, .VueCarousel-dot {
+  margin-top: 0 !important;
+}
 @tailwind utilities;

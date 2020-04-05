@@ -14,50 +14,38 @@ const routes = [
     path: "/game",
     name: "Game",
     component: () =>
-      import(
-        /* webpackChunkName: "InitialTest" */ "../views/Game.vue"
-      )
+      import(/* webpackChunkName: "InitialTest" */ "../views/Game.vue")
   },
   {
     path: "/zero-waste",
     name: "ZeroWaste",
     component: () =>
-      import(
-        /* webpackChunkName: "InitialTest" */ "../views/ZeroWaste.vue"
-      )
+      import(/* webpackChunkName: "InitialTest" */ "../views/ZeroWaste.vue")
   },
   {
     path: "/recycle",
     name: "Recycle",
     component: () =>
-      import(
-        /* webpackChunkName: "InitialTest" */ "../views/Recycle.vue"
-      )
+      import(/* webpackChunkName: "InitialTest" */ "../views/Recycle.vue")
   },
   {
     path: "/reuse",
     name: "Reuse",
     component: () =>
-      import(
-        /* webpackChunkName: "InitialTest" */ "../views/Reuse.vue"
-      )
+      import(/* webpackChunkName: "InitialTest" */ "../views/Reuse.vue")
   },
   {
     path: "/reduce-refuse",
     name: "ReduceRefuse",
     component: () =>
-      import(
-        /* webpackChunkName: "InitialTest" */ "../views/ReduceRefuse.vue"
-      )
+      import(/* webpackChunkName: "InitialTest" */ "../views/ReduceRefuse.vue")
   },
   {
     path: "/congrats",
     name: "Congrats",
     component: () =>
-      import(
-        /* webpackChunkName: "InitialTest" */ "../views/Congrats.vue"
-      )
-  },
+      import(/* webpackChunkName: "InitialTest" */ "../views/Congrats.vue")
+  }
 ];
 
 const router = new VueRouter({

@@ -2,51 +2,43 @@
   <section>
     <h2>{{ title }}</h2>
     <!-- Sekce "Co to je" -->
-    <div v-if="whatIsIt || all" class="mb-6">
-      <h3 class="mb-2">Co je znovupoužití?</h3>
-      <div class="flex">
-        <img src="../../assets/images/reuse.png" alt="reuse" class="w-24 h-24 mr-6" />
-        <p>
-          <b>Re-use</b> znamená nevyhazovat a používat znova to, co spotřebováváme a nemůžeme zamítnout nebo zredukovat.
-        </p>
-      </div>
+    <div class="flex">
+      <p>
+        <b>Re-use</b> znamená nevyhazovat a používat znova to, co spotřebováváme
+        a nemůžeme zamítnout nebo zredukovat.
+      </p>
+      <img src="../../assets/images/reuse.png" alt="reuse" class="h-24 mr-6 w-carousel-image" />
     </div>
     <!-- Sekce "Tipy" -->
-    <div v-if="tips || all" class="mb-6">
-      <h3 class="mb-2">Tipy</h3>
-      <p
-        class="mb-6"
-      >K Zero Waste životu vede dlouhá cesta. Každá velká změna ale začíná malými krůčky. Tak znovupoužití lze rozdělit na několik základních kroků.</p>
-      <div v-for="(tip, index) in tipsData" :key="index" class="flex items-center mb-6">
-        <img
-          v-if="!tip.alignRight"
-          :src="require(`../../assets/images/reuse/${tip.icon}.png`)"
-          :alt="tip.icon"
-          class="w-24 mr-4"
-        />
-        <div>
-          <b>{{ tip.title }}</b>
-          <div>
-            {{ tip.perex }}
-            <span v-if="tip.link">
-              <a :href="tip.link.url" target="_blank">{{ tip.link.title }}</a>.
-            </span>
-          </div>
-        </div>
-        <img
-          v-if="tip.alignRight"
-          :src="require(`../../assets/images/reuse/${tip.icon}.png`)"
-          :alt="tip.icon"
-          class="w-24 ml-4"
-        />
-      </div>
+    <div class="mb-6">
+      <h3 class="mb-2 text-title">Tipy</h3>
+      <p class="mb-6">
+        K Zero Waste životu vede dlouhá cesta. Každá velká změna ale začíná
+        malými krůčky. Tak znovupoužití lze rozdělit na několik základních
+        kroků.
+      </p>
+      <carousel :per-page="1" navigationEnabled navigationNextLabel navigationPrevLabel>
+        <slide v-for="(tip, index) in tipsData" :key="index" class="flex px-10 mb-4">
+          <img
+            :src="require(`../../assets/images/reuse/${tip.icon}.png`)"
+            :alt="tip.icon"
+            class="h-40 mr-4"
+          />
+          <section>
+            <h4 class="mb-2">{{ tip.title }}</h4>
+            <span v-html="tip.perex"></span>
+          </section>
+        </slide>
+      </carousel>
     </div>
     <!-- Sekce "Výměny" -->
-    <div v-if="swaps || all" class="mb-6">
-      <h3 class="mb-2">Výměny</h3>
-      <p
-        class="mb-6"
-      >Jedním z nejdůležitějších kroků je nákup opakovaně využitelných produktů místo jednorázových. K mnoha produktů je možné najít znovupoužitelné alternativy, které v dlouhém období značně ušetří peněženku.</p>
+    <div class="mb-6">
+      <h3 class="mb-2 text-title">Výměny</h3>
+      <p class="mb-6">
+        Jedním z nejdůležitějších kroků je nákup <b>opakovaně využitelných produktů</b>
+        místo jednorázových. K mnoha produktů je možné najít znovupoužitelné
+        alternativy, které v dlouhém období značně ušetří peněženku.
+      </p>
       <div class="flex flex-wrap">
         <div
           v-for="(swap, index) in swapsData"
@@ -79,61 +71,44 @@
   </section>
 </template>
 
-
 <script>
 export default {
   data() {
     return {
       title: "Znovupoužití",
-      whatIsIt: false,
-      tips: false,
-      swaps: false,
-      all: true,
       tipsData: [
         {
           icon: "rental",
-          alignRight: false,
-          title: "Vypůjčování místo nakupování",
+          title: "Půjčení místo nakupování",
           perex:
-            "Není třeba všechno kupovat a není třeba ani všechno vlastnit. Sdílení, půjčování, výměny, to je cesta k udržitelnějšímu životu. Choďte do knihovny místo do knihkupectví. Půjčujte si oblečení, květiny, knihy, hračky, domácí potřeby."
+            "Není třeba všechno kupovat a není třeba ani všechno vlastnit. <b>Sdílení, půjčování, výměny</b>, to je cesta k udržitelnějšímu životu. Choďte do <b>knihovny</b> místo do knihkupectví. <b>Půjčujte si</b> oblečení, květiny, knihy, hračky, domácí potřeby."
         },
         {
           icon: "second-hand",
-          alignRight: true,
-          title: "Nakupování již použitého v second-handech a bazarech",
+          title: "Second-hand a bazary",
           perex:
-            "Než začnete nakupovat (staré) nové věci, zkuste si udělat pořádek ve skříni a nepotřebné kusy zrecyklovat, prodat či odnést na potřebná místa (H&M, Marks & Spencer). Nakupujte z druhé ruky vše, co můžete. Nekupujte rychlou módu."
+            "Než začnete nakupovat staré/nové věci, zkuste si udělat pořádek ve skříni a nepotřebné kusy <b>zrecyklovat, prodat</b> či <b>odnést na potřebná místa</b> (H&M, Marks & Spencer). <br>Nakupujte <b>z druhé ruky</b> vše, co můžete. <br>Nekupujte rychlou módu."
         },
         {
           icon: "purchase",
-          alignRight: false,
           title:
-            "Shánění věcí z druhé ruky, ale naopak i navracení do oběhu a jejich darování nebo prodej",
-          link: {
-            title: "Vinted",
-            url: "https://www.vinted.cz/"
-          },
+            "Darování nebo prodej",
           perex:
-            "Nevyhazujte staré věci, ale prodejte je někomu dalšímu. A tak to dělejte se vším. To samé obráceně. Ne všechny použité věci jsou špatné. K tomuto koloběhu věcí ideálně slouží facebook Marketplace nebo třeba aplikace "
+            "Nevyhazujte staré věci, ale <b>prodejte</b> je někomu dalšímu. A tak to dělejte se vším. To samé obráceně. Ne všechny použité věci jsou špatné. <br>K tomuto <b>koloběhu věcí</b> ideálně slouží <b>facebook Marketplace</b> nebo třeba aplikace <a href='https://www.vinted.cz/' target='_blank'><b>Vinted</b></a>"
         },
         {
           icon: "repair",
-          alignRight: true,
           title: "Oprava",
-          link: {
-            title: "Opravárna",
-            url: "https://www.opravarna.cz/"
-          },
           perex:
-            "Spousta lidí neumí opravovat poškozené různé věci. Proto vždy, když se něco pokazilo, kupují nové. Dnes je ale snazší a hlavně ekologičtější si nechávat věci opravovat. Např. skvělá služba je "
+            "Spousta lidí neumí opravovat poškozené různé věci. Proto vždy, když se něco pokazilo, kupují nové. Dnes je ale snazší a hlavně ekologičtější si nechávat <b>věci opravovat</b>. Např. skvělá služba je <a href='https://www.opravarna.cz/' target='_blank'><b>Opravárna</b></a>"
         },
         {
           icon: "reuse",
           alignRight: false,
           title:
-            "Využití věcí pro jiný účel, než pro který byly původně stvořeny",
+            "Pro jiný účel",
           perex:
-            "Například používejte staré oblečení k čistění domácnosti. Není nic jednoduššího, než rozstříhat staré tričko a použít ho jako hadr."
+            "Využívejte věcí pro <b>jiný účel</b>, než pro který byly původně stvořeny. <br>Například používejte staré oblečení k čistění domácnosti. Není nic jednoduššího, než rozstříhat staré tričko a použít ho jako hadr."
         }
       ],
       swapsData: [

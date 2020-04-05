@@ -8,7 +8,9 @@
         <p class="mt-1 mb-2 font-bold text-md">{{ optionMessage.title }}</p>
         <ul>
           <li v-for="(opt, i) in optionMessage.options" :key="i" class="mb-2">
-            <button @click="sendToMessageList(opt.value.input.text)">{{ opt.label }}</button>
+            <button @click="sendToMessageList(opt.value.input.text)">
+              {{ opt.label }}
+            </button>
           </li>
         </ul>
       </div>

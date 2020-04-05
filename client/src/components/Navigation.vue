@@ -1,21 +1,24 @@
 <template>
-  <!-- TODO Think about CSS - change the nav UI -->
-  <nav class="flex items-center justify-between h-24 px-24 py-6 bg-gray-300">
-    <div class="flex items-center flex-shrink-0 mr-6 text-gray-700">
-      <router-link to="/game" v-if="!isGame && showHomepage && !gameOver">{{ button }}</router-link>
+  <nav class="flex items-center justify-between h-24 px-10 py-6">
+    <div class="flex items-center flex-shrink-0 text-gray-700" :class="{'order-2': isGame}">
       <router-link
-        v-if="showHomepage"
-        :to="{name: 'Home'}"
-        class="text-xl font-semibold tracking-tight"
-      >Zero Waste</router-link>
-      <div class="flex flex-wrap p-4" v-if="isGame">
-        <progress-bar :percentage="getLevelProgress" class="h-5">
-          <span class="flex justify-end w-48 pr-2 text-xs text-white">{{ getLevelProgress }}%</span>
+        to="/game"
+        class="h-8 mr-8 button"
+        v-if="!isGame && showHomepage && !gameOver"
+        >{{ button }}</router-link
+      >
+      <router-link v-if="showHomepage" :to="{ name: 'Home' }">Domů</router-link>
+      <div class="flex flex-wrap items-center p-4 pr-0" v-if="isGame">
+        <span>Umíš Zero Waste na </span>
+        <progress-bar :percentage="getLevelProgress" class="ml-4">
+          <span class="flex justify-end w-48 pr-2 text-xs text-white"
+            >{{ getLevelProgress }}%</span
+          >
         </progress-bar>
       </div>
     </div>
-    <div class="flex -mb-px">
-      <navigation-level :level="firstLevel" :current="getFirstLevel.active" />
+    <div class="flex" :class="{'order-1': isGame}">
+      <navigation-level :level="firstLevel" :current="getFirstLevel.active" class="ml-0" />
       <navigation-level :level="secondLevel" :current="getSecondLevel.active" />
       <navigation-level :level="thirdLevel" :current="getThirdLevel.active" />
       <navigation-level :level="lastLevel" :current="getLastLevel.active" />
@@ -37,27 +40,23 @@ export default {
     return {
       button: "Spustit hru",
       firstLevel: {
-        title: "Obecné Info",
-        routeLink: "GeneralInfo",
-        active: false,
-        disabled: true
+        title: "Zero Waste",
+        routeLink: "ZeroWaste",
+        disabled: false
       },
       secondLevel: {
         title: "Recyklace",
         routeLink: "Recycle",
-        active: false,
-        disabled: true
+        disabled: false
       },
       thirdLevel: {
         title: "Znovupoužití",
         routeLink: "Reuse",
-        active: false,
         disabled: true
       },
       lastLevel: {
         title: "Zredukování a zamitnutí",
         routeLink: "ReduceRefuse",
-        active: false,
         disabled: true
       }
     };
@@ -110,7 +109,6 @@ export default {
       return this.getGameOverStatus;
     },
     showHomepage() {
-      console.log(this.getShowHomepageStatus);
       return this.getShowHomepageStatus;
     },
     getLevelProgress() {

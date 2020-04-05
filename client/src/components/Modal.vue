@@ -11,7 +11,9 @@
       class="px-4 pt-5 pb-8 mx-auto overflow-hidden transition-all transform bg-white rounded-lg shadow-xl h-modal sm:max-w-screen-xl sm:w-full sm:p-6"
     >
       <div class="flex items-center justify-center">
-        <div class="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-full">
+        <div
+          class="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-full"
+        >
           <img src="../assets/images/exam.png" alt="exam" class="w-6" />
         </div>
         <!-- TODO Add the title - Initial / Level -->
@@ -21,8 +23,12 @@
       <div v-if="button && !showChatWindow" class="flex flex-col items-center">
         <h2
           class="mb-4 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate"
-        >{{ title }}</h2>
-        <button v-if="button" @click="callApi(firstUserAnswerToStartTheGame)">{{ button }}</button>
+        >
+          {{ title }}
+        </h2>
+        <button v-if="button" @click="callApi(firstUserAnswerToStartTheGame)">
+          {{ button }}
+        </button>
       </div>
       <!-- Usual test chat window -->
       <chat-window v-if="showChatWindow" class="w-full h-full" />

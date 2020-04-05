@@ -1,14 +1,14 @@
 <template>
-  <div class="relative w-full h-2 overflow-hidden bg-gray-200 rounded-full">
+  <div class="relative w-carousel-image h-10 overflow-hidden bg-gray-100 rounded-full">
     <div
-      class="h-full bg-gray-500 rounded-full progressbar"
+      class="h-full bg-green-500 rounded-full progressbar font-bold"
       role="progressbar"
-      :style="{width: `${percentage}%`}"
+      :style="{ width: `${percentage}%` }"
       :aria-valuenow="percentage"
       aria-valuemin="0"
       aria-valuemax="100"
     >
-      <span class="flex items-center h-full">
+      <span class="flex items-center h-full px-4">
         <slot></slot>
       </span>
     </div>

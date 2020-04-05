@@ -1,7 +1,12 @@
 <template>
   <transition-group name="messages-list" tag="div">
     <div v-for="(message, index) in feed" :key="index" class="flex-grow">
-      <message-chatbot @selectedOption="sendToChatWindow" v-if="message.author === 'chatbot'" :textMessage="message.textMessage" :optionMessage="message.optionMessage" />
+      <message-chatbot
+        @selectedOption="sendToChatWindow"
+        v-if="message.author === 'chatbot'"
+        :textMessage="message.textMessage"
+        :optionMessage="message.optionMessage"
+      />
       <message-user v-else :message="message.contents" />
     </div>
   </transition-group>

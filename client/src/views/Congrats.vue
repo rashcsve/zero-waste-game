@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>{{title}}</h1>
-    <p>{{perex }}</p>
+    <h1>{{ title }}</h1>
+    <p>{{ perex }}</p>
     <img src="../assets/images/personal.png" alt="congrats" />
   </div>
 </template>
@@ -20,7 +20,7 @@ export default {
     this.setShowHomepageStatus(true);
   },
   methods: {
-    ...mapMutations(["setShowHomepageStatus"]),
+    ...mapMutations(["setShowHomepageStatus"])
   }
 };
 </script>

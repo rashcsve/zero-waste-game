@@ -62,7 +62,7 @@ export default new Vuex.Store({
       state.isGame = payload;
     },
     setGameOverStatus(state, payload) {
-      state.gameOver = payload
+      state.gameOver = payload;
     },
     setShowHomepageStatus(state, payload) {
       state.showHomepage = payload;
