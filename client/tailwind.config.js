@@ -48,7 +48,9 @@ module.exports = {
       },
       width: {
         hp: "500px",
-        "carousel-image": "250px"
+        "carousel-image": "250px",
+        perex: "350px",
+        congrats: "650px"
       },
       lineHeight: {
         "extra-tight": "1.1"

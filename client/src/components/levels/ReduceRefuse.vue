@@ -22,7 +22,7 @@
       <carousel :per-page="1" navigationEnabled navigationNextLabel navigationPrevLabel>
         <slide v-for="(tip, index) in tipsData" :key="index" class="flex px-10 mb-4">
           <img
-            :src="require(`../../assets/images/reduce-refuse/${tip.icon}.png`)"
+            :src="require(`../../assets/images/reduce-refuse/${tip.icon}.svg`)"
             :alt="tip.icon"
             class="h-40 mr-4"
           />

@@ -2,15 +2,15 @@
   <section>
     <h2>{{ title }}</h2>
     <!-- Sekce "Co to je" -->
-    <div class="flex">
-      <p>
+    <div class="flex ">
+      <p class="w-perex">
         <b>Re-use</b> znamená nevyhazovat a používat znova to, co spotřebováváme
         a nemůžeme zamítnout nebo zredukovat.
       </p>
-      <img src="../../assets/images/reuse.png" alt="reuse" class="h-24 mr-6 w-carousel-image" />
+      <img src="../../assets/images/reuse-people.svg" alt="reuse" class="ml-10 -mt-10 w-carousel-image" />
     </div>
     <!-- Sekce "Tipy" -->
-    <div class="mb-6">
+    <div class="mb-6 -mt-8">
       <h3 class="mb-2 text-title">Tipy</h3>
       <p class="mb-6">
         K Zero Waste životu vede dlouhá cesta. Každá velká změna ale začíná
@@ -20,7 +20,7 @@
       <carousel :per-page="1" navigationEnabled navigationNextLabel navigationPrevLabel>
         <slide v-for="(tip, index) in tipsData" :key="index" class="flex px-10 mb-4">
           <img
-            :src="require(`../../assets/images/reuse/${tip.icon}.png`)"
+            :src="require(`../../assets/images/reuse/${tip.icon}.svg`)"
             :alt="tip.icon"
             class="h-40 mr-4"
           />

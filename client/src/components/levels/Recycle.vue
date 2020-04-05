@@ -32,7 +32,7 @@
           některý více, některý méně, ale vždy u toho dochází ke ztrátám a
           životnost každého materiálu jednou skončí.
         </p>
-        <img src="../../assets/images/recycle.png" alt="recylce" class="h-40" />
+        <img src="../../assets/images/recycle.svg" alt="recycle" class="h-40" />
       </div>
       <p class="my-4 main-idea">
         <b>Recyklace nechrání životní prostředí</b>, ale přispívá k menší míře

@@ -1,9 +1,9 @@
 <template>
   <section class="flex mb-8">
     <img
-      :src="require(`../assets/images/waste/${container.image}.jpg`)"
+      :src="require(`../assets/images/waste/${container.image}.svg`)"
       :alt="container.title"
-      class="w-32 h-40 mr-16"
+      class="mx-4"
     />
     <div class="flex flex-col">
       <!-- Main Info -->

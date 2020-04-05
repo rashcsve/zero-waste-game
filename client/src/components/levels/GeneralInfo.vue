@@ -34,7 +34,7 @@
               <span>{{ item.perex }}</span>
             </section>
             <img
-              :src="require(`../../assets/images/${item.icon}.png`)"
+              :src="require(`../../assets/images/${item.icon}.svg`)"
               :alt="item.cion"
               class="h-40 ml-4"
             />

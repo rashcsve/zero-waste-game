@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <section class="mx-auto">
     <h1>{{ title }}</h1>
-    <p>{{ perex }}</p>
-    <img src="../assets/images/personal.png" alt="congrats" />
-  </div>
+    <p class="my-4 w-congrats">{{ perex }}</p>
+    <img src="../assets/images/congrats.svg" alt="congrats" class="mx-auto" />
+  </section>
 </template>
 
 <script>

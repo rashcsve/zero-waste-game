@@ -1,13 +1,13 @@
 <template>
-  <section class="flex mx-auto mt-20">
-    <div class=" w-hp">
+  <section class="flex mx-auto mt-10">
+    <div class="w-hp">
       <h1>{{ title }}</h1>
       <h3>{{ perex }}</h3>
       <router-link :to="button.link" class="w-64 h-20 mt-8 text-2xl button">{{
         button.title
       }}</router-link>
     </div>
-    <img src="../assets/images/money.png" alt="hero image" />
+    <img src="../assets/images/homepage.svg" alt="hero image" />
   </section>
 </template>
 
