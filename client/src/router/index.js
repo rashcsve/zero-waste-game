@@ -11,11 +11,19 @@ const routes = [
     component: Home
   },
   {
-    path: "/general-info",
-    name: "GeneralInfo",
+    path: "/game",
+    name: "Game",
     component: () =>
       import(
-        /* webpackChunkName: "InitialTest" */ "../components/levels/GeneralInfo.vue"
+        /* webpackChunkName: "InitialTest" */ "../views/Game.vue"
+      )
+  },
+  {
+    path: "/zero-waste",
+    name: "ZeroWaste",
+    component: () =>
+      import(
+        /* webpackChunkName: "InitialTest" */ "../views/ZeroWaste.vue"
       )
   },
   {
@@ -23,7 +31,7 @@ const routes = [
     name: "Recycle",
     component: () =>
       import(
-        /* webpackChunkName: "InitialTest" */ "../components/levels/Recycle.vue"
+        /* webpackChunkName: "InitialTest" */ "../views/Recycle.vue"
       )
   },
   {
@@ -31,7 +39,7 @@ const routes = [
     name: "Reuse",
     component: () =>
       import(
-        /* webpackChunkName: "InitialTest" */ "../components/levels/Reuse.vue"
+        /* webpackChunkName: "InitialTest" */ "../views/Reuse.vue"
       )
   },
   {
@@ -39,9 +47,17 @@ const routes = [
     name: "ReduceRefuse",
     component: () =>
       import(
-        /* webpackChunkName: "InitialTest" */ "../components/levels/ReduceRefuse.vue"
+        /* webpackChunkName: "InitialTest" */ "../views/ReduceRefuse.vue"
       )
-  }
+  },
+  {
+    path: "/congrats",
+    name: "Congrats",
+    component: () =>
+      import(
+        /* webpackChunkName: "InitialTest" */ "../views/Congrats.vue"
+      )
+  },
 ];
 
 const router = new VueRouter({

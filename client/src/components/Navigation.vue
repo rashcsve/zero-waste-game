@@ -2,8 +2,13 @@
   <!-- TODO Think about CSS - change the nav UI -->
   <nav class="flex items-center justify-between h-24 px-24 py-6 bg-gray-300">
     <div class="flex items-center flex-shrink-0 mr-6 text-gray-700">
-      <router-link :to="{name: 'Home'}" class="text-xl font-semibold tracking-tight">Zero Waste</router-link>
-      <div class="flex flex-wrap p-4">
+      <router-link to="/game" v-if="!isGame && showHomepage && !gameOver">{{ button }}</router-link>
+      <router-link
+        v-if="showHomepage"
+        :to="{name: 'Home'}"
+        class="text-xl font-semibold tracking-tight"
+      >Zero Waste</router-link>
+      <div class="flex flex-wrap p-4" v-if="isGame">
         <progress-bar :percentage="getLevelProgress" class="h-5">
           <span class="flex justify-end w-48 pr-2 text-xs text-white">{{ getLevelProgress }}%</span>
         </progress-bar>
@@ -30,6 +35,7 @@ export default {
   },
   data() {
     return {
+      button: "Spustit hru",
       firstLevel: {
         title: "Obecné Info",
         routeLink: "GeneralInfo",
@@ -88,12 +94,25 @@ export default {
   },
   computed: {
     ...mapGetters([
+      "getGameStatus",
       "getFirstLevel",
       "getSecondLevel",
       "getThirdLevel",
       "getLastLevel",
-      "getActiveLevel"
+      "getActiveLevel",
+      "getGameOverStatus",
+      "getShowHomepageStatus"
     ]),
+    isGame() {
+      return this.getGameStatus;
+    },
+    gameOver() {
+      return this.getGameOverStatus;
+    },
+    showHomepage() {
+      console.log(this.getShowHomepageStatus);
+      return this.getShowHomepageStatus;
+    },
     getLevelProgress() {
       if (this.getFirstLevel.active === true) {
         return this.getFirstLevel.progress;

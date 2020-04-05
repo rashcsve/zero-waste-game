@@ -1,8 +1,6 @@
 <template>
   <section class="w-1/2 p-10">
     <div class="flex flex-col flex-1 h-full p-6 overflow-auto bg-gray-200" id="chat-window">
-      <!-- TODO Add title -->
-      <!-- <h2 class="mx-3 my-2 text-xl font-bold text-center text-gray-700">Tvůj Asistent</h2> -->
       <!-- Message Feed -->
       <message-list :feed="feed" @selectedOption="setUserMessage" />
       <!-- Input -->
@@ -31,7 +29,8 @@
 <script>
 import api from "../services/api";
 import { scrollToBottom } from "../services/scroll.js";
-import { mapMutations, mapGetters } from "vuex";
+import { mapMutations, mapGetters, mapActions } from "vuex";
+
 import MessageList from "./messages/MessageList";
 export default {
   components: {
@@ -41,29 +40,29 @@ export default {
     return {
       feed: [],
       userMessage: "",
-      chatbotMessage: "",
-      showModal: false
+      chatbotMessage: ""
     };
   },
-  created() {
-    const firstQuestion = this.$store.state.firstChatbotQuestion;
-    if (firstQuestion) {
-      Object.values(firstQuestion).forEach(msg =>
-        this.pushToFeed(this.addAuthorToMessage("chatbot", msg))
-      );
-    }
+  async mounted() {
+    await this.getSessionId();
+    await this.callApi("");
+    this.setGameStatus(true);
+    this.setGameOverStatus(false);
   },
   computed: {
     ...mapGetters(["getCurrentActiveLevel"])
   },
   methods: {
     ...mapMutations([
+      "setGameStatus",
       "setFirstVars",
       "setLevelShow",
       "setLevelActive",
+      "setGameOverStatus",
       "setInitialTestStatus",
       "setChatbotFirstQuestion"
     ]),
+    ...mapActions(["getSessionId"]),
     setUserMessage(msg) {
       this.userMessage = msg;
       this.sendUserMessage();
@@ -99,8 +98,17 @@ export default {
       let message = await api.askAssistant(msg, this.$store.state.sessionId);
       this.userMessage = "";
       // Got an assistant message
-      console.log(message.context.skills["main skill"]);
+      // console.log(message.context.skills["main skill"]);
       if (message) {
+        // If the game is over, route to congrats page
+        if (
+          message.context.skills["main skill"].user_defined["game-over"] ===
+          true
+        ) {
+          this.setGameStatus(false);
+          this.setGameOverStatus(true);
+          this.$router.push({ name: "Congrats" });
+        }
         // Parse the answer and route to the next level if needed
         if (
           message.context.skills["main skill"].user_defined["next-level"] ===
@@ -121,43 +129,36 @@ export default {
 
             scrollToBottom("chat-window");
           }
-          const chatbotLevel = message.context.skills["main skill"].user_defined.level;
+          const chatbotLevel =
+            message.context.skills["main skill"].user_defined.level;
           // Set store status vars
           if (
             message.context.skills["main skill"].user_defined["level-info"] ===
             true
           ) {
-            this.setLevelShow({show: "info", level: chatbotLevel});
+            this.setLevelShow({ show: "info", level: chatbotLevel });
           } else if (
             message.context.skills["main skill"].user_defined["level-map"] ===
             true
           ) {
-            this.setLevelShow({show: "map", level: chatbotLevel});
+            this.setLevelShow({ show: "map", level: chatbotLevel });
           } else if (
             message.context.skills["main skill"].user_defined["level-test"] ===
             true
           ) {
-            this.setLevelShow({show: "test", level: chatbotLevel});
+            this.setLevelShow({ show: "test", level: chatbotLevel });
           }
         }
       }
     },
     routeToNextLevel(msg, level) {
-      // TODO Add getter
-      if (!this.$store.state.initialTestWasDone) {
-        this.setChatbotFirstQuestion({
-          firstMessage: msg.output.generic[0],
-          secondMessage: msg.output.generic[1]
-        });
-      } else {
-        this.pushToFeed(this.addAuthorToMessage("chatbot", msg.output.generic[0]))
-        this.pushToFeed(this.addAuthorToMessage("chatbot", msg.output.generic[1]))
-
-        // TODO Think about clear the actual messages
-        scrollToBottom("chat-window");
-      }
       this.setLevelActive(level);
       this.setInitialTestStatus(true);
+
+      msg.output.generic.forEach(key => {
+        this.pushToFeed(this.addAuthorToMessage("chatbot", key));
+      });
+      scrollToBottom("chat-window");
     }
   }
 };

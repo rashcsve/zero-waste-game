@@ -1,37 +1,27 @@
 <template>
-  <info-window>
-    <general-info v-if="getFirstLevel.active" />
-    <recycle v-if="getSecondLevel.active" />
-    <reuse v-if="getThirdLevel.active" />
-    <reduce-refuse v-if="getLastLevel.active" />
-  </info-window>
+  <section class="flex">
+    <div>
+      <h1>{{ title }}</h1>
+      <h3>{{ perex }}</h3>
+      <!-- TODO button ui -->
+      <router-link :to="button.link">{{ button.title }}</router-link>
+    </div>
+    <img src="../assets/images/money.png" alt="hero image" />
+  </section>
 </template>
 
 <script>
-import GeneralInfo from "../components/levels/GeneralInfo";
-import Recycle from "../components/levels/Recycle";
-import Reuse from "../components/levels/Reuse";
-import ReduceRefuse from "../components/levels/ReduceRefuse";
-import InfoWindow from "../components/InfoWindow";
-
-import { mapGetters } from "vuex";
-
 export default {
   name: "Home",
-  components: {
-    InfoWindow,
-    Recycle,
-    Reuse,
-    GeneralInfo,
-    ReduceRefuse
-  },
-  computed: {
-    ...mapGetters([
-      "getFirstLevel",
-      "getSecondLevel",
-      "getThirdLevel",
-      "getLastLevel"
-    ])
+  data() {
+    return {
+      title: "Nauč se základům Zero Waste",
+      perex: "Udělej krok vpřed do nového života",
+      button: {
+        title: "Spustit hru",
+        link: "/game"
+      }
+    }
   }
 };
 </script>

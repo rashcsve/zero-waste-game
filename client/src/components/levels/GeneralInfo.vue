@@ -1,7 +1,7 @@
 <template>
   <section>
     <h2>{{ title }}</h2>
-    <div v-if="showInfo || showTest">
+    <div>
       <!-- Sekce "Co je Zero Waste" -->
       <div class="mb-6">
         <h3 class="mb-2">Co je Zero Waste?</h3>
@@ -69,7 +69,7 @@
         </div>
       </div>
     </div>
-    <img v-else src="../../assets/images/gif/planet.gif" alt="planet-gif" class="mx-auto" />
+    <!-- <img v-else src="../../assets/images/gif/planet.gif" alt="planet-gif" class="mx-auto" /> -->
   </section>
 </template>
 

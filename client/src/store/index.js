@@ -5,19 +5,14 @@ import api from "../services/api";
 
 Vue.use(Vuex);
 
-/*
-  TODO Refactor - Add state modules!!!!! for: 
-          sessionID (?)
-          progressBar
-          each level 3 states
-          test (boolean)
-*/
 export default new Vuex.Store({
   state: {
     sessionId: null,
     initialTestWasDone: false,
-    test: false,
     active: "",
+    isGame: false,
+    gameOver: false,
+    showHomepage: false,
     levels: {
       first: {
         active: false,
@@ -31,8 +26,7 @@ export default new Vuex.Store({
       },
       third: { active: false, show: "", progress: 50 },
       last: { active: false, show: "", progress: 75 }
-    },
-    firstChatbotQuestion: {}
+    }
   },
   getters: {
     getFirstLevel(state) {
@@ -49,18 +43,32 @@ export default new Vuex.Store({
     },
     getActiveLevel(state) {
       return state.active;
+    },
+    getGameStatus(state) {
+      return state.isGame;
+    },
+    getGameOverStatus(state) {
+      return state.gameOver;
+    },
+    getShowHomepageStatus(state) {
+      return state.showHomepage;
     }
   },
   mutations: {
     setSessionId(state, payload) {
       state.sessionId = payload;
     },
-    // TODO: Dont use it now. Remove after consultation with Naplava (setInit and setTest)
+    setGameStatus(state, payload) {
+      state.isGame = payload;
+    },
+    setGameOverStatus(state, payload) {
+      state.gameOver = payload
+    },
+    setShowHomepageStatus(state, payload) {
+      state.showHomepage = payload;
+    },
     setInitialTestStatus(state, payload) {
       state.initialTestWasDone = payload;
-    },
-    setTest(state, payload) {
-      state.test = payload;
     },
     setLevelActive(state, payload) {
       Object.keys(state.levels).forEach(lvl => {
@@ -82,16 +90,14 @@ export default new Vuex.Store({
       if (curLevel === level) {
         state.levels[curLevel].show = show;
       }
-    },
-    setChatbotFirstQuestion(state, { firstMessage, secondMessage }) {
-      state.firstChatbotQuestion.firstMessage = firstMessage;
-      state.firstChatbotQuestion.secondMessage = secondMessage;
     }
   },
   actions: {
-    async getSessionId({ commit }) {
+    async getSessionId({ state, commit }) {
       const sessionId = await api.getId();
       commit("setSessionId", sessionId);
+      console.log(state);
+      // return state.sessionId;
     }
   }
 });
