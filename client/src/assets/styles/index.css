@@ -29,6 +29,12 @@ h4 {
 .button:active {
   @apply bg-yellow-400;
 }
+.button--dark {
+  @apply bg-gray-500;
+}
+.button--dark:hover, .button--dark:active {
+  @apply bg-gray-600;
+}
 .nav-link {
   @apply h-10 mt-2 ml-8 whitespace-no-wrap;
 }
@@ -85,6 +91,12 @@ h4 {
   @apply px-6 py-4 bg-gray-100 rounded-25;
   max-width: 22rem;
   height: 200px;
+}
+.chat-window {
+  background: url("../images/device.svg") no-repeat;
+  /* max-height: calc(100vh - 96px); */
+  /* background-position: center;
+  background-size: cover; */
 }
 /* Vue Carousel */
 .VueCarousel-navigation-button {

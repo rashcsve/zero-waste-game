@@ -1,20 +1,21 @@
 import axios from "axios";
+// require('dotenv').config();
 
-// TODO: Add proxy / env
-const API_URL = "http://localhost:3000/";
+const API_URL = process.env.API_URL || "http://localhost:3000";
 
 async function getId() {
-  const sessionId = await axios.get(`${API_URL}api/session`);
+  console.log(API_URL);
+  const sessionId = await axios.get(`${API_URL}/api/session`);
   return sessionId.data.result.session_id;
 }
 
 async function askAssistant(msg, sessionId) {
-  const message = await axios.post(`${API_URL}api/message`, {
+  const message = await axios.post(`${API_URL}/api/message`, {
     session_id: sessionId,
     input: {
       message_type: "text",
-      text: msg
-    }
+      text: msg,
+    },
   });
   return message.data.result;
 }

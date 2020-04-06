@@ -1,7 +1,7 @@
 <template>
-  <section class="flex justify-center">
+  <section class="flex flex-col justify-center mt-10">
     <h2
-      class="mb-4 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate"
+      class="mb-4 text-4xl font-bold leading-7 text-center text-tile"
     >
       {{ title }}
     </h2>
@@ -13,7 +13,7 @@
 export default {
   data() {
     return {
-      title: "Úvodní test"
+      title: "Úvodní Test"
     };
   }
 };

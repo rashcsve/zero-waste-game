@@ -1,16 +1,13 @@
 <template>
-  <section class="w-1/2 mr-10 mb-10">
-    <div
-      class="flex flex-col flex-1 h-full p-6 overflow-auto bg-gray-200"
-      id="chat-window"
-    >
+  <section class="relative h-full mr-10 -mt-4 w-hp chat-window">
+    <div class="relative flex flex-col flex-1 h-full px-6 pt-8">
       <!-- Message Feed -->
-      <message-list :feed="feed" @selectedOption="setUserMessage" />
+      <message-list :feed="feed" @selectedOption="setUserMessage" id="chat-window" class="mb-24 overflow-x-auto overflow-y-scroll" />
       <!-- Input -->
-      <div class="flex items-end flex-1 py-4 bg-grey-lighter">
-        <div class="flex flex-1">
+      <div class="absolute flex items-end flex-1 py-4 w-input bottom-chat bg-grey-lighter">
+        <div class="relative flex items-center flex-1 bg-white rounded-full h-14 shadow-input">
           <input
-            class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none"
+            class="w-full px-6 py-2 rounded-full max-w-input focus:outline-none"
             type="text"
             name="message"
             placeholder="Napiš..."
@@ -21,10 +18,8 @@
           <button
             type="button"
             @click="sendUserMessage"
-            class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-gray-300 focus:shadow-outline-gray active:bg-gray-50 active:text-gray-800"
-          >
-            Odeslat
-          </button>
+            class="absolute w-24 h-10 leading-none button right-button"
+          >Odeslat</button>
         </div>
       </div>
     </div>

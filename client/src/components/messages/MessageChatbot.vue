@@ -1,14 +1,14 @@
 <template>
   <!-- TODO Add the time (using moment) -->
   <div class="flex max-w-sm mb-2">
-    <div class="px-3 py-4 bg-gray-100 rounded">
-      <p class="text-sm text-teal">Zero Waste Guru - Asistent</p>
-      <p v-if="textMessage" class="mt-1 text-sm font-bold">{{ textMessage }}</p>
+    <div class="px-3 pt-4 pb-2 rounded shadow-xl">
+      <p class="text-sm font-bold text-teal">Zero Waste Guru - Asistent</p>
+      <p v-if="textMessage" class="mt-1 text-sm">{{ textMessage }}</p>
       <div v-if="optionMessage">
-        <p class="mt-1 mb-2 font-bold text-md">{{ optionMessage.title }}</p>
+        <p class="mt-1 mb-2 text-md">{{ optionMessage.title }}</p>
         <ul>
           <li v-for="(opt, i) in optionMessage.options" :key="i" class="mb-2">
-            <button @click="sendToMessageList(opt.value.input.text)">
+            <button @click="sendToMessageList(opt.value.input.text)" class="button button--dark">
               {{ opt.label }}
             </button>
           </li>

@@ -8,7 +8,7 @@ const colors = {
     600: "#444749",
     700: "#2D2F31",
     800: "#222424",
-    900: "#171818"
+    900: "#171818",
   },
   green: {
     100: "#E8F8F1",
@@ -19,7 +19,7 @@ const colors = {
     600: "#1AA56A",
     700: "#116E47",
     800: "#0D5235",
-    900: "#093723"
+    900: "#093723",
   },
   blue: "#135E8A",
   red: "#FA5652",
@@ -32,11 +32,11 @@ const colors = {
     600: "#DDAE07",
     700: "#937405",
     800: "#6E5704",
-    900: "#4A3A02"
+    900: "#4A3A02",
   },
   pink: "#FFB9B9",
   title: "#2F2E41",
-  white: "#FFF"
+  white: "#FFF",
 };
 
 module.exports = {
@@ -44,31 +44,41 @@ module.exports = {
     extend: {
       height: {
         map: "500px",
-        modal: "720px"
+        modal: "720px",
+        "14": "3.5rem"
       },
       width: {
         hp: "500px",
         "carousel-image": "250px",
         perex: "350px",
-        congrats: "650px"
+        congrats: "650px",
+        input: "450px"
       },
       lineHeight: {
-        "extra-tight": "1.1"
+        "extra-tight": "1.1",
       },
       borderRadius: {
-        "25": "25px"
+        "25": "25px",
       },
       fontSize: {
-        h1: "80px"
+        h1: "80px",
+      },
+      inset: {
+        button: "10px",
+        chat: "1.5rem"
+      },
+      maxWidth: {
+        input: "22rem"
       },
       boxShadow: {
-        button: "0px 4px 6px rgba(0, 0, 0, 0.15)"
+        button: "0px 4px 6px rgba(0, 0, 0, 0.15)",
+        input: "0px 6px 80px rgba(0, 0, 0, 0.12);",
       }
     },
     colors: colors,
     textColors: colors,
-    backgroundColors: colors
+    backgroundColors: colors,
   },
   variants: {},
-  plugins: []
+  plugins: [],
 };

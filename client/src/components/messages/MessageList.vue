@@ -1,6 +1,6 @@
 <template>
   <transition-group name="messages-list" tag="div">
-    <div v-for="(message, index) in feed" :key="index" class="flex-grow">
+    <div v-for="(message, index) in feed" :key="index" class="flex-grow mx-2">
       <message-chatbot
         @selectedOption="sendToChatWindow"
         v-if="message.author === 'chatbot'"
