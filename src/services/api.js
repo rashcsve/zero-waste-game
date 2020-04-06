@@ -4,7 +4,6 @@ import axios from "axios";
 const API_URL = process.env.API_URL || "http://localhost:3000";
 
 async function getId() {
-  console.log(API_URL);
   const sessionId = await axios.get(`${API_URL}/api/session`);
   return sessionId.data.result.session_id;
 }

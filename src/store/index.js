@@ -93,10 +93,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async getSessionId({ state, commit }) {
+    async getSessionId({ commit }) {
       const sessionId = await api.getId();
       commit("setSessionId", sessionId);
-      console.log(state);
       // return state.sessionId;
     }
   }

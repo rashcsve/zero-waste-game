@@ -62,8 +62,7 @@ export default {
     };
   },
   watch: {
-    getActiveLevel(newValue, oldValue) {
-      console.log(oldValue);
+    getActiveLevel(newValue) {
       if (newValue === "first") {
         this.firstLevel.active = true;
         this.firstLevel.disabled = false;
