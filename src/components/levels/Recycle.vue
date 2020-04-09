@@ -1,38 +1,32 @@
 <template>
   <section>
-    <h2>{{ title }}</h2>
-    <div class="mb-10">
+    <h2>4. {{ title }}</h2>
+    <div class="mt-4 mb-6">
+      <p class="mb-4 text-lg" v-html="mainIdea"></p>
       <p>
-        V tomto stylu života nejde pouze o to začít se zajímat o obsah svého
-        koše a začít více recyklovat. Recykluje se až to, co nejde odmítnout,
-        zredukovat a znovu využít.
+        Recyklace je na čtvrtém místě ve stupnici 5R. V tomto stylu života nejde
+        pouze o to začít se zajímat o obsah svého koše a začít více recyklovat.
       </p>
       <p class="my-4 main-idea">
         Recyklace odpadu se skládá ze dvou fází -
         <b>třídění odpadu a samotná recyklace</b>
       </p>
       <p>
-        Jakmile člověk spotřebuje obsah produktu nebo mu doslouží, tak ho vyhodí
-        doma do koše nebo do boxů, krabic či tašek na tříděný odpad. Tohle je
-        proces třídění. Recyklace odpadu je pak jakýmkoli způsobem využití
-        odpadů, díky němuž je odpad znovu zpracován na výrobky, příp. materiály
-        či látky. Cílem recyklace je získat druhotnou surovinu, kterou můžeme
-        použít k výrobě nových produktů a v některých případech tak úplně nebo
-        zcela nahrazovat primární suroviny.
+        Jakmile spotřebuješ obsah produktu nebo ti doslouží, tak ho vyhodíš.
+        Tohle je proces třídění. Recyklace odpadu je pak jakýmkoli způsobem
+        využití odpadů, díky němuž je odpad znovu zpracován na výrobky, příp.
+        materiály či látky. Cílem recyklace je získat druhotnou surovinu, kterou
+        můžou použít k výrobě nových produktů a v některých případech tak úplně
+        nebo zcela nahrazovat primární suroviny.
       </p>
       <div class="flex my-4">
         <p>
-          Principem Zero Waste však není pouze více recyklovat, jak by se mohli
-          někteří domnívat. Naopak. Recyklace nestačí. Recyklace je pouhou
-          náplastí. Vytvoříme odpad a potom ho zrecyklujeme. Jedná se o snahu
-          řešit již vzniklý problém, ale často se stává omluvou pro naší
-          spotřebu a produkci odpadů. „Recykluji, tak dělám to nejlepší pro
-          planetu, co můžu. Tečka.“
-          <br /><br /><b>Žádný materiál se ale nedá recyklovat nekonečně</b>,
+          Principem Zero Waste však není pouze více recyklovat. Naopak.
+          Recyklace nestačí. <b>Žádný materiál se nedá recyklovat nekonečně</b>,
           některý více, některý méně, ale vždy u toho dochází ke ztrátám a
           životnost každého materiálu jednou skončí.
         </p>
-        <img src="../../assets/images/recycle.svg" alt="recycle" class="h-40" />
+        <img src="../../assets/images/recycle.svg" alt="recycle" class="h-40 -mt-12" />
       </div>
       <p class="my-4 main-idea">
         <b>Recyklace nechrání životní prostředí</b>, ale přispívá k menší míře
@@ -70,6 +64,7 @@ export default {
   data() {
     return {
       title: "Recyklace",
+      mainIdea: "Recykluj to, <b>co nejde odmítnout, zredukovat a znovu využít</b>.",
       containers: false,
       mapLink: "https://ksnko.praha.eu/map-separated/",
       containersData: [

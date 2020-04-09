@@ -2,10 +2,10 @@
   <div class="flex justify-between h-full container-max-height">
     <info-window>
       <initial v-if="!initialTestWasDone" />
-      <general-info v-if="getFirstLevel.active" />
+      <refuse v-if="getFirstLevel.active" />
       <recycle v-if="getSecondLevel.active" />
       <reuse v-if="getThirdLevel.active" />
-      <reduce-refuse v-if="getLastLevel.active" />
+      <reduce v-if="getLastLevel.active" />
     </info-window>
     <!-- TODO Add loading status
       <section v-else>
@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import GeneralInfo from "../components/levels/GeneralInfo";
+import Refuse from "../components/levels/Refuse";
 import Recycle from "../components/levels/Recycle";
 import Reuse from "../components/levels/Reuse";
-import ReduceRefuse from "../components/levels/ReduceRefuse";
+import Reduce from "../components/levels/Reduce";
 import InfoWindow from "../components/InfoWindow";
 import ChatWindow from "../components/ChatWindow";
 import Initial from "../components/Initial";
@@ -32,8 +32,8 @@ export default {
     InfoWindow,
     Recycle,
     Reuse,
-    GeneralInfo,
-    ReduceRefuse
+    Refuse,
+    Reduce
   },
   data() {
     return {

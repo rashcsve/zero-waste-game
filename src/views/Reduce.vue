@@ -1,11 +1,11 @@
 <template>
   <info-window class="mx-auto">
-    <reduce-refuse />
+    <reduce />
   </info-window>
 </template>
 
 <script>
-import ReduceRefuse from "../components/levels/ReduceRefuse";
+import Reduce from "../components/levels/Reduce";
 import InfoWindow from "../components/InfoWindow";
 
 import { mapMutations } from "vuex";
@@ -14,7 +14,7 @@ export default {
   name: "ZeroWaste",
   components: {
     InfoWindow,
-    ReduceRefuse
+    Reduce
   },
   created() {
     this.setShowHomepageStatus(true);
