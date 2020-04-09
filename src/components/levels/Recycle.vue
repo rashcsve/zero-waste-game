@@ -105,7 +105,7 @@ export default {
           ]
         },
         {
-          color: "blue",
+          color: "blue-500",
           image: "paper",
           title: "Papír",
           perex:
