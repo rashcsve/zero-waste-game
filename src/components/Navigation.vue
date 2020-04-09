@@ -1,6 +1,6 @@
 <template>
-  <nav class="flex items-center justify-between h-24 px-10 py-6">
-    <div class="flex items-center flex-shrink-0 text-gray-700" :class="{'order-2': isGame}">
+  <nav class="flex items-center justify-between h-24 px-10 py-6 ">
+    <div class="flex items-center flex-shrink-0 text-gray-700">
       <router-link
         to="/game"
         class="h-8 mr-8 button"
@@ -17,11 +17,35 @@
         </progress-bar>
       </div>
     </div>
-    <div class="flex" :class="{'order-1': isGame}">
-      <navigation-level :level="firstLevel" :current="getFirstLevel.active" class="ml-0" />
-      <navigation-level :level="secondLevel" :current="getSecondLevel.active" />
-      <navigation-level :level="thirdLevel" :current="getThirdLevel.active" />
-      <navigation-level :level="lastLevel" :current="getLastLevel.active" />
+    <div class="z-50 flex h-full">
+      <router-link :to="zeroWaste.link" class="nav-link"
+        >{{ zeroWaste.title }}
+      </router-link>
+      <section>
+        <p
+          class="cursor-pointer nav-link"
+          @click="toggleMenu"
+          :class="{ 'nav-link--active': open }"
+        >
+          {{ main }}
+        </p>
+        <div v-if="open" @click="toggleMenu">
+          <div
+            v-for="item in Object.keys(levels)"
+            :key="item"
+            class="text-center"
+          >
+            <navigation-level
+              :level="levels[item]"
+              :current="item.active"
+              @click="toggleMenu"
+            />
+          </div>
+        </div>
+      </section>
+      <router-link :to="zeroWaste.link" class="nav-link"
+        >{{ about.title }}
+      </router-link>
     </div>
   </nav>
 </template>
@@ -38,26 +62,38 @@ export default {
   },
   data() {
     return {
+      open: false,
       button: "Spustit hru",
-      firstLevel: {
-        title: "Zero Waste",
-        routeLink: "ZeroWaste",
-        disabled: false
+      zeroWaste: {
+        title: "Co je Zero Waste",
+        link: "/#zero-waste"
       },
-      secondLevel: {
-        title: "Recyklace",
-        routeLink: "Recycle",
-        disabled: false
+      about: {
+        title: "O projektu",
+        name: "About" 
       },
-      thirdLevel: {
-        title: "Znovupoužití",
-        routeLink: "Reuse",
-        disabled: true
-      },
-      lastLevel: {
-        title: "Zredukování a zamitnutí",
-        routeLink: "ReduceRefuse",
-        disabled: true
+      main: "Základní principy",
+      levels: {
+        firstLevel: {
+          title: "Refuse",
+          disabled: false
+        },
+        secondLevel: {
+          title: "Reduce",
+          disabled: false
+        },
+        thirdLevel: {
+          title: "Reuse",
+          disabled: false
+        },
+        fourthLevel: {
+          title: "Recycle",
+          disabled: false
+        },
+        lastLevel: {
+          title: "Rot",
+          disabled: false
+        }
       }
     };
   },
@@ -96,6 +132,7 @@ export default {
       "getFirstLevel",
       "getSecondLevel",
       "getThirdLevel",
+      "getFourthLevel",
       "getLastLevel",
       "getActiveLevel",
       "getGameOverStatus",
@@ -117,10 +154,17 @@ export default {
         return this.getSecondLevel.progress;
       } else if (this.getThirdLevel.active === true) {
         return this.getThirdLevel.progress;
+      } else if (this.getFourthLevel.active === true) {
+        return this.getFourthLevel.progress;
       } else if (this.getLastLevel.active === true) {
         return this.getLastLevel.progress;
       }
       return 0;
+    }
+  },
+  methods: {
+    toggleMenu() {
+      this.open = !this.open;
     }
   }
 };

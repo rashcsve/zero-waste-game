@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="{ name: level.routeLink }"
+    :to="{ name: level.title }"
     class="nav-link"
     :class="{
       'nav-link--active': active || currentPage,

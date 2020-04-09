@@ -17,16 +17,16 @@ const routes = [
       import(/* webpackChunkName: "InitialTest" */ "../views/Game.vue")
   },
   {
-    path: "/zero-waste",
-    name: "ZeroWaste",
+    path: "/refuse",
+    name: "Refuse",
     component: () =>
-      import(/* webpackChunkName: "InitialTest" */ "../views/ZeroWaste.vue")
+      import(/* webpackChunkName: "InitialTest" */ "../views/Refuse.vue")
   },
   {
-    path: "/recycle",
-    name: "Recycle",
+    path: "/reduce",
+    name: "Reduce",
     component: () =>
-      import(/* webpackChunkName: "InitialTest" */ "../views/Recycle.vue")
+      import(/* webpackChunkName: "InitialTest" */ "../views/Reduce.vue")
   },
   {
     path: "/reuse",
@@ -35,10 +35,16 @@ const routes = [
       import(/* webpackChunkName: "InitialTest" */ "../views/Reuse.vue")
   },
   {
-    path: "/reduce-refuse",
-    name: "ReduceRefuse",
+    path: "/recycle",
+    name: "Recycle",
     component: () =>
-      import(/* webpackChunkName: "InitialTest" */ "../views/ReduceRefuse.vue")
+      import(/* webpackChunkName: "InitialTest" */ "../views/Recycle.vue")
+  },
+  {
+    path: "/rot",
+    name: "Rot",
+    component: () =>
+      import(/* webpackChunkName: "InitialTest" */ "../views/Rot.vue")
   },
   {
     path: "/congrats",
