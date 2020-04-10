@@ -36,6 +36,19 @@
       </carousel>
     </div>
   </section>
+  <section v-else class="flex flex-col items-center">
+    <h2 class="mb-4 text-4xl font-bold leading-7 text-title">
+      {{ info }}
+    </h2>
+    <p>{{ whatToDo }}</p>
+    <div class="mt-8">
+      <img
+        src="../../assets/images/second.svg"
+        alt="first level"
+        class="text-center"
+      />
+    </div>
+  </section>
 </template>
 
 <script>
@@ -43,6 +56,8 @@ export default {
   data() {
     return {
       title: "Reduce",
+      info: "Vítám na druhé úrovni!",
+      whatToDo: "Více info vpravo :)",
       mainIdea:
         "Reduce znamená <b>zredukuj nebo omez, co potřebuješ a nemůžeš zamítnout</b>.",
       perex: "Snížit spotřebu lze v jakékoli oblasti života.",

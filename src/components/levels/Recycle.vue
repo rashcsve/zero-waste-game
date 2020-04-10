@@ -26,7 +26,11 @@
           některý více, některý méně, ale vždy u toho dochází ke ztrátám a
           životnost každého materiálu jednou skončí.
         </p>
-        <img src="../../assets/images/recycle.svg" alt="recycle" class="h-40 -mt-12" />
+        <img
+          src="../../assets/images/recycle.svg"
+          alt="recycle"
+          class="h-40 -mt-12"
+        />
       </div>
       <p class="my-4 main-idea">
         <b>Recyklace nechrání životní prostředí</b>, ale přispívá k menší míře
@@ -53,6 +57,19 @@
       <iframe class="w-full mb-6 h-map" :src="mapLink"></iframe>
     </div>
   </section>
+  <section v-else class="flex flex-col items-center">
+    <h2 class="mb-4 text-4xl font-bold leading-7 text-title">
+      {{ info }}
+    </h2>
+    <p>{{ whatToDo }}</p>
+    <div class="mt-8">
+      <img
+        src="../../assets/images/fourth.svg"
+        alt="first level"
+        class="text-center"
+      />
+    </div>
+  </section>
 </template>
 
 <script>
@@ -64,7 +81,10 @@ export default {
   data() {
     return {
       title: "Recyklace",
-      mainIdea: "Recykluj to, <b>co nejde odmítnout, zredukovat a znovu využít</b>.",
+      info: "Vítám na čtvrté úrovni!",
+      whatToDo: "Co dělat dál zjistíš v boxíku vpravo ;)",
+      mainIdea:
+        "Recykluj to, <b>co nejde odmítnout, zredukovat a znovu využít</b>.",
       containers: false,
       mapLink: "https://ksnko.praha.eu/map-separated/",
       containersData: [

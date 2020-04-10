@@ -80,6 +80,19 @@
       </carousel>
     </div>
   </section>
+  <section v-else class="flex flex-col items-center">
+    <h2 class="mb-4 text-4xl font-bold leading-7 text-title">
+      {{ info }}
+    </h2>
+    <p>{{ whatToDo }}</p>
+    <div class="mt-8">
+      <img
+        src="../../assets/images/third.svg"
+        alt="first level"
+        class="text-center"
+      />
+    </div>
+  </section>
 </template>
 
 <script>
@@ -87,6 +100,8 @@ export default {
   data() {
     return {
       title: "Reuse",
+      info: "Vítám na třetí úrovni!",
+      whatToDo: "Čekám na tebe tam vpravo ;)",
       mainIdea:
         "Reuse znamená <b>nevyhazuj a používej znova to, co spotřebováváš a nemůžeš zamítnout nebo zredukovat</b>.",
       perex:

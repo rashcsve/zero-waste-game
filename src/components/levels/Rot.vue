@@ -29,6 +29,19 @@
       </div>
     </div>
   </section>
+  <section v-else class="flex flex-col items-center">
+    <h2 class="mb-4 text-4xl font-bold leading-7 text-title">
+      {{ info }}
+    </h2>
+    <p>{{ whatToDo }}</p>
+    <div class="mt-8">
+      <img
+        src="../../assets/images/last.svg"
+        alt="first level"
+        class="text-center"
+      />
+    </div>
+  </section>
 </template>
 
 <script>
@@ -36,6 +49,8 @@ export default {
   data() {
     return {
       title: "Rot",
+      info: "Vítám na poslední úrovni!",
+      whatToDo: "Naposledy se můžeš pobavit se mnou tam vpravo :)",
       mainIdea: "Rot znamená <b>Kompostuj</b>.",
       perex:
         "Bioodpad nechej zetlít na kompostu a <b>vrať přírodě živiny</b>, aby měla z čeho plodit a zelenat se. Kromě toho <b>ulevíš i svému rozpočtu</b>, protože výrazně snížíš množství černých popelnic a poplatků za ně.",

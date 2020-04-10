@@ -50,8 +50,18 @@
       <iframe class="w-full mb-6 h-map" :src="mapLink"></iframe>
     </div>
   </section>
-  <section v-else>
-    Info o první úrovně
+  <section v-else class="flex flex-col items-center">
+    <h2 class="mb-4 text-4xl font-bold leading-7 text-title">
+      {{ info }}
+    </h2>
+    <p>{{ whatToDo }}</p>
+    <div class="mt-8">
+      <img
+        src="../../assets/images/first.svg"
+        alt="first level"
+        class="text-center"
+      />
+    </div>
   </section>
 </template>
 
@@ -60,6 +70,8 @@ export default {
   data() {
     return {
       title: "Refuse",
+      info: "Vítám na první úrovni!",
+      whatToDo: "Podívej se doprava, tam najdeš návod :)",
       mapLink: "https://mapa.reduca.cz/",
       mainIdea: "Refuse znamená <b>zamítni vše, co nepotřebuješ</b>.",
       perex:
