@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-if="showInfo">
     <h2>1. {{ title }}</h2>
     <!-- Sekce "Co to je" -->
     <div class="flex mt-4 mb-6">
@@ -50,6 +50,9 @@
       <iframe class="w-full mb-6 h-map" :src="mapLink"></iframe>
     </div>
   </section>
+  <section v-else>
+    Info o první úrovně
+  </section>
 </template>
 
 <script>
@@ -81,6 +84,11 @@ export default {
         }
       ]
     };
+  },
+  computed: {
+    showInfo() {
+      return this.$store.state.levels.first.show;
+    }
   }
 };
 </script>

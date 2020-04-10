@@ -5,6 +5,25 @@ import api from "../services/api";
 
 Vue.use(Vuex);
 
+const defaultLevels = () => {
+  return {
+    first: {
+      active: false,
+      show: false,
+      progress: 0
+    },
+    second: {
+      active: false,
+      show: false,
+      progress: 20
+    },
+    third: { active: false, show: false, progress: 40 },
+    fourth: { active: false, show: false, progress: 60 },
+    last: { active: false, show: false, progress: 80 }
+  };
+};
+const levels = defaultLevels();
+
 export default new Vuex.Store({
   state: {
     sessionId: null,
@@ -13,20 +32,7 @@ export default new Vuex.Store({
     isGame: false,
     gameOver: false,
     showHomepage: false,
-    levels: {
-      first: {
-        active: false,
-        show: "",
-        progress: 0
-      },
-      second: {
-        active: false,
-        show: "",
-        progress: 25
-      },
-      third: { active: false, show: "", progress: 50 },
-      last: { active: false, show: "", progress: 75 }
-    }
+    levels: levels
   },
   getters: {
     getFirstLevel(state) {
@@ -37,6 +43,9 @@ export default new Vuex.Store({
     },
     getThirdLevel(state) {
       return state.levels.third;
+    },
+    getFourthLevel(state) {
+      return state.levels.fourth;
     },
     getLastLevel(state) {
       return state.levels.last;
@@ -55,6 +64,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    emptyCart(state) {
+      Object.assign(state, defaultLevels());
+    },
     setSessionId(state, payload) {
       state.sessionId = payload;
     },
@@ -90,6 +102,7 @@ export default new Vuex.Store({
       if (curLevel === level) {
         state.levels[curLevel].show = show;
       }
+      console.log(state.levels[curLevel].show);
     }
   },
   actions: {

@@ -1,11 +1,22 @@
+/* eslint-disable no-unused-vars */
 <template>
   <section class="relative h-full mr-10 -mt-4 w-hp chat-window">
     <div class="relative flex flex-col flex-1 h-full px-6 pt-8">
       <!-- Message Feed -->
-      <message-list :feed="feed" @selectedOption="setUserMessage" id="chat-window" class="mb-24 overflow-x-auto overflow-y-scroll" />
+      <message-list
+        :feed="feed"
+        ref="baby"
+        @selectedOption="setUserMessage"
+        id="chat-window"
+        class="mb-24 overflow-x-auto overflow-y-scroll"
+      />
       <!-- Input -->
-      <div class="absolute flex items-end flex-1 py-4 w-input bottom-chat bg-grey-lighter">
-        <div class="relative flex items-center flex-1 bg-white rounded-full h-14 shadow-input">
+      <div
+        class="absolute flex items-end flex-1 py-4 w-input bottom-chat bg-grey-lighter"
+      >
+        <div
+          class="relative flex items-center flex-1 bg-white rounded-full h-14 shadow-input"
+        >
           <input
             class="w-full px-6 py-2 rounded-full max-w-input focus:outline-none"
             type="text"
@@ -19,7 +30,9 @@
             type="button"
             @click="sendUserMessage"
             class="absolute w-24 h-10 leading-none button right-button"
-          >Odeslat</button>
+          >
+            Odeslat
+          </button>
         </div>
       </div>
     </div>
@@ -32,6 +45,7 @@ import { scrollToBottom } from "../services/scroll.js";
 import { mapMutations, mapGetters, mapActions } from "vuex";
 
 import MessageList from "./messages/MessageList";
+
 export default {
   components: {
     MessageList
@@ -54,6 +68,7 @@ export default {
   },
   methods: {
     ...mapMutations([
+      "emptyCart",
       "setGameStatus",
       "setFirstVars",
       "setLevelShow",
@@ -71,7 +86,7 @@ export default {
       this.feed.push(msg);
     },
     addAuthorToMessage(author, msg) {
-      // Parse cahtbot message
+      // Parse chatbot message
       let messageWithAuthor = {};
       if (msg.response_type === "text") {
         messageWithAuthor = { author: author, textMessage: msg.text };
@@ -98,7 +113,6 @@ export default {
       let message = await api.askAssistant(msg, this.$store.state.sessionId);
       this.userMessage = "";
       // Got an assistant message
-      // console.log(message.context.skills["main skill"]);
       if (message) {
         // If the game is over, route to congrats page
         if (
@@ -107,6 +121,8 @@ export default {
         ) {
           this.setGameStatus(false);
           this.setGameOverStatus(true);
+          this.emptyCart();
+          this.setInitialTestStatus(false);
           this.$router.push({ name: "Congrats" });
         }
         // Parse the answer and route to the next level if needed
@@ -126,7 +142,6 @@ export default {
               ...this.chatbotMessage
             });
             this.pushToFeed(chatbotFullMessage);
-
             scrollToBottom("chat-window");
           }
           const chatbotLevel =
@@ -136,12 +151,7 @@ export default {
             message.context.skills["main skill"].user_defined["level-info"] ===
             true
           ) {
-            this.setLevelShow({ show: "info", level: chatbotLevel });
-          } else if (
-            message.context.skills["main skill"].user_defined["level-map"] ===
-            true
-          ) {
-            this.setLevelShow({ show: "map", level: chatbotLevel });
+            this.setLevelShow({ show: true, level: chatbotLevel });
           } else if (
             message.context.skills["main skill"].user_defined["level-test"] ===
             true

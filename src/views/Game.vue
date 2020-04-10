@@ -3,9 +3,10 @@
     <info-window>
       <initial v-if="!initialTestWasDone" />
       <refuse v-if="getFirstLevel.active" />
-      <recycle v-if="getSecondLevel.active" />
+      <reduce v-if="getSecondLevel.active" />
       <reuse v-if="getThirdLevel.active" />
-      <reduce v-if="getLastLevel.active" />
+      <recycle v-if="getFourthLevel.active" />
+      <rot v-if="getLastLevel.active" />
     </info-window>
     <!-- TODO Add loading status
       <section v-else>
@@ -20,6 +21,7 @@ import Refuse from "../components/levels/Refuse";
 import Recycle from "../components/levels/Recycle";
 import Reuse from "../components/levels/Reuse";
 import Reduce from "../components/levels/Reduce";
+import Rot from "../components/levels/Rot";
 import InfoWindow from "../components/InfoWindow";
 import ChatWindow from "../components/ChatWindow";
 import Initial from "../components/Initial";
@@ -33,7 +35,8 @@ export default {
     Recycle,
     Reuse,
     Refuse,
-    Reduce
+    Reduce,
+    Rot
   },
   data() {
     return {
@@ -46,6 +49,7 @@ export default {
       "getFirstLevel",
       "getSecondLevel",
       "getThirdLevel",
+      "getFourthLevel",
       "getLastLevel"
     ]),
     initialTestWasDone() {

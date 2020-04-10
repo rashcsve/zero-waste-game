@@ -98,32 +98,32 @@ export default {
     };
   },
   watch: {
-    getActiveLevel(newValue) {
-      if (newValue === "first") {
-        this.firstLevel.active = true;
-        this.firstLevel.disabled = false;
-      } else if (newValue === "second") {
-        this.firstLevel.active = true;
-        this.firstLevel.disabled = false;
-        this.secondLevel.active = true;
-        this.secondLevel.disabled = false;
-      } else if (newValue === "third") {
-        this.firstLevel.active = true;
-        this.firstLevel.disabled = false;
-        this.secondLevel.active = true;
-        this.secondLevel.disabled = false;
-        this.thirdLevel.active = true;
-        this.thirdLevel.disabled = false;
-      } else if (newValue === "last") {
-        this.firstLevel.active = true;
-        this.firstLevel.disabled = false;
-        this.secondLevel.active = true;
-        this.secondLevel.disabled = false;
-        this.thirdLevel.active = true;
-        this.thirdLevel.disabled = false;
-        this.lastLevel.active = true;
-        this.lastLevel.disabled = false;
-      }
+    getActiveLevel() {
+      // if (newValue === "first") {
+      //   this.firstLevel.active = true;
+      //   this.firstLevel.disabled = false;
+      // } else if (newValue === "second") {
+      //   this.firstLevel.active = true;
+      //   this.firstLevel.disabled = false;
+      //   this.secondLevel.active = true;
+      //   this.secondLevel.disabled = false;
+      // } else if (newValue === "third") {
+      //   this.firstLevel.active = true;
+      //   this.firstLevel.disabled = false;
+      //   this.secondLevel.active = true;
+      //   this.secondLevel.disabled = false;
+      //   this.thirdLevel.active = true;
+      //   this.thirdLevel.disabled = false;
+      // } else if (newValue === "last") {
+      //   this.firstLevel.active = true;
+      //   this.firstLevel.disabled = false;
+      //   this.secondLevel.active = true;
+      //   this.secondLevel.disabled = false;
+      //   this.thirdLevel.active = true;
+      //   this.thirdLevel.disabled = false;
+      //   this.lastLevel.active = true;
+      //   this.lastLevel.disabled = false;
+      // }
     }
   },
   computed: {

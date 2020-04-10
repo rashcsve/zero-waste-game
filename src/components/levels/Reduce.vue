@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-if="showInfo">
     <h2>2. {{ title }}</h2>
     <!-- Sekce "Co to je" -->
     <div class="flex mt-4 mb-6">
@@ -74,6 +74,11 @@ export default {
         }
       ]
     };
+  },
+  computed: {
+    showInfo() {
+      return this.$store.state.levels.second.show;
+    }
   }
 };
 </script>
