@@ -96,12 +96,11 @@ export default {
           perex:
             "Plast je umělá hmota. V průměru se globálně údajně zrecykluje necelých 30 % plastových odpadů.",
           whatToSort: [
-            "<b>PET lahve</b>, tuhý a obalový <b>polystyren</b>.",
+            "<b>PET lahve</b>, <b>polystyren</b>.",
             "<b>Igelitové tašky</b>, sáčky a fólie.",
             "<b>Obaly</b> od <b>mycích a čisticích prostředků</b>.",
-            "<b>Kelímky</b> od jogurtů, pomazánek, margarínů, krémů.",
-            "<b>Obaly od šamponů</b>, sprchových gelů, tekutých mýdel.",
-            "<b>Plastové lahve</b> od mléčných nápojů i samotného mléka."
+            "<b>Kelímky</b> od jogurtů, krémů apod.",
+            "<b>Obaly od šamponů</b>, sprchových gelů, tekutých mýdel."
           ],
           howToSort: [
             "<b>Umýt</b>.",
@@ -111,12 +110,11 @@ export default {
             "<b>Sešlápnout</b>."
           ],
           notToSort: [
-            "<b>Celofán</b>.",
-            "<b>Zubní kartáčky</b>.",
+            "<b>Celofán</b>, <b>zubní kartáčky</b>.",
             "Těsnění, <b>žvýkačky</b>.",
             "<b>Hnědé PETky od piva</b>.",
             "Molitan, guma, lino, plexisklo.",
-            "Bioplasty — ty se většinou recyklovat nedají.",
+            "Bioplasty.",
             "Obaly značně znečištěné od nebezpečných chemikálií."
           ]
         },
@@ -127,24 +125,23 @@ export default {
           perex:
             "Papír se vyrábí relativně jednoduše z vláken celulózy. Podle laboratorních testů nelze papír recyklovat více než 7x.",
           whatToSort: [
-            "<b>Krabice</b>, <b>kartony</b>, lepenky, papírové části obalů.",
-            "Katalogy, <b>noviny</b>, <b>časopisy</b>, knihy, brožury",
-            "Vnější <b>papírové krabičky</b> od zubních past, apod.",
+            "<b>Krabice</b>, <b>kartony</b>, papírové části obalů, kancelářský <b>papír</b>, sešity.",
+            "Katalogy, <b>noviny</b>, <b>časopisy</b>, knihy.",
+            "<b>Papírové krabičky</b> od zubních past, apod.",
             "Reklamní <b>letáky</b> a další tiskoviny.",
-            "Kancelářský <b>papír</b>, sešity, bloky, diáře.",
-            "<b>Obaly od potravin</b> (mouka, cukr, obaly od čajových sáčků)."
+            "<b>Obaly od potravin</b> (mouka, cukr)."
           ],
           howToSort: [
-            "Není třeba odstraňovat kovové spony, odstraňují se pomocí magnetů během zpracování.",
+            "Není třeba odstraňovat kovové spony.",
             "Z obálek <b>netřeba vydolovávat plastová okénka</b>.",
             "Krabice <b>rozložit</b> nebo <b>sešlápnout</b>.",
-            "<b>Dokumenty</b> jako bankovní výpisy či jiné, které obsahují vaše osobní data, vždy <b>roztrhovat</b>."
+            "<b>Dokumenty</b>, které obsahují vaše osobní data, vždy <b>roztrhovat</b>."
           ],
           notToSort: [
-            "<b>Plata od vajec</b>, <b>ruličky</b> od toaletního papíru a kuchyňských utěrek.",
+            "<b>Plata od vajec</b>, <b>ruličky</b> od toaletního papíru a utěrek.",
             "Hygienické <b>vložky</b>, <b>toaletní papír</b>, papírové <b>kapesníčky</b>, <b>plenky</b>.",
             "Silně znečištěný papír (od barev, lepidel, mastnoty, krve).",
-            "Použité mokré nebo vlhké papírové utěrky."
+            "Použité vlhké papírové utěrky."
           ]
         },
         {
@@ -185,7 +182,7 @@ export default {
           ],
           howToSort: [
             "Vše železné, kovové a drahokovové je nutné odevzdávat na <b>sběrný dvůr</b>.",
-            "Jen namátkou a pro inspiraci: kovové konstrukce, traverzy, armatury, účka, rámy jízdních kol, kočárků, trakařů, plechy, kryty, okapy, výrobky ze slitin kovů (dural, mosaz, bronz, apod)."
+            "Jen namátkou a pro inspiraci: kovové konstrukce, traverzy, armatury, účka, rámy jízdních kol, kočárků, plechy, kryty, výrobky ze slitin kovů (dural, mosaz, bronz)."
           ],
           notToSort: [
             "<b>Aerosoly</b>",
@@ -197,10 +194,11 @@ export default {
           image: "electro",
           title: "Elektroodpad",
           perex:
-            "Elektroodpad je všechno, co má něco společného s elektřinou. Jsou to elektrospotřebiče - malé, velké i obrovské. Elektroodpad se nerecykluje. Recyklují se jen některé materiály, které elektroodpad obsahuje.",
+            "Elektroodpad je všechno, co má něco společného s elektřinou. Jsou to elektrospotřebiče - malé, velké i obrovské. Recyklují se jen některé materiály, které elektroodpad obsahuje.",
           whatToSort: [
             "Vše, co ke svému provozu <b>potřebovalo elektrickou energii nebo ji vodí</b> (<b>kabely</b>).",
-            "Velké spotřebiče odvážíme na sběrný dvůr popřípadě je vracíme prostřednictvím zpětného odběru."
+            "Velké spotřebiče odvážíme na sběrný dvůr popřípadě je vracíme prostřednictvím zpětného odběru.",
+            "Elektroodpad se nerecykluje."
           ]
         },
         {

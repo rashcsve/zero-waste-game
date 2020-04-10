@@ -3,6 +3,7 @@ html,
 body {
   height: 100%;
   @apply text-base text-gray-500;
+  scroll-behavior: smooth;
 }
 h1 {
   @apply font-bold tracking-tight leading-extra-tight text-h1 text-title;
@@ -32,7 +33,8 @@ h4 {
 .button--dark {
   @apply bg-gray-500;
 }
-.button--dark:hover, .button--dark:active {
+.button--dark:hover,
+.button--dark:active {
   @apply bg-gray-600;
 }
 .nav-link {
@@ -68,7 +70,7 @@ h4 {
   @apply px-10 py-4 text-center bg-green-100 rounded-full;
 }
 .question {
-  @apply flex items-center w-48 h-12 px-6 py-2 bg-green-100 rounded-full shadow-xl;
+  @apply flex items-center w-48 h-12 px-6 py-2 bg-gray-100 rounded-full shadow-xl;
   position: relative;
 }
 .question:after {
@@ -80,16 +82,16 @@ h4 {
   display: flex;
   position: relative;
   right: 0;
-} 
+}
 .question:hover {
-  @apply bg-gray-100 cursor-pointer;
+  @apply bg-green-100 cursor-pointer;
 }
 .question--active {
-  @apply bg-gray-100;
+  @apply font-bold bg-green-100;
 }
 .answer {
-  @apply px-6 py-4 bg-gray-100 rounded-25;
-  max-width: 22rem;
+  @apply p-4 bg-gray-100 rounded-25;
+  max-width: 18rem;
   height: 200px;
 }
 .chat-window {
@@ -99,7 +101,7 @@ h4 {
 /* Vue Carousel */
 .VueCarousel-navigation-button {
   top: 35% !important;
-} 
+}
 .VueCarousel-navigation--disabled {
   display: none !important;
 }
@@ -113,7 +115,14 @@ h4 {
   background: url("../icons/arrow.svg") no-repeat;
   height: 30px;
 }
-.VueCarousel-dot-container, .VueCarousel-dot {
+.VueCarousel-dot-container,
+.VueCarousel-dot {
   margin-top: 0 !important;
+}
+.VueCarousel-dot--active {
+  @apply bg-green-500 !important;
+}
+.VueCarousel-pagination {
+  @apply -mt-4 !important;
 }
 @tailwind utilities;

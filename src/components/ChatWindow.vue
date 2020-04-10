@@ -12,13 +12,13 @@
       />
       <!-- Input -->
       <div
-        class="absolute bottom-0 flex items-end flex-1 py-4 w-input bg-grey-lighter"
+        class="absolute bottom-0 flex items-end flex-1 w-full py-4 mx-auto bg-grey-lighter"
       >
         <div
-          class="relative flex items-center flex-1 bg-white rounded-full h-14 shadow-input"
+          class="relative flex items-center flex-1 mr-4 bg-white rounded-full h-14 shadow-input"
         >
           <input
-            class="w-full px-6 py-2 rounded-full max-w-input focus:outline-none"
+            class="w-3/4 py-2 pl-6 rounded-full focus:outline-none"
             type="text"
             name="message"
             placeholder="Napiš..."
@@ -72,6 +72,7 @@ export default {
   },
   methods: {
     ...mapMutations([
+      "setGameStatus",
       "emptyCart",
       "setFirstVars",
       "setLevelShow",

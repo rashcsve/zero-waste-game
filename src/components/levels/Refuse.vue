@@ -4,7 +4,11 @@
     <!-- Sekce "Co to je" -->
     <div class="flex mt-4 mb-6">
       <main>
-        <p class="mb-4 text-lg" v-html="mainIdea"></p>
+        <p class="text-lg" v-html="mainIdea"></p>
+        <p
+          class="w-5/6 py-2 my-3 ml-4 leading-tight main-idea"
+          v-html="question"
+        ></p>
         <p v-html="perex"></p>
         <p class="my-2">
           <i class="text-md">{{ citation.text }}</i
@@ -72,7 +76,7 @@ export default {
     return {
       title: "Refuse",
       info: "Vítám na první úrovni!",
-      whatToDo: "Podívej se doprava, tam najdeš návod :)",
+      whatToDo: "Podívej se vpravo, tam najdeš návod :)",
       mapLink: "https://mapa.reduca.cz/",
       mainIdea: "Refuse znamená <b>zamítni vše, co nepotřebuješ</b>.",
       perex:
@@ -81,7 +85,7 @@ export default {
         text: "“All in all, we have more stuff and less happiness”,",
         author: "McKibben, Deep Ecology: Economy as if the World Mattered"
       },
-      question: "Základní otázkou je <b>“doopravdy to potřebuji?”</b>",
+      question: "Základní otázkou je<br><b>“doopravdy to potřebuji?”</b>",
       tipsData: [
         {
           icon: "minimal",
@@ -93,7 +97,7 @@ export default {
           icon: "buy",
           title: "Nakupuj s rozumem",
           perex:
-            "Nenakupuj jednorázové produkty. Kupuj <b>ne balenou zeleninu na váhu</b>. Upřednostňuj <b>papírový, skleněný nebo hliníkový obal</b> před plastovým. Pij kohoutkovou vodu místo balené. <br><b>Vyhni se impulzivním nákupům s prázdným žaludkem</b>."
+            "Nenakupuj jednorázové produkty. Kupuj <b>ne balenou zeleninu na váhu</b>. Upřednostňuj <b>papírový, skleněný nebo hliníkový obal</b> před plastovým. Pij kohoutkovou vodu místo balené. <b>Vyhni se impulzivním nákupům s prázdným žaludkem</b>."
         }
       ]
     };

@@ -53,6 +53,7 @@ module.exports = {
   theme: {
     extend: {
       height: {
+        "r-box": "350px",
         map: "500px",
         modal: "720px",
         "14": "3.5rem"
@@ -60,7 +61,7 @@ module.exports = {
       width: {
         hp: "500px",
         "carousel-image": "250px",
-        perx: "350px",
+        perex: "350px",
         congrats: "650px",
         input: "450px"
       },

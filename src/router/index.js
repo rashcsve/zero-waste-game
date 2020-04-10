@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
@@ -57,6 +58,14 @@ const routes = [
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
+  scrollBehavior: function (to, from, savedPosition) {
+    console.log(to);
+    if (to.hash) {
+      return { selector: to.hash };
+    } else {
+      return { x: 0, y: 0 };
+    }
+  },
   routes
 });
 

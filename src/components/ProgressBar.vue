@@ -1,7 +1,9 @@
 <template>
-  <div class="relative w-carousel-image h-10 overflow-hidden bg-gray-100 rounded-full">
+  <div
+    class="relative h-8 overflow-hidden bg-gray-100 rounded-full w-carousel-image"
+  >
     <div
-      class="h-full bg-green-500 rounded-full progressbar font-bold"
+      class="h-full font-bold bg-green-500 rounded-full progressbar"
       role="progressbar"
       :style="{ width: `${percentage}%` }"
       :aria-valuenow="percentage"

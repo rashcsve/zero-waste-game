@@ -6,12 +6,9 @@
       'justify-between': getInitialTestStatus
     }"
   >
-    <div
-      class="flex flex-wrap items-center p-4 pr-0"
-      v-if="getInitialTestStatus"
-    >
+    <div class="flex flex-wrap items-center py-4" v-if="getInitialTestStatus">
       <span>Umíš Zero Waste na </span>
-      <progress-bar :percentage="getLevelProgress" class="ml-4">
+      <progress-bar :percentage="getLevelProgress" class="ml-2">
         <span class="flex justify-end w-48 pr-2 text-xs text-white">
           {{ getLevelProgress }}%
         </span>

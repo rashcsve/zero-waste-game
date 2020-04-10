@@ -26,8 +26,10 @@
       </div>
     </header>
     <!-- Sekce "5R" -->
-    <div class="flex flex-wrap justify-around my-16">
-      <div class="w-1/4 p-6 m-4 verflow-hidden">
+    <div class="flex flex-wrap items-center justify-around my-16">
+      <div
+        class="flex flex-col justify-center p-6 w-perex verflow-hidden h-r-box"
+      >
         <h5 class="mb-2 text-2xl font-bold">5R nebo 5Z</h5>
         <p>
           Podle Bea Johnson,
@@ -41,12 +43,12 @@
             Domácnost bez odpadu</a
           >, <br /><b>Zero Waste se řídí pěti pravidly</b>,<br />tzv. 5R nebo 5Z
         </p>
-        <router-link :to="button.link" class="mt-8 button">{{
+        <router-link :to="button.link" class="mt-4 button">{{
           button.title
         }}</router-link>
       </div>
       <div
-        class="flex flex-col items-center w-1/4 p-6 my-4 rounded shadow-lg verflow-hidden"
+        class="flex flex-col items-center p-6 my-4 rounded shadow-lg w-perex h-r-box verflow-hidden"
         v-for="item in fiveRData"
         :key="item.icon"
       >

@@ -1,15 +1,20 @@
 <template>
   <main>
-    <section class="container flex mx-auto mt-10">
-      <div class="w-hp">
-        <h1>{{ title }}</h1>
-        <h3>{{ perex }}</h3>
+    <section class="container flex justify-around mx-auto">
+      <div class="mt-12 w-hp">
+        <h1 class="leading-none">{{ title }}</h1>
+        <h3 class="mt-6 leading-tight" v-html="perex"></h3>
         <div class="flex items-center">
-          <router-link :to="button.link" class="w-auto mt-8 text-xl button">{{
-            button.title
-          }}</router-link>
-          <!-- TODO Add smooth scroll -->
-          <a :href="anchor.link" class="h-auto mt-8 ml-4 text-xl nav-link">{{ anchor.title }}</a>
+          <router-link
+            :to="button.link"
+            class="w-auto mt-8 text-lg font-normal button"
+            >{{ button.title }}</router-link
+          >
+          <router-link
+            :to="anchor.link"
+            class="h-auto mt-8 ml-4 text-xl nav-link"
+            >{{ anchor.title }}</router-link
+          >
         </div>
       </div>
       <img src="../assets/images/homepage.svg" alt="hero image" />
@@ -35,17 +40,17 @@ export default {
   data() {
     return {
       title: "Nauč se základům Zero Waste",
-      perex: "Snižme naši uhlíkovou stopu a buďme ohleduplní k naší planetě",
+      perex: "Snižme naši uhlíkovou stopu<br>a buďme ohleduplní k naší planetě",
       button: {
         title: "Chci zjistit, jak jsem na tom",
         link: "/game"
       },
       anchor: {
         title: "Co je Zero Waste?",
-        link: "#zero-waste"
+        link: "/#zero-waste"
       },
       citation:
-        "“Odmítej, co nepotřebuješ; redukuj, co potřebuješ, ale nemusíš mít; zužitkuj; recykluj a kompostuj”"
+        "Zero Waste je ojedinělý návod, jak svůj život přetvořit v jednodušší, radostnější a zodpovědnější bytí"
     };
   },
   created() {
@@ -53,7 +58,13 @@ export default {
     this.setGameStatus(false);
   },
   methods: {
-    ...mapMutations(["setShowHomepageStatus", "setGameStatus",])
+    ...mapMutations(["setShowHomepageStatus", "setGameStatus"]),
+    scrollTo() {
+      console.log("scrol");
+      document
+        .querySelector("#zero-waste")
+        .scrollIntoView({ top: 0, behavior: "smooth" });
+    }
   }
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <info-window class="mx-auto">
+  <info-window class="mx-auto mr-auto">
     <reduce />
   </info-window>
 </template>

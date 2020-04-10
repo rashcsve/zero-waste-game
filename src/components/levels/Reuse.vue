@@ -23,7 +23,11 @@
         alternativy, které v dlouhém období značně ušetří peněženku.
       </p>
       <div class="flex flex-wrap">
-        <div v-for="(swap, index) in swapsData" :key="index" class="w-1/4 p-6">
+        <div
+          v-for="(swap, index) in swapsData"
+          :key="index"
+          class="w-1/4 px-4 py-6"
+        >
           <div class="flex items-center justify-center">
             <a :href="swap.link" target="_blank">
               <div class="w-20 h-20 ">
@@ -42,7 +46,7 @@
               <a
                 :href="swap.link"
                 target="_blank"
-                class="inline-block px-4 py-1 mr-2 text-sm font-semibold text-center text-white bg-gray-300 rounded-full hover:bg-gray-400"
+                class="inline-block px-4 py-1 mr-2 text-sm font-semibold text-center text-white bg-gray-500 rounded-full hover:bg-gray-600"
                 >{{ swap.title }}</a
               >
             </div>
@@ -118,7 +122,7 @@ export default {
           icon: "second-hand",
           title: "Second-hand a bazary",
           perex:
-            "Než začneš nakupovat staré/nové věci, zkus si udělat pořádek ve skříni a nepotřebné kusy <b>zrecyklovat, prodat</b> či <b>odnést na potřebná místa</b> (H&M, Marks & Spencer). <br>Nakupuj <b>z druhé ruky vše, co můžeš. <br>Nekupuj rychlou módu."
+            "Než začneš nakupovat staré/nové věci, zkus si udělat pořádek ve skříni a nepotřebné kusy <b>zrecyklovat, prodat</b> či <b>odnést na potřebná místa</b> (H&M, Marks & Spencer). <br>Nakupuj <b>z druhé ruky vše, co můžeš. Nekupuj rychlou módu."
         },
         {
           icon: "purchase",

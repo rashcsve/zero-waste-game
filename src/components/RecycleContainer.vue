@@ -18,14 +18,6 @@
         <!-- Questions -->
         <section class="flex flex-col justify-center">
           <div
-            v-if="container.howToSort"
-            class="mb-4 question"
-            :class="{ 'question--active': isActive('howToSort') }"
-            @click="openAnswers(container.howToSort, 'howToSort')"
-          >
-            <span class="w-full">{{ howToSort }}</span>
-          </div>
-          <div
             v-if="container.whatToSort"
             class="mb-4 question"
             :class="{ 'question--active': isActive('whatToSort') }"
@@ -35,11 +27,19 @@
           </div>
           <div
             v-if="container.notToSort"
-            class="question"
+            class="mb-4 question"
             :class="{ 'question--active': isActive('notToSort') }"
             @click="openAnswers(container.notToSort, 'notToSort')"
           >
             <span class="w-full">{{ notToSort }}</span>
+          </div>
+          <div
+            v-if="container.howToSort"
+            class="question"
+            :class="{ 'question--active': isActive('howToSort') }"
+            @click="openAnswers(container.howToSort, 'howToSort')"
+          >
+            <span class="w-full">{{ howToSort }}</span>
           </div>
         </section>
         <!-- Answer -->
@@ -73,7 +73,7 @@ export default {
     };
   },
   mounted() {
-    this.openAnswers(this.container.howToSort, "howToSort");
+    this.openAnswers(this.container.whatToSort, "whatToSort");
   },
   methods: {
     openAnswers(answers, name) {
