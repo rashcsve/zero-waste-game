@@ -45,7 +45,6 @@ export default {
   },
   computed: {
     ...mapGetters([
-      "getActiveLevel",
       "getFirstLevel",
       "getSecondLevel",
       "getThirdLevel",

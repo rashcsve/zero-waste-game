@@ -50,9 +50,10 @@ export default {
   },
   created() {
     this.setShowHomepageStatus(false);
+    this.setGameStatus(false);
   },
   methods: {
-    ...mapMutations(["setShowHomepageStatus"])
+    ...mapMutations(["setShowHomepageStatus", "setGameStatus",])
   }
 };
 </script>

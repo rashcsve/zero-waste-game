@@ -1,5 +1,5 @@
 <template>
-  <section v-if="showInfo">
+  <section v-if="showInfo || !isGame">
     <h2>4. {{ title }}</h2>
     <div class="mt-4 mb-6">
       <p class="mb-4 text-lg" v-html="mainIdea"></p>
@@ -73,6 +73,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import RecycleContainer from "../RecycleContainer";
 export default {
   components: {
@@ -217,6 +218,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters({ isGame: "getGameStatus" }),
     showInfo() {
       return this.$store.state.levels.fourth.show;
     }

@@ -8,18 +8,40 @@ Vue.use(Vuex);
 const defaultLevels = () => {
   return {
     first: {
+      name: "Refuse",
       active: false,
+      disabled: true,
       show: false,
       progress: 0
     },
     second: {
+      name: "Reduce",
       active: false,
+      disabled: true,
       show: false,
       progress: 20
     },
-    third: { active: false, show: false, progress: 40 },
-    fourth: { active: false, show: false, progress: 60 },
-    last: { active: false, show: false, progress: 80 }
+    third: {
+      name: "Reuse",
+      active: false,
+      disabled: true,
+      show: false,
+      progress: 40
+    },
+    fourth: {
+      name: "Recycle",
+      active: false,
+      disabled: true,
+      show: false,
+      progress: 60
+    },
+    last: {
+      name: "Rot",
+      active: false,
+      disabled: true,
+      show: false,
+      progress: 80
+    }
   };
 };
 const levels = defaultLevels();
@@ -28,13 +50,15 @@ export default new Vuex.Store({
   state: {
     sessionId: null,
     initialTestWasDone: false,
-    active: "",
-    isGame: false,
     gameOver: false,
+    isGame: false,
     showHomepage: false,
     levels: levels
   },
   getters: {
+    getLevels(state) {
+      return state.levels;
+    },
     getFirstLevel(state) {
       return state.levels.first;
     },
@@ -49,9 +73,6 @@ export default new Vuex.Store({
     },
     getLastLevel(state) {
       return state.levels.last;
-    },
-    getActiveLevel(state) {
-      return state.active;
     },
     getGameStatus(state) {
       return state.isGame;
@@ -70,9 +91,6 @@ export default new Vuex.Store({
     setSessionId(state, payload) {
       state.sessionId = payload;
     },
-    setGameStatus(state, payload) {
-      state.isGame = payload;
-    },
     setGameOverStatus(state, payload) {
       state.gameOver = payload;
     },
@@ -82,11 +100,13 @@ export default new Vuex.Store({
     setInitialTestStatus(state, payload) {
       state.initialTestWasDone = payload;
     },
+    setGameStatus(state, payload) {
+      state.isGame = payload;
+    },
     setLevelActive(state, payload) {
       Object.keys(state.levels).forEach(lvl => {
         if (lvl === payload) {
           state.levels[lvl].active = true;
-          state.active = lvl;
         } else {
           state.levels[lvl].active = false;
         }
@@ -102,7 +122,6 @@ export default new Vuex.Store({
       if (curLevel === level) {
         state.levels[curLevel].show = show;
       }
-      console.log(state.levels[curLevel].show);
     }
   },
   actions: {

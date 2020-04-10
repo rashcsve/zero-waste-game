@@ -1,5 +1,5 @@
 <template>
-  <section v-if="showInfo">
+  <section v-if="showInfo || !isGame">
     <h2>1. {{ title }}</h2>
     <!-- Sekce "Co to je" -->
     <div class="flex mt-4 mb-6">
@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -98,6 +99,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters({ isGame: "getGameStatus" }),
     showInfo() {
       return this.$store.state.levels.first.show;
     }
