@@ -20,8 +20,7 @@ export default {
       title: "Otestuj se, jak jsi Zero Waste friendly",
       greeting: "Ahoj, jsem asistent Wejstík. Vítám tě na úvodním testu!",
       perex: "Položím ti pár otázek a hned zjistím, jaké znalosti máš.",
-      limit:
-        "Chci tě upozornit, že na celou hru máš jenom hodinu.",
+      limit: "Chci tě upozornit, že na celou hru máš jenom hodinu.",
       timer: "Časovač najdeš nahoře vlevo, ukáže ti, kolik ještě máš času.",
       anotherLimit:
         "Jestli tě to přestane bavit, můžes mi napsat, že chceš ukončit hru. Ale nebudu si pak pamatovat tvůj progres a budeš muset začít znovu.",

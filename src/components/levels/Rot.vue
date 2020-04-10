@@ -22,7 +22,10 @@
         :alt="item.icon"
         class="h-40 ml-4"
       /> -->
-        <h3 class="mt-4 text-2xl font-bold leading-tight text-center">{{ item.title }}</h3>
+        <!-- TODO Add rot images  -->
+        <h3 class="mt-4 text-2xl font-bold leading-tight text-center">
+          {{ item.title }}
+        </h3>
         <div v-for="product in item.products" :key="product">
           <p class="mt-2 leading-none text-center">{{ product }}</p>
         </div>
@@ -72,7 +75,7 @@ export default {
         {
           icon: "cannot-compost",
           title: "Co nemůžeš kompostovat?",
-          products: ["Kosti","Maso", "Kávová sedlina", "Mléčné výrobky"]
+          products: ["Kosti", "Maso", "Kávová sedlina", "Mléčné výrobky"]
         }
       ]
     };

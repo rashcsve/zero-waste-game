@@ -6,6 +6,7 @@
       'justify-between': getInitialTestStatus
     }"
   >
+    <!-- TODO Add timer -->
     <div class="flex flex-wrap items-center py-4" v-if="getInitialTestStatus">
       <span>Umíš Zero Waste na </span>
       <progress-bar :percentage="getLevelProgress" class="ml-2">

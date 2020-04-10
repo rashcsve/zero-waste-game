@@ -9,7 +9,8 @@ import VueCarousel from "vue-carousel";
 Vue.config.productionTip = false;
 
 Vue.use(VueCarousel);
-
+// TODO Add page transitions
+// TODO Add meta info and favicon
 new Vue({
   router,
   store,

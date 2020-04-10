@@ -1,5 +1,6 @@
 <template>
   <transition-group name="messages-list" tag="div">
+    <!-- TODO Disable old messages -->
     <div v-for="(message, index) in feed" :key="index" class="flex-grow mx-2">
       <message-chatbot
         @selectedOption="sendToChatWindow"

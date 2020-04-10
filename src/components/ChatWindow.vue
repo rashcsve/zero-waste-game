@@ -113,6 +113,7 @@ export default {
       this.callApi(this.userMessage);
     },
     async callApi(msg) {
+      // TODO Add loading on level change
       let message = await api.askAssistant(msg, this.$store.state.sessionId);
       this.userMessage = "";
       // Got an assistant message

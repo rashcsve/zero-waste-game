@@ -42,6 +42,7 @@
           </div>
         </div>
       </section>
+      <!-- TODO Add About page -->
       <router-link :to="zeroWaste.link" class="nav-link"
         >{{ about.title }}
       </router-link>
