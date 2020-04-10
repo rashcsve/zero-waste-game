@@ -1,19 +1,23 @@
 <template>
-  <div class="flex justify-between h-full container-max-height">
-    <info-window>
-      <initial v-if="!initialTestWasDone" />
-      <refuse v-if="getFirstLevel.active" />
-      <reduce v-if="getSecondLevel.active" />
-      <reuse v-if="getThirdLevel.active" />
-      <recycle v-if="getFourthLevel.active" />
-      <rot v-if="getLastLevel.active" />
-    </info-window>
-    <!-- TODO Add loading status
-      <section v-else>
-      <h2>Něco se pokazilo, nejde se připojit k serveru...</h2>
-    </section>-->
-    <chat-window />
+  <div v-if="!loading">
+    <game-navigation />
+    <div class="flex justify-between h-full container-max-height">
+      <info-window>
+        <initial v-if="!initialTestWasDone" />
+        <refuse v-if="getFirstLevel.active" />
+        <reduce v-if="getSecondLevel.active" />
+        <reuse v-if="getThirdLevel.active" />
+        <recycle v-if="getFourthLevel.active" />
+        <rot v-if="getLastLevel.active" />
+      </info-window>
+      <chat-window :firstFeed="firstFeed" />
+    </div>
   </div>
+  <loader
+    v-else
+    :loading="loading"
+    class="flex items-center justify-center h-full"
+  />
 </template>
 
 <script>
@@ -24,14 +28,19 @@ import Reduce from "../components/levels/Reduce";
 import Rot from "../components/levels/Rot";
 import InfoWindow from "../components/InfoWindow";
 import ChatWindow from "../components/ChatWindow";
+import GameNavigation from "../components/GameNavigation";
 import Initial from "../components/Initial";
+import Loader from "../components/Loader";
 
-import { mapGetters } from "vuex";
+import api from "../services/api";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 export default {
   components: {
     Initial,
     ChatWindow,
     InfoWindow,
+    GameNavigation,
+    Loader,
     Recycle,
     Reuse,
     Refuse,
@@ -40,8 +49,17 @@ export default {
   },
   data() {
     return {
-      loading: false
+      loading: true,
+      firstFeed: []
     };
+  },
+  async mounted() {
+    this.setGameStatus(true);
+    this.setGameOverStatus(false);
+    this.loading = true;
+    await this.getSessionId();
+    await this.startDialogWithBot();
+    this.loading = false;
   },
   computed: {
     ...mapGetters([
@@ -49,10 +67,29 @@ export default {
       "getSecondLevel",
       "getThirdLevel",
       "getFourthLevel",
-      "getLastLevel"
+      "getLastLevel",
+      "getLoading"
     ]),
     initialTestWasDone() {
       return this.$store.state.initialTestWasDone;
+    }
+  },
+  methods: {
+    ...mapMutations(["setGameStatus", "setGameOverStatus"]),
+    ...mapActions(["getSessionId"]),
+    async startDialogWithBot() {
+      let message = await api.askAssistant("", this.$store.state.sessionId);
+      if (message) {
+        for (const m in message.output.generic) {
+          const chatbotMessage = message.output.generic[m];
+          // Add message to the feed
+          const chatbotFullMessage = {
+            author: "chatbot",
+            textMessage: chatbotMessage.text
+          };
+          this.firstFeed.push(chatbotFullMessage);
+        }
+      }
     }
   }
 };

@@ -52,12 +52,16 @@ export default new Vuex.Store({
     initialTestWasDone: false,
     gameOver: false,
     isGame: false,
+    gameIsLoading: false,
     showHomepage: false,
     levels: levels
   },
   getters: {
     getLevels(state) {
       return state.levels;
+    },
+    getLoading(state) {
+      return state.gameIsLoading;
     },
     getFirstLevel(state) {
       return state.levels.first;
@@ -102,6 +106,9 @@ export default new Vuex.Store({
     },
     setGameStatus(state, payload) {
       state.isGame = payload;
+    },
+    setGameLoading(state, payload) {
+      state.gameIsLoading = payload;
     },
     setLevelActive(state, payload) {
       Object.keys(state.levels).forEach(lvl => {

@@ -50,6 +50,11 @@ export default {
   components: {
     MessageList
   },
+  props: {
+    firstFeed: {
+      type: Array
+    }
+  },
   data() {
     return {
       feed: [],
@@ -57,11 +62,10 @@ export default {
       chatbotMessage: ""
     };
   },
-  async mounted() {
-    await this.getSessionId();
-    await this.callApi("");
-    this.setGameStatus(true);
-    this.setGameOverStatus(false);
+  mounted() {
+    this.firstFeed.forEach(msg => {
+      this.pushToFeed(msg);
+    });
   },
   computed: {
     ...mapGetters(["getCurrentActiveLevel"])
@@ -69,13 +73,11 @@ export default {
   methods: {
     ...mapMutations([
       "emptyCart",
-      "setGameStatus",
       "setFirstVars",
       "setLevelShow",
       "setLevelActive",
       "setGameOverStatus",
-      "setInitialTestStatus",
-      "setChatbotFirstQuestion"
+      "setInitialTestStatus"
     ]),
     ...mapActions(["getSessionId"]),
     setUserMessage(msg) {
