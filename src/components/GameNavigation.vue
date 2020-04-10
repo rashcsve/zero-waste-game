@@ -1,6 +1,15 @@
 <template>
-  <header class="container flex items-center justify-between h-24 py-6 mx-auto">
-    <div class="flex flex-wrap items-center p-4 pr-0">
+  <header
+    class="container flex items-center h-24 py-6 mx-auto"
+    :class="{
+      'justify-end': !getInitialTestStatus,
+      'justify-between': getInitialTestStatus
+    }"
+  >
+    <div
+      class="flex flex-wrap items-center p-4 pr-0"
+      v-if="getInitialTestStatus"
+    >
       <span>Umíš Zero Waste na </span>
       <progress-bar :percentage="getLevelProgress" class="ml-4">
         <span class="flex justify-end w-48 pr-2 text-xs text-white">
@@ -39,9 +48,10 @@ export default {
   },
   created() {
     this.levels = { ...this.getLevels };
+    console.log(this.getInitialTestStatus);
   },
   computed: {
-    ...mapGetters(["getLevels"]),
+    ...mapGetters(["getLevels", "getInitialTestStatus"]),
     getLevelProgress() {
       if (this.levels.first.active === true) {
         return this.levels.first.progress;

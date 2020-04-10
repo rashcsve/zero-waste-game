@@ -60,6 +60,9 @@ export default new Vuex.Store({
     getLevels(state) {
       return state.levels;
     },
+    getInitialTestStatus(state) {
+      return state.initialTestWasDone;
+    },
     getLoading(state) {
       return state.gameIsLoading;
     },

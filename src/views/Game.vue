@@ -3,7 +3,7 @@
     <game-navigation />
     <div class="flex justify-between h-full container-max-height">
       <info-window>
-        <initial v-if="!initialTestWasDone" />
+        <initial v-if="!getInitialTestStatus" />
         <refuse v-if="getFirstLevel.active" />
         <reduce v-if="getSecondLevel.active" />
         <reuse v-if="getThirdLevel.active" />
@@ -63,16 +63,14 @@ export default {
   },
   computed: {
     ...mapGetters([
+      "getInitialTestStatus",
       "getFirstLevel",
       "getSecondLevel",
       "getThirdLevel",
       "getFourthLevel",
       "getLastLevel",
       "getLoading"
-    ]),
-    initialTestWasDone() {
-      return this.$store.state.initialTestWasDone;
-    }
+    ])
   },
   methods: {
     ...mapMutations(["setGameStatus", "setGameOverStatus"]),
