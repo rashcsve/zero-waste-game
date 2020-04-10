@@ -48,7 +48,6 @@ export default {
   },
   created() {
     this.levels = { ...this.getLevels };
-    console.log(this.getInitialTestStatus);
   },
   computed: {
     ...mapGetters(["getLevels", "getInitialTestStatus"]),

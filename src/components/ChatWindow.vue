@@ -1,18 +1,18 @@
 /* eslint-disable no-unused-vars */
 <template>
-  <section class="relative h-full mr-10 -mt-4 w-hp chat-window">
-    <div class="relative flex flex-col flex-1 h-full px-6 pt-8">
+  <section class="relative mb-8 -mt-4 bg-gray-100 w-hp chat-window">
+    <div class="relative flex flex-col flex-1 h-full pt-4 pl-2 pr-4">
       <!-- Message Feed -->
       <message-list
         :feed="feed"
         ref="baby"
         @selectedOption="setUserMessage"
         id="chat-window"
-        class="mb-24 overflow-x-auto overflow-y-scroll"
+        class="mb-20 overflow-x-auto overflow-y-scroll"
       />
       <!-- Input -->
       <div
-        class="absolute flex items-end flex-1 py-4 w-input bottom-chat bg-grey-lighter"
+        class="absolute bottom-0 flex items-end flex-1 py-4 w-input bg-grey-lighter"
       >
         <div
           class="relative flex items-center flex-1 bg-white rounded-full h-14 shadow-input"

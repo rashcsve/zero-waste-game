@@ -93,10 +93,8 @@ h4 {
   height: 200px;
 }
 .chat-window {
-  background: url("../images/device.svg") no-repeat;
-  /* max-height: calc(100vh - 96px); */
-  /* background-position: center;
-  background-size: cover; */
+  /* background: url("../images/device.svg") no-repeat; */
+  max-height: calc(100vh - 96px);
 }
 /* Vue Carousel */
 .VueCarousel-navigation-button {

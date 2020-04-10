@@ -75,7 +75,7 @@ module.exports = {
       },
       inset: {
         button: "10px",
-        chat: "1.5rem",
+        chat: "1rem",
         maxWidth: {
           input: "22rem"
         },

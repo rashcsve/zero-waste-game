@@ -1,7 +1,9 @@
 <template>
   <div v-if="!loading">
     <game-navigation />
-    <div class="flex justify-between h-full container-max-height">
+    <div
+      class="container flex justify-between h-full mx-auto container-max-height"
+    >
       <info-window>
         <initial v-if="!getInitialTestStatus" />
         <refuse v-if="getFirstLevel.active" />
