@@ -38,8 +38,7 @@
           </div>
         </div>
       </section>
-      <!-- TODO Add About page -->
-      <router-link :to="zeroWaste.link" class="nav-link"
+      <router-link :to="about.link" class="nav-link"
         >{{ about.title }}
       </router-link>
     </div>
@@ -60,7 +59,7 @@ export default {
       },
       about: {
         title: "O projektu",
-        name: "About"
+        link: "/#about"
       },
       main: "Základní principy",
       levels: ["Refuse", "Reduce", "Reuse", "Recycle", "Rot"]

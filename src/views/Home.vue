@@ -27,10 +27,10 @@
     <zero-waste />
     <!-- Stripe -->
     <section class="my-20 bg-yellow-400">
-      <p class="py-20 mx-auto text-center w-hp">{{ myCitation }}</p>
+      <p class="py-20 mx-auto text-center w-hp" v-html="myCitation"></p>
     </section>
     <!-- Info about me -->
-    <section class="container mx-auto mb-20">
+    <section class="container mx-auto mb-20" id="about">
       <main class="flex justify-between">
         <div class="mr-10">
           <h2>{{ about.title }}</h2>
@@ -50,7 +50,7 @@
         v-html="about.bachelor + ' ' + about.enjoy"
       ></p>
       <p class="my-2" v-html="about.feedback"></p>
-      <p class="mb-6" v-html="about.me"></p>
+      <p class="mb-8" v-html="about.me"></p>
     </section>
   </main>
 </template>
@@ -79,14 +79,14 @@ export default {
       citation:
         "Zero Waste je ojedinělý návod, jak svůj život přetvořit v jednodušší, radostnější a zodpovědnější bytí",
       myCitation:
-        "Chci to jinak. Chci se naučit být rozumnější. Chci vyčistit hlavu, své okolí a byt. Nechci vynášet odpadky každý den, nechci mít až tolik toho. Chci se změnit.",
+        "Chci to jinak. Chci se naučit být rozumnější.<br>Chci vyčistit hlavu, své okolí a byt. Nechci vynášet odpadky každý den, nechci mít až tolik toho.<br>Chci se změnit.",
       about: {
         title: "O projektu",
         date: "2019, září",
         perexFirst:
           "“Mám hodně odpadu a nevím co s tím. Vidím, že jsou různé popelnice, začínám třídit, ale za chvíli si všímám, že nedělám to správně. Přírodní katastrofy, eko-nadšenci à la Greta, eko-obchody, pytlíky na ovoce a bambusové zubní kartáčky. Vzpomínky na moje dětství a slova babičky, která mě učila být skromná a pečlivá, opravovat, zašívat, znovu používat. Hodně nového oblečení, kosmetiky, dárků, které nepotřebuji a nepoužívám. Spousta krámů v bytě, chemie na policích a z toho všeho špatné svědomí.",
         perexSecond:
-          "Nový život, noví lidé kolem mě a hromada myšlenek. Odpad není jen to, co dáváš do barevného kontejneru",
+          "Nový život, noví lidé kolem mě a hromada myšlenek. Odpad není jen to, co dáváš do barevného kontejneru.",
         perexThird:
           "Není. Není možné žít bez odpadu a problémů, ale dá se snížit množství. Začít přemýšlet více o sobě a prostředí, ve kterém žijeme. Každý z nás je schopen na malý krůček, který je obrovským krokem pro vlastní budoucnost a celé lidstvo.",
         questions: "Zero Waste? Jakože žádný odpad? Je to možné?",
@@ -98,7 +98,7 @@ export default {
           "Doufám, že si to užiješ a přinese ti to spoustu nových emocí a myšlenek.",
         feedback:
           "Ráda dostanu feedback, napiš mi třeba na <a href='https://www.facebook.com/profile.php?id=100010497007068' target='_blank' class='underline hover:text-yellow-500'>Facebook</a> do zpráv.",
-        me: "Díky,<br>Svetlana Rashchupkina"
+        me: "Díky,<br>Svetlanka"
       }
     };
   },

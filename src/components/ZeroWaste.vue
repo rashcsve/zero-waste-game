@@ -26,7 +26,7 @@
       </div>
     </header>
     <!-- Sekce "5R" -->
-    <div class="flex flex-wrap items-center justify-around my-16">
+    <div class="flex flex-wrap items-center justify-around mt-8 mb-16">
       <div
         class="flex flex-col justify-center p-6 w-perex verflow-hidden h-r-box"
       >
@@ -57,8 +57,11 @@
           :alt="item.cion"
           class="h-40 ml-4"
         />
-        <h3 class="mt-4 leading-tight text-center">{{ item.title }}</h3>
-        <p class="mt-2 text-center">{{ item.mainIdea }}</p>
+        <h3 class="mt-4 font-bold leading-none text-center">
+          {{ item.title }}
+        </h3>
+        <h3 class="mb-2 text-xl text-center">{{ item.czechTitle }}</h3>
+        <p class="leading-tight text-center">{{ item.mainIdea }}</p>
       </div>
     </div>
     <router-link :to="button.link" class="mx-auto mb-16 button"
@@ -79,29 +82,34 @@ export default {
       fiveRData: [
         {
           icon: "refuse",
-          title: "Refuse nebo Zamítnout",
+          title: "Refuse",
+          czechTitle: "Zamítnout",
           mainIdea: "Zamítni, co nepotřebuješ"
         },
         {
           icon: "reduce",
-          title: "Reduce nebo Zredukovat",
+          title: "Reduce",
+          czechTitle: "Zredukovat",
           mainIdea: "Zredukuj, co potřebuješ a nemůžeš zamítnout"
         },
         {
           icon: "reuse",
-          title: "Reuse nebo Znovupoužít",
+          title: "Reuse",
+          czechTitle: "Znovupoužít",
           mainIdea:
             "Znovupoužij, co spotřebováváš a nemůžeš zamítnout nebo zredukovat"
         },
         {
           icon: "recycle",
-          title: "Recycle nebo Zrecyklovat",
+          title: "Recycle",
+          czechTitle: "Zrecyklovat",
           mainIdea:
-            "Zrecykluj, co nemůžš zamítnout, zredukovat nebo znovupoužít"
+            "Zrecykluj, co nemůžeš zamítnout, zredukovat nebo znovupoužít"
         },
         {
           icon: "rot",
-          title: "Rot nebo Zkompostovat",
+          title: "Rot",
+          czechTitle: "Zkompostovat",
           mainIdea: "Zkompostuj zbytek"
         }
       ]
