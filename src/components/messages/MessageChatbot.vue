@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO Add the time (using moment) -->
   <div class="flex items-end max-w-sm py-2">
     <img src="../../assets/images/avatar.svg" alt="avatar" class="mr-3" />
     <main class="px-3 py-2 bg-white rounded shadow-lg">
@@ -19,7 +18,6 @@
         </ul>
       </div>
     </main>
-    <!-- <p class="mt-1 text-xs text-right text-grey-dark">12:45 pm</p> -->
   </div>
 </template>
 

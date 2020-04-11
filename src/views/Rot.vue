@@ -1,7 +1,6 @@
 <template>
   <info-window class="mx-auto mr-auto">
     <rot />
-    <!-- TODO Change rot.svg (at least colors and width) -->
   </info-window>
 </template>
 
