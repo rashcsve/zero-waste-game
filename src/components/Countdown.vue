@@ -47,7 +47,6 @@ export default {
     now() {
       this.diff = this.end - this.now;
       if (this.diff <= 300) {
-        console.log("aletr");
         this.colorAlert = true;
       }
       if (this.diff <= 0) {
@@ -62,7 +61,7 @@ export default {
     }
   },
   created() {
-    this.end = this.now + 9; // Set timer for one hour
+    this.end = this.now + 3599; // Set timer for one hour
     this.diff = this.end - this.now;
     this.interval = setInterval(() => {
       this.now = Math.trunc(new Date().getTime() / 1000);
