@@ -73,7 +73,7 @@ export default {
   methods: {
     ...mapMutations([
       "setGameStatus",
-      "emptyCart",
+      "resetLevels",
       "setFirstVars",
       "setLevelShow",
       "setLevelActive",
@@ -125,7 +125,7 @@ export default {
         ) {
           this.setGameStatus(false);
           this.setGameOverStatus(true);
-          this.emptyCart();
+          this.resetLevels();
           this.setInitialTestStatus(false);
           this.$router.push({ name: "Congrats" });
         }

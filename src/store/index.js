@@ -54,6 +54,7 @@ export default new Vuex.Store({
     isGame: false,
     gameIsLoading: false,
     showHomepage: false,
+    timeout: false,
     levels: levels
   },
   getters: {
@@ -65,6 +66,9 @@ export default new Vuex.Store({
     },
     getLoading(state) {
       return state.gameIsLoading;
+    },
+    getTimeout(state) {
+      return state.timeout;
     },
     getFirstLevel(state) {
       return state.levels.first;
@@ -92,7 +96,7 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    emptyCart(state) {
+    resetLevels(state) {
       Object.assign(state, defaultLevels());
     },
     setSessionId(state, payload) {
@@ -112,6 +116,9 @@ export default new Vuex.Store({
     },
     setGameLoading(state, payload) {
       state.gameIsLoading = payload;
+    },
+    setTimeoutStatus(state, payload) {
+      state.timeout = payload;
     },
     setLevelActive(state, payload) {
       Object.keys(state.levels).forEach(lvl => {

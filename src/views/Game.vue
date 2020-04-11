@@ -1,20 +1,42 @@
 <template>
-  <div v-if="!loading">
-    <game-navigation />
-    <div
-      class="container flex justify-between h-full mx-auto container-max-height"
-    >
-      <info-window>
-        <initial v-if="!getInitialTestStatus" />
-        <refuse v-if="getFirstLevel.active" />
-        <reduce v-if="getSecondLevel.active" />
-        <reuse v-if="getThirdLevel.active" />
-        <recycle v-if="getFourthLevel.active" />
-        <rot v-if="getLastLevel.active" />
-      </info-window>
-      <chat-window :firstFeed="firstFeed" />
-    </div>
-  </div>
+  <section v-if="!loading">
+    <main v-if="!getTimeout">
+      <game-navigation />
+      <div
+        class="container flex justify-between h-full mx-auto container-max-height"
+      >
+        <info-window>
+          <initial v-if="!getInitialTestStatus" />
+          <refuse v-if="getFirstLevel.active" />
+          <reduce v-if="getSecondLevel.active" />
+          <reuse v-if="getThirdLevel.active" />
+          <recycle v-if="getFourthLevel.active" />
+          <rot v-if="getLastLevel.active" />
+        </info-window>
+        <chat-window :firstFeed="firstFeed" />
+      </div>
+    </main>
+    <info-window v-else class="mx-auto mr-auto text-center">
+      <h2>{{ timeout }}</h2>
+      <p class="">{{ perex }}</p>
+      <div class="flex items-center justify-center my-4">
+        <div
+          @click="reloadGame"
+          class="w-48 text-lg font-normal cursor-pointer button"
+        >
+          {{ button }}
+        </div>
+        <router-link to="/" class="h-auto mt-0 ml-4 text-md nav-link">{{
+          home
+        }}</router-link>
+      </div>
+      <img
+        src="../assets/images/timeout.svg"
+        alt="timeout"
+        class="mx-auto mt-4 w-congrats"
+      />
+    </info-window>
+  </section>
   <loader
     v-else
     :loading="loading"
@@ -52,12 +74,18 @@ export default {
   data() {
     return {
       loading: true,
-      firstFeed: []
+      firstFeed: [],
+      timeout: "Bohužel čas vypršel :(",
+      perex:
+        "Můžeš zkusit si zahrát hru znova od začátku nebo vrátit se zpět na domovskou stránku",
+      button: "Zkusit znovu",
+      home: "Domovská stránka"
     };
   },
   async mounted() {
     this.setGameStatus(true);
     this.setGameOverStatus(false);
+    this.setTimeoutStatus(false);
     this.loading = true;
     await this.getSessionId();
     await this.startDialogWithBot();
@@ -71,11 +99,12 @@ export default {
       "getThirdLevel",
       "getFourthLevel",
       "getLastLevel",
-      "getLoading"
+      "getLoading",
+      "getTimeout"
     ])
   },
   methods: {
-    ...mapMutations(["setGameStatus", "setGameOverStatus"]),
+    ...mapMutations(["setGameStatus", "setGameOverStatus", "setTimeoutStatus"]),
     ...mapActions(["getSessionId"]),
     async startDialogWithBot() {
       let message = await api.askAssistant("", this.$store.state.sessionId);
@@ -90,6 +119,9 @@ export default {
           this.firstFeed.push(chatbotFullMessage);
         }
       }
+    },
+    reloadGame() {
+      location.reload();
     }
   }
 };

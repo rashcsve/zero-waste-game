@@ -1,19 +1,15 @@
 <template>
-  <header
-    class="container flex items-center h-24 py-6 mx-auto"
-    :class="{
-      'justify-end': !getInitialTestStatus,
-      'justify-between': getInitialTestStatus
-    }"
-  >
-    <!-- TODO Add timer -->
-    <div class="flex flex-wrap items-center py-4" v-if="getInitialTestStatus">
-      <span>Umíš Zero Waste na </span>
-      <progress-bar :percentage="getLevelProgress" class="ml-2">
-        <span class="flex justify-end w-48 pr-2 text-xs text-white">
-          {{ getLevelProgress }}%
-        </span>
-      </progress-bar>
+  <header class="container flex items-center justify-between h-24 py-6 mx-auto">
+    <div class="flex">
+      <countdown />
+      <div class="flex flex-wrap items-center py-4" v-if="getInitialTestStatus">
+        <span>Umíš Zero Waste na </span>
+        <progress-bar :percentage="getLevelProgress" class="ml-2">
+          <span class="flex justify-end w-48 pr-2 text-xs text-white">
+            {{ getLevelProgress }}%
+          </span>
+        </progress-bar>
+      </div>
     </div>
     <div class="flex">
       <div
@@ -32,11 +28,13 @@
 </template>
 
 <script>
+import Countdown from "../components/Countdown";
 import ProgressBar from "../components/ProgressBar";
 import { mapGetters } from "vuex";
 
 export default {
   components: {
+    Countdown,
     ProgressBar
   },
   data() {

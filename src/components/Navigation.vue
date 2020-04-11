@@ -1,18 +1,14 @@
 <template>
   <nav
-    class="container flex items-center justify-between h-24 px-10 py-6 mx-auto"
+    class="container flex items-center h-24 px-10 py-6 mx-auto"
+    :class="{ 'justify-between': isNotHomepage, 'justify-end': !isNotHomepage }"
   >
-    <div class="flex items-center flex-shrink-0 text-gray-700">
-      <router-link
-        to="/game"
-        class="h-8 mr-8 button"
-        v-if="showHomepage && !gameOver"
-        >{{ button }}</router-link
-      >
-      <router-link
-        class="hover:text-yellow-500"
-        v-if="showHomepage"
-        :to="{ name: 'Home' }"
+    <div
+      class="flex items-center flex-shrink-0 text-gray-700"
+      v-if="isNotHomepage"
+    >
+      <router-link to="/game" class="h-8 mr-8 button">{{ button }}</router-link>
+      <router-link class="hover:text-yellow-500" :to="{ name: 'Home' }"
         >Domů</router-link
       >
     </div>
@@ -71,13 +67,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getGameOverStatus", "getShowHomepageStatus"]),
-    gameOver() {
-      return this.getGameOverStatus;
-    },
-    showHomepage() {
-      return this.getShowHomepageStatus;
-    }
+    ...mapGetters({
+      gameOver: "getGameOverStatus",
+      isNotHomepage: "getShowHomepageStatus"
+    })
   },
   methods: {
     toggleMenu() {
