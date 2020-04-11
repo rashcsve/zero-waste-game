@@ -112,7 +112,6 @@ export default {
     },
     sendUserMessage() {
       if (!this.userMessage || this.userMessage === "") {
-        // TODO Add error validation
         return;
       }
       // Add message to feed
