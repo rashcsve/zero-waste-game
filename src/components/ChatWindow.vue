@@ -64,10 +64,14 @@ export default {
       chatbotMessage: ""
     };
   },
-  mounted() {
+  created() {
     this.firstFeed.forEach(msg => {
       this.pushToFeed(msg);
     });
+    this.setGameStatus(true);
+    this.setGameOverStatus(false);
+    this.resetLevels();
+    this.setInitialTestStatus(false);
   },
   watch: {
     getGameEnd(newValue) {
@@ -188,11 +192,6 @@ export default {
             true
           ) {
             this.setLevelShow({ show: true, level: chatbotLevel });
-          } else if (
-            message.context.skills["main skill"].user_defined["level-test"] ===
-            true
-          ) {
-            this.setLevelShow({ show: "test", level: chatbotLevel });
           }
         }
       }

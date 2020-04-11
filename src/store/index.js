@@ -101,7 +101,7 @@ export default new Vuex.Store({
   },
   mutations: {
     resetLevels(state) {
-      Object.assign(state, defaultLevels());
+      Object.assign(state.levels, defaultLevels());
     },
     setSessionId(state, payload) {
       state.sessionId = payload;

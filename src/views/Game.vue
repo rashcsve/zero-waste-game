@@ -70,7 +70,7 @@ import Initial from "../components/Initial";
 import Loader from "../components/Loader";
 
 import api from "../services/api";
-import { mapGetters, mapActions, mapMutations } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   components: {
     Initial,
@@ -97,9 +97,6 @@ export default {
     };
   },
   async mounted() {
-    this.setGameStatus(true);
-    this.setGameOverStatus(false);
-    this.setTimeoutStatus(false);
     this.loading = true;
     await this.getSessionId();
     await this.startDialogWithBot();
@@ -118,7 +115,6 @@ export default {
     ])
   },
   methods: {
-    ...mapMutations(["setGameStatus", "setGameOverStatus", "setTimeoutStatus"]),
     ...mapActions(["getSessionId"]),
     async startDialogWithBot() {
       let message = await api.askAssistant("", this.$store.state.sessionId);
