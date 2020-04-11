@@ -40,7 +40,7 @@ export default {
 
 <style>
 .messages-list-item {
-  transition: all 0.2s;
+  transition: all 1s;
 }
 
 .messages-list-enter,

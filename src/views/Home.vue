@@ -107,13 +107,7 @@ export default {
     this.setGameStatus(false);
   },
   methods: {
-    ...mapMutations(["setShowHomepageStatus", "setGameStatus"]),
-    scrollTo() {
-      console.log("scrol");
-      document
-        .querySelector("#zero-waste")
-        .scrollIntoView({ top: 0, behavior: "smooth" });
-    }
+    ...mapMutations(["setShowHomepageStatus", "setGameStatus"])
   }
 };
 </script>

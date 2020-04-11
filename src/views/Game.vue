@@ -1,47 +1,60 @@
 <template>
-  <section v-if="!loading">
-    <main v-if="!getTimeout">
-      <game-navigation />
-      <div
-        class="container flex justify-between h-full mx-auto container-max-height"
-      >
-        <info-window>
-          <initial v-if="!getInitialTestStatus" />
-          <refuse v-if="getFirstLevel.active" />
-          <reduce v-if="getSecondLevel.active" />
-          <reuse v-if="getThirdLevel.active" />
-          <recycle v-if="getFourthLevel.active" />
-          <rot v-if="getLastLevel.active" />
-        </info-window>
-        <chat-window :firstFeed="firstFeed" />
-      </div>
-    </main>
-    <info-window v-else class="mx-auto mr-auto text-center">
-      <h2>{{ timeout }}</h2>
-      <p class="">{{ perex }}</p>
-      <div class="flex items-center justify-center my-4">
+  <div>
+    <section v-if="!loading">
+      <main v-if="!getTimeout">
+        <game-navigation />
         <div
-          @click="reloadGame"
-          class="w-48 text-lg font-normal cursor-pointer button"
+          class="container flex justify-between h-full mx-auto container-max-height"
         >
-          {{ button }}
+          <info-window>
+            <initial v-if="!getInitialTestStatus" />
+            <transition name="slide-right">
+              <refuse v-if="getFirstLevel.active" />
+            </transition>
+            <transition name="slide-right">
+              <reduce v-if="getSecondLevel.active" />
+            </transition>
+            <transition name="slide-right">
+              <reuse v-if="getThirdLevel.active" />
+            </transition>
+            <transition name="slide-right">
+              <recycle v-if="getFourthLevel.active" />
+            </transition>
+            <transition name="slide-right">
+              <rot v-if="getLastLevel.active" />
+            </transition>
+          </info-window>
+          <chat-window :firstFeed="firstFeed" />
         </div>
-        <router-link to="/" class="h-auto mt-0 ml-4 text-md nav-link">{{
-          home
-        }}</router-link>
-      </div>
-      <img
-        src="../assets/images/timeout.svg"
-        alt="timeout"
-        class="mx-auto mt-4 w-congrats"
-      />
-    </info-window>
-  </section>
-  <loader
-    v-else
-    :loading="loading"
-    class="flex items-center justify-center h-full"
-  />
+      </main>
+      <info-window v-else class="mx-auto mr-auto text-center">
+        <h2>{{ timeout }}</h2>
+        <p class="">{{ perex }}</p>
+        <div class="flex items-center justify-center my-4">
+          <div
+            @click="reloadGame"
+            class="w-48 text-lg font-normal cursor-pointer button"
+          >
+            {{ button }}
+          </div>
+          <router-link to="/" class="h-auto mt-0 ml-4 text-md nav-link">{{
+            home
+          }}</router-link>
+        </div>
+        <img
+          src="../assets/images/timeout.svg"
+          alt="timeout"
+          class="mx-auto mt-4 w-congrats"
+        />
+      </info-window>
+    </section>
+    <loader
+      v-else
+      :loading="loading"
+      class="flex items-center justify-center h-full"
+      style="height: 100vh"
+    />
+  </div>
 </template>
 
 <script>
@@ -79,7 +92,8 @@ export default {
       perex:
         "Můžeš zkusit si zahrát hru znova od začátku nebo vrátit se zpět na domovskou stránku",
       button: "Zkusit znovu",
-      home: "Domovská stránka"
+      home: "Domovská stránka",
+      prevHeight: 0
     };
   },
   async mounted() {

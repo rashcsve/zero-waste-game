@@ -9,12 +9,6 @@ export default {
   components: {
     PulseLoader
   },
-  watch: {
-    deep: true,
-    loading(newv) {
-      console.log("waa", newv);
-    }
-  },
   props: {
     loading: {
       type: Boolean,
@@ -24,7 +18,7 @@ export default {
   data() {
     return {
       size: 8
-    }
+    };
   }
 };
 </script>

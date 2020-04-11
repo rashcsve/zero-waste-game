@@ -1,0 +1,59 @@
+<template>
+  <transition
+    :name="transitionName"
+    :mode="transitionMode"
+    :enter-active-class="transitionEnterActiveClass"
+    @beforeLeave="beforeLeave"
+    @enter="enter"
+    @afterEnter="afterEnter"
+  >
+    <slot />
+  </transition>
+</template>
+
+<script>
+const DEFAULT_TRANSITION = "fade";
+const DEFAULT_TRANSITION_MODE = "out-in";
+
+export default {
+  name: "TransitionPage",
+  data() {
+    return {
+      prevHeight: 0,
+      transitionName: DEFAULT_TRANSITION,
+      transitionMode: DEFAULT_TRANSITION_MODE,
+      transitionEnterActiveClass: ""
+    };
+  },
+  created() {
+    this.$router.beforeEach((to, from, next) => {
+      let transitionName =
+        to.meta.transitionName ||
+        from.meta.transitionName ||
+        DEFAULT_TRANSITION;
+
+      this.transitionMode = DEFAULT_TRANSITION_MODE;
+      this.transitionEnterActiveClass = `${transitionName}-enter-active`;
+
+      this.transitionName = transitionName;
+
+      next();
+    });
+  },
+  methods: {
+    beforeLeave(element) {
+      this.prevHeight = getComputedStyle(element).height;
+    },
+    enter(element) {
+      const { height } = getComputedStyle(element);
+      element.style.height = this.prevHeight;
+      setTimeout(() => {
+        element.style.height = height;
+      });
+    },
+    afterEnter(element) {
+      element.style.height = "auto";
+    }
+  }
+};
+</script>
