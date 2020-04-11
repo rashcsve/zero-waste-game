@@ -1,7 +1,11 @@
 <template>
   <transition-group name="messages-list" tag="div">
-    <!-- TODO Disable old messages -->
-    <div v-for="(message, index) in feed" :key="index" class="flex-grow mx-2">
+    <div
+      v-for="(message, index) in feed"
+      :key="index"
+      class="flex-grow mx-2"
+      :class="{ 'pointer-events-none cursor-not-allowed': message.isOld }"
+    >
       <message-chatbot
         @selectedOption="sendToChatWindow"
         v-if="message.author === 'chatbot'"
@@ -28,6 +32,25 @@ export default {
       type: Array,
       default: () => [],
       required: false
+    },
+    disabledFeed: {
+      type: Array,
+      default: () => [],
+      required: false
+    }
+  },
+  watch: {
+    disabledFeed() {
+      // Make old messages disabled
+      if (this.feed.length > 3 && this.disabledFeed.length > 0) {
+        this.feed.forEach(msg => {
+          this.disabledFeed.forEach(oldMsg => {
+            if (JSON.stringify(msg) === JSON.stringify(oldMsg)) {
+              msg.isOld = true;
+            }
+          });
+        });
+      }
     }
   },
   methods: {

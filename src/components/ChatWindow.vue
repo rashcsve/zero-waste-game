@@ -5,6 +5,7 @@
       <!-- Message Feed -->
       <message-list
         :feed="feed"
+        :disabledFeed="disabledFeed"
         ref="baby"
         @selectedOption="setUserMessage"
         id="chat-window"
@@ -58,6 +59,7 @@ export default {
   data() {
     return {
       feed: [],
+      disabledFeed: [],
       userMessage: "",
       chatbotMessage: ""
     };
@@ -102,11 +104,19 @@ export default {
       // Parse chatbot message
       let messageWithAuthor = {};
       if (msg.response_type === "text") {
-        messageWithAuthor = { author: author, textMessage: msg.text };
+        messageWithAuthor = {
+          author: author,
+          textMessage: msg.text,
+          isOld: false
+        };
       } else if (typeof msg === "string") {
-        messageWithAuthor = { author: author, textMessage: msg };
+        messageWithAuthor = { author: author, textMessage: msg, isOld: false };
       } else {
-        messageWithAuthor = { author: author, optionMessage: msg };
+        messageWithAuthor = {
+          author: author,
+          optionMessage: msg,
+          isOld: false
+        };
       }
       return messageWithAuthor;
     },
@@ -144,12 +154,6 @@ export default {
             this.$router.push({ name: "Congrats" });
           }
         }
-        // if (
-        //     message.context.skills["main skill"].user_defined["user-end"] ===
-        //     true
-        //   ) {
-          
-        // }
         // Parse the answer and route to the next level if needed
         if (
           message.context.skills["main skill"].user_defined["next-level"] ===
@@ -159,6 +163,13 @@ export default {
             message.context.skills["main skill"].user_defined.level;
           this.routeToNextLevel(message, nextLevel);
         } else {
+          if (this.feed.length > 3) {
+            this.feed.forEach(oldMessage => {
+              if (oldMessage.author === "chatbot") {
+                this.disabledFeed.push(oldMessage);
+              }
+            });
+          }
           // Show the messages and continue the conveersation
           for (const m in message.output.generic) {
             this.chatbotMessage = message.output.generic[m];
