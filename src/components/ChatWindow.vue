@@ -9,12 +9,20 @@
         ref="baby"
         @selectedOption="setUserMessage"
         id="chat-window"
-        class="mb-20 overflow-x-auto overflow-y-scroll"
+        class="mb-32 overflow-x-auto overflow-y-scroll"
+        :class="{ 'mb-32': loading }"
       />
       <!-- Input -->
       <div
         class="absolute bottom-0 flex items-end flex-1 w-full py-4 mx-auto bg-grey-lighter"
       >
+        <section
+          v-if="loading"
+          class="absolute flex items-center -mt-4 top-loader left-avatar"
+        >
+          <img src="../assets/images/avatar.svg" alt="avatar" />
+          <loader :loading="loading" class="ml-2" />
+        </section>
         <div
           class="relative flex items-center flex-1 mr-4 bg-white rounded-full h-14 shadow-input"
         >
@@ -45,10 +53,12 @@ import api from "../services/api";
 import { scrollToBottom } from "../services/scroll.js";
 import { mapMutations, mapGetters, mapActions } from "vuex";
 
+import Loader from "./Loader";
 import MessageList from "./messages/MessageList";
 
 export default {
   components: {
+    Loader,
     MessageList
   },
   props: {
@@ -61,7 +71,8 @@ export default {
       feed: [],
       disabledFeed: [],
       userMessage: "",
-      chatbotMessage: ""
+      chatbotMessage: "",
+      loading: false
     };
   },
   created() {
@@ -102,6 +113,11 @@ export default {
       this.sendUserMessage();
     },
     pushToFeed(msg) {
+      // if (!time) {
+      //   time = 1;
+      // }
+      // setTimeout(() => {
+      // }, 100 * time);
       this.feed.push(msg);
     },
     addAuthorToMessage(author, msg) {
@@ -131,11 +147,13 @@ export default {
       // Add message to feed
       let userFullMessage = { author: "user", contents: this.userMessage };
       this.pushToFeed(userFullMessage);
+      scrollToBottom("chat-window");
 
       // call API
       this.callApi(this.userMessage);
     },
     async callApi(msg) {
+      this.loading = true;
       let message = await api.askAssistant(msg, this.$store.state.sessionId);
       this.userMessage = "";
       // Got an assistant message
@@ -195,6 +213,7 @@ export default {
           }
         }
       }
+      this.loading = false;
     },
     routeToNextLevel(msg, level) {
       this.setLevelActive(level);

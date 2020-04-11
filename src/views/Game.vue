@@ -92,8 +92,7 @@ export default {
       perex:
         "Můžeš zkusit si zahrát hru znova od začátku nebo vrátit se zpět na domovskou stránku",
       button: "Zkusit znovu",
-      home: "Domovská stránka",
-      prevHeight: 0
+      home: "Domovská stránka"
     };
   },
   async mounted() {

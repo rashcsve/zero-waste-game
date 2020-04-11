@@ -1,10 +1,9 @@
 <template>
-  <!-- <transition-group name="messages-list" tag="div"> -->
-  <div>
+  <transition-group name="messages-list" tag="div">
     <div
       v-for="(message, index) in feed"
       :key="index"
-      class="flex-grow mx-2"
+      class="flex-grow mx-2 messages-list-item"
       :class="{ 'pointer-events-none cursor-not-allowed': message.isOld }"
     >
       <message-chatbot
@@ -15,8 +14,7 @@
       />
       <message-user v-else :message="message.contents" />
     </div>
-  </div>
-  <!-- </transition-group> -->
+  </transition-group>
 </template>
 
 <script>
@@ -71,9 +69,9 @@ export default {
 .messages-list-enter,
 .messages-list-leave-to {
   opacity: 0;
-  transform: translateY(30px);
+  /* transform: translateY(4px); */
 }
 .messages-list-leave-active {
-  position: absolute;
+  position: relative;
 }
 </style>
