@@ -1,5 +1,6 @@
 <template>
-  <transition-group name="messages-list" tag="div">
+  <!-- <transition-group name="messages-list" tag="div"> -->
+  <div>
     <div
       v-for="(message, index) in feed"
       :key="index"
@@ -14,7 +15,8 @@
       />
       <message-user v-else :message="message.contents" />
     </div>
-  </transition-group>
+  </div>
+  <!-- </transition-group> -->
 </template>
 
 <script>

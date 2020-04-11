@@ -37,10 +37,10 @@
           <p class="my-2">
             <i>{{ about.date }}</i>
           </p>
-          <p class="my-2">{{ about.perexFirst }}</p>
+          <p class="my-2" v-html="about.perexFirst"></p>
           <p>{{ about.perexSecond }}</p>
           <p class="my-2">{{ about.questions }}</p>
-          <p>{{ about.perexThird }}</p>
+          <p v-html="about.perexThird"></p>
           <p class="my-2">{{ about.believe }}</p>
         </div>
         <img src="../assets/images/girl.svg" alt="girl about" />
@@ -79,16 +79,16 @@ export default {
       citation:
         "Zero Waste je ojedinělý návod, jak svůj život přetvořit v jednodušší, radostnější a zodpovědnější bytí",
       myCitation:
-        "Chci to jinak. Chci se naučit být rozumnější.<br>Chci vyčistit hlavu, své okolí a byt. Nechci vynášet odpadky každý den, nechci mít až tolik toho.<br>Chci se změnit.",
+        "Chci to jinak. Chci se naučit být rozumnější.<br>Chci si vyčistit hlavu, své okolí a byt. Nechci vynášet odpadky každý den, nechci mít až tolik toho.<br>Chci se změnit.",
       about: {
         title: "O projektu",
         date: "2019, září",
         perexFirst:
-          "“Mám hodně odpadu a nevím co s tím. Vidím, že jsou různé popelnice, začínám třídit, ale za chvíli si všímám, že nedělám to správně. Přírodní katastrofy, eko-nadšenci à la Greta, eko-obchody, pytlíky na ovoce a bambusové zubní kartáčky. Vzpomínky na moje dětství a slova babičky, která mě učila být skromná a pečlivá, opravovat, zašívat, znovu používat. Hodně nového oblečení, kosmetiky, dárků, které nepotřebuji a nepoužívám. Spousta krámů v bytě, chemie na policích a z toho všeho špatné svědomí.",
+          "“Mám hodně odpadu a nevím co s tím. Vidím, že jsou různé popelnice, začínám třídit, ale za chvíli si všímám, že nedělám to správně. Přírodní katastrofy, eko-nadšenci à la Greta, eko-obchody, pytlíky na ovoce a bambusové zubní kartáčky. Vzpomínky na moje dětství a slova babičky, která mě učila být skromná a pečlivá, opravovat, zašívat, znovu používat.<br>Hodně nového oblečení, kosmetiky, dárků, které nepotřebuji a nepoužívám. Spousta krámů v&nbsp;bytě, chemie na policích a z toho všeho špatné svědomí.",
         perexSecond:
           "Nový život, noví lidé kolem mě a hromada myšlenek. Odpad není jen to, co dáváš do barevného kontejneru.",
         perexThird:
-          "Není. Není možné žít bez odpadu a problémů, ale dá se snížit množství. Začít přemýšlet více o sobě a prostředí, ve kterém žijeme. Každý z nás je schopen na malý krůček, který je obrovským krokem pro vlastní budoucnost a celé lidstvo.",
+          "Není. Není možné žít bez odpadu a problémů, ale dá se snížit množství. Začít přemýšlet více o&nbsp;sobě a prostředí, ve kterém žijeme. Každý z nás je schopen na malý krůček, který je obrovským krokem pro vlastní budoucnost a celé lidstvo.",
         questions: "Zero Waste? Jakože žádný odpad? Je to možné?",
 
         believe: "Já tomu věřím.“",
