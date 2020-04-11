@@ -23,6 +23,7 @@
       >
         {{ levels[level].name }}
       </div>
+      <div @click="endGame" class="cursor-pointer nav-link">Domů</div>
     </div>
   </header>
 </template>
@@ -30,7 +31,7 @@
 <script>
 import Countdown from "../components/Countdown";
 import ProgressBar from "../components/ProgressBar";
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   components: {
@@ -60,6 +61,12 @@ export default {
         return this.levels.last.progress;
       }
       return 0;
+    }
+  },
+  methods: {
+    ...mapMutations(["setGameEnd"]),
+    endGame() {
+      this.setGameEnd(true);
     }
   }
 };

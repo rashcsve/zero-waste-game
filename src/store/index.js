@@ -55,6 +55,7 @@ export default new Vuex.Store({
     gameIsLoading: false,
     showHomepage: false,
     timeout: false,
+    endGame: false,
     levels: levels
   },
   getters: {
@@ -66,6 +67,9 @@ export default new Vuex.Store({
     },
     getLoading(state) {
       return state.gameIsLoading;
+    },
+    getGameEnd(state) {
+      return state.endGame;
     },
     getTimeout(state) {
       return state.timeout;
@@ -104,6 +108,9 @@ export default new Vuex.Store({
     },
     setGameOverStatus(state, payload) {
       state.gameOver = payload;
+    },
+    setGameEnd(state, payload) {
+      state.endGame = payload;
     },
     setShowHomepageStatus(state, payload) {
       state.showHomepage = payload;

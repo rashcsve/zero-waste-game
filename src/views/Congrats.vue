@@ -15,7 +15,9 @@ export default {
     return {
       title: "Gratuluji!",
       perex:
-        "Teď jsi profík a znáš základy Zero Waste. Doufám, že sis to užil(a) a bylo to pro tebe přínosné. Budu ráda, jestli se se mnou podělíš o své emoce a zkušenosti."
+        "Výborně, teď jsi profík a znáš základy Zero Waste. Doufám, že sis to užil(a) a bylo to pro tebe přínosné. Budu ráda, jestli se se mnou podělíš o své emoce a zkušenosti.",
+      perexSecond:
+        "Můžeš se považovat za odborníka. Našim cílem je hlavně dobrý pocit z toho, že dělámě něco pro naši planetu. Ale jestli se někomu chceš pochlubit nebo o v Zero waste vzdelat další lidi, můžeš svůj výsledek nasdílet na Facebooku nebo si stáhnout náš “certifikát”. "
     };
   },
   created() {

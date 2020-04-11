@@ -67,8 +67,17 @@ export default {
       this.pushToFeed(msg);
     });
   },
+  watch: {
+    getGameEnd(newValue) {
+      if (newValue) {
+        this.userMessage = "Chci ukončit hru";
+        this.sendUserMessage();
+        this.setGameEnd(false);
+      }
+    }
+  },
   computed: {
-    ...mapGetters(["getCurrentActiveLevel"])
+    ...mapGetters(["getCurrentActiveLevel", "getGameEnd"])
   },
   methods: {
     ...mapMutations([
@@ -78,7 +87,8 @@ export default {
       "setLevelShow",
       "setLevelActive",
       "setGameOverStatus",
-      "setInitialTestStatus"
+      "setInitialTestStatus",
+      "setGameEnd"
     ]),
     ...mapActions(["getSessionId"]),
     setUserMessage(msg) {
@@ -113,7 +123,6 @@ export default {
       this.callApi(this.userMessage);
     },
     async callApi(msg) {
-      // TODO Add loading on level change
       let message = await api.askAssistant(msg, this.$store.state.sessionId);
       this.userMessage = "";
       // Got an assistant message
@@ -127,8 +136,21 @@ export default {
           this.setGameOverStatus(true);
           this.resetLevels();
           this.setInitialTestStatus(false);
-          this.$router.push({ name: "Congrats" });
+          if (
+            message.context.skills["main skill"].user_defined["user-end"] ===
+            true
+          ) {
+            this.$router.push({ name: "Home" });
+          } else {
+            this.$router.push({ name: "Congrats" });
+          }
         }
+        // if (
+        //     message.context.skills["main skill"].user_defined["user-end"] ===
+        //     true
+        //   ) {
+          
+        // }
         // Parse the answer and route to the next level if needed
         if (
           message.context.skills["main skill"].user_defined["next-level"] ===

@@ -105,9 +105,16 @@ export default {
   created() {
     this.setShowHomepageStatus(false);
     this.setGameStatus(false);
+    this.setGameOverStatus(false);
+    this.resetLevels();
   },
   methods: {
-    ...mapMutations(["setShowHomepageStatus", "setGameStatus"])
+    ...mapMutations([
+      "setShowHomepageStatus",
+      "setGameStatus",
+      "setGameOverStatus",
+      "resetLevels"
+    ])
   }
 };
 </script>
