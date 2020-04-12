@@ -3,13 +3,19 @@
     <h1>{{ title }}</h1>
     <p class="my-4 w-congrats" v-html="perex"></p>
     <!-- TODO Update texts and add button to share blahblahblah -->
-    <img src="../assets/images/congrats.svg" alt="congrats" class="mx-auto" />
+    <!-- <img src="../assets/images/congrats.svg" alt="congrats" class="mx-auto" />
+     -->
+    <certificate name="Zero Wejstík" class="mx-auto" />
   </section>
 </template>
 
 <script>
 import { mapMutations } from "vuex";
+import Certificate from "../components/Certificate";
 export default {
+  components: {
+    Certificate
+  },
   data() {
     return {
       title: "Gratuluji!",
