@@ -76,10 +76,10 @@ export default {
     };
   },
   created() {
+    this.setGameStatus(true);
     this.firstFeed.forEach(msg => {
       this.pushToFeed(msg);
     });
-    this.setGameStatus(true);
     this.setGameOverStatus(false);
     this.resetLevels();
     this.setInitialTestStatus(false);

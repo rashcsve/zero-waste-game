@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 const DEFAULT_TRANSITION = "fade";
 const DEFAULT_TRANSITION_MODE = "out-in";
 
@@ -37,10 +38,15 @@ export default {
 
       this.transitionName = transitionName;
 
+      if (to.name === "Game") {
+        this.setGameStatus(true);
+      }
+
       next();
     });
   },
   methods: {
+    ...mapMutations(["setGameStatus"]),
     beforeLeave(element) {
       this.prevHeight = getComputedStyle(element).height;
     },
