@@ -28,8 +28,10 @@
         >
           <input
             class="w-3/4 py-2 pl-6 rounded-full focus:outline-none"
+            :class="{ 'cursor-not-allowed': isOption }"
             type="text"
             name="message"
+            :disabled="isOption"
             placeholder="Napiš..."
             v-model="userMessage"
             @keyup.enter.prevent="sendUserMessage"
@@ -72,7 +74,8 @@ export default {
       disabledFeed: [],
       userMessage: "",
       chatbotMessage: "",
-      loading: false
+      loading: false,
+      isOption: false
     };
   },
   created() {
@@ -113,14 +116,10 @@ export default {
       this.sendUserMessage();
     },
     pushToFeed(msg) {
-      // if (!time) {
-      //   time = 1;
-      // }
-      // setTimeout(() => {
-      // }, 100 * time);
       this.feed.push(msg);
     },
     addAuthorToMessage(author, msg) {
+      this.isOption = false;
       // Parse chatbot message
       let messageWithAuthor = {};
       if (msg.response_type === "text") {
@@ -137,6 +136,7 @@ export default {
           optionMessage: msg,
           isOld: false
         };
+        this.isOption = true;
       }
       return messageWithAuthor;
     },
