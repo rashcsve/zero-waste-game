@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = process.env.API_URL;
+const API_URL = "https://zero-waste-chatbot.herokuapp.com/";
 
 async function getId() {
   const sessionId = await axios.get(`${API_URL}/api/session`);
