@@ -4,11 +4,7 @@
   >
     <div
       class="h-full font-bold bg-green-500 rounded-full progressbar"
-      role="progressbar"
       :style="{ width: `${percentage}%` }"
-      :aria-valuenow="percentage"
-      aria-valuemin="0"
-      aria-valuemax="100"
     >
       <span class="flex items-center h-full px-4">
         <slot></slot>
@@ -18,7 +14,6 @@
 </template>
 <script>
 export default {
-  inheritAttrs: false,
   props: {
     percentage: {
       type: Number,
@@ -27,7 +22,7 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style>
 .progressbar {
   transition: width 0.25s ease;
 }
