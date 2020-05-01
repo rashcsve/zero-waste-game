@@ -49,6 +49,7 @@ export default {
   computed: {
     ...mapGetters(["getLevels", "getInitialTestStatus"]),
     getLevelProgress() {
+      console.log(this.levels);
       if (this.levels.first.active === true) {
         return this.levels.first.progress;
       } else if (this.levels.second.active === true) {
@@ -60,6 +61,7 @@ export default {
       } else if (this.levels.last.active === true) {
         return this.levels.last.progress;
       }
+      console.log("tady");
       return 0;
     }
   },
