@@ -49,6 +49,7 @@ export default {
   computed: {
     ...mapGetters(["getLevels", "getInitialTestStatus"]),
     getLevelProgress() {
+      // eslint-disable-next-line no-console
       console.log(this.levels);
       if (this.levels.first.active === true) {
         return this.levels.first.progress;
@@ -61,6 +62,7 @@ export default {
       } else if (this.levels.last.active === true) {
         return this.levels.last.progress;
       }
+      // eslint-disable-next-line no-console
       console.log("tady");
       return 0;
     }
