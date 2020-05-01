@@ -49,21 +49,18 @@ export default {
   computed: {
     ...mapGetters(["getLevels", "getInitialTestStatus"]),
     getLevelProgress() {
-      // eslint-disable-next-line no-console
-      console.log(this.levels);
-      if (this.levels.first.active === true) {
-        return this.levels.first.progress;
-      } else if (this.levels.second.active === true) {
-        return this.levels.second.progress;
-      } else if (this.levels.third.active === true) {
-        return this.levels.third.progress;
-      } else if (this.levels.fourth.active === true) {
-        return this.levels.fourth.progress;
-      } else if (this.levels.last.active === true) {
-        return this.levels.last.progress;
+      const levels = { ...this.getLevels };
+      if (levels.first.active === true) {
+        return levels.first.progress;
+      } else if (levels.second.active === true) {
+        return levels.second.progress;
+      } else if (levels.third.active === true) {
+        return levels.third.progress;
+      } else if (levels.fourth.active === true) {
+        return levels.fourth.progress;
+      } else if (levels.last.active === true) {
+        return levels.last.progress;
       }
-      // eslint-disable-next-line no-console
-      console.log("tady");
       return 0;
     }
   },
