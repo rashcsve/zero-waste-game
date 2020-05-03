@@ -17,12 +17,11 @@
         v-for="item in data"
         :key="item.title"
       >
-        <!-- <img
-        :src="require(`../assets/images/${item.icon}.svg`)"
-        :alt="item.icon"
-        class="h-40 ml-4"
-      /> -->
-        <!-- TODO Add rot images  -->
+        <img
+          :src="require(`../../assets/images/${item.icon}.png`)"
+          :alt="item.icon"
+          class="h-40 mx-auto"
+        />
         <h3 class="mt-4 text-2xl font-bold leading-tight text-center">
           {{ item.title }}
         </h3>
@@ -62,7 +61,7 @@ export default {
         "Založ si vlastní kompost nebo najdi komunitní komposty ve městě.",
       data: [
         {
-          icon: "can-compost",
+          icon: "can-rot",
           title: "Co můžeš kompostovat?",
           products: [
             "Slupky",
@@ -73,9 +72,9 @@ export default {
           ]
         },
         {
-          icon: "cannot-compost",
+          icon: "cannot-rot",
           title: "Co nemůžeš kompostovat?",
-          products: ["Kosti", "Maso", "Kávová sedlina", "Mléčné výrobky"]
+          products: ["Kosti", "Maso", "Mléčné výrobky"]
         }
       ]
     };
