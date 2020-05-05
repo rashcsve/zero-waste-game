@@ -43,13 +43,20 @@ export default {
       levels: {}
     };
   },
+  watch: {
+    levels(newLevels) {
+      if (newLevels) {
+        this.levels = newLevels;
+      }
+    }
+  },
   created() {
     this.levels = { ...this.getLevels };
   },
   computed: {
     ...mapGetters(["getLevels", "getInitialTestStatus"]),
     getLevelProgress() {
-      const levels = { ...this.getLevels };
+      const levels = this.levels;
       if (levels.first.active === true) {
         return levels.first.progress;
       } else if (levels.second.active === true) {
