@@ -216,7 +216,6 @@ export default {
       this.loading = false;
     },
     routeToNextLevel(msg, level) {
-      console.log(level);
       this.setLevelActive(level);
       this.setInitialTestStatus(true);
 
