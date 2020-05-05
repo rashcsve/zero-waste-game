@@ -146,6 +146,9 @@ h4 {
 .VueCarousel-dot {
   margin-top: 0 !important;
 }
+.VueCarousel-dot {
+  @apply bg-gray-500 !important;
+}
 .VueCarousel-dot--active {
   @apply bg-green-500 !important;
 }
