@@ -43,20 +43,14 @@ export default {
       levels: {}
     };
   },
-  watch: {
-    levels(newLevels) {
-      if (newLevels) {
-        this.levels = newLevels;
-      }
-    }
-  },
   created() {
     this.levels = { ...this.getLevels };
   },
   computed: {
     ...mapGetters(["getLevels", "getInitialTestStatus"]),
     getLevelProgress() {
-      const levels = this.levels;
+      this.setLevels();
+      const levels = { ...this.getLevels };
       if (levels.first.active === true) {
         return levels.first.progress;
       } else if (levels.second.active === true) {
@@ -75,6 +69,9 @@ export default {
     ...mapMutations(["setGameEnd"]),
     endGame() {
       this.setGameEnd(true);
+    },
+    setLevels() {
+      this.levels = { ...this.getLevels };
     }
   }
 };
