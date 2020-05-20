@@ -1,12 +1,10 @@
 <h1 align="center" style="border-bottom: none;">🌱 Zero Waste Web Application with Watson Assistant Chatbot</h1>
-<h3 align="center">This Vue.js and Node.js app demonstrates the Watson Assistant service usage in an educational game for Zero Waste beginners.</h3>
+<h3 align="center">This frontend part of the app using Vue.js demonstrates the Watson Assistant service usage in an educational game for Zero Waste beginners.</h3>
 <!---
 ![Demo](readme_images/demo.gif)
-You can view a [demo][demo_url] of this app.
 -->
 
-This app uses the [Watson Assistant V2 API](https://cloud.ibm.com/apidocs/assistant-v2#introduction) and a frontend JS framework [Vue.js](https://vuejs.org/v2/guide/).
-
+You can view a [demo][demo_url] of this app.
 
 <!---
 ## Prerequisites
@@ -64,24 +62,6 @@ This app uses the [Watson Assistant V2 API](https://cloud.ibm.com/apidocs/assist
     ```
 -->
 ## Running locally
-
-### Server
-Make sure you have a valid IBM Cloud account and a Watson Assistant with all credentials (ApiKey, URL, username, password).  
-1. Install the dependencies
-
-    ```
-    npm install
-    ```
-
-1. Run the application
-
-    ```
-    npm start
-    ```
-
-1. Server is now running at `localhost:3000`
-
-### Client
  
 1. Install the dependencies
 
@@ -123,7 +103,7 @@ For example: https://my-app-name.mybluemix.net
 -->
 
 
-[demo_url]: https://assistant-simple.ng.bluemix.net/
+[demo_url]: https://hungry-brown-a1636c.netlify.app/
 [doc_intents]: https://cloud.ibm.com/docs/services/conversation/intents-entities.html#planning-your-entities
 [docs]: https://cloud.ibm.com/docs/services/assistant/index.html#index
 [docs_landing]: (https://cloud.ibm.com/docs/services/assistant/index.html#index)
