@@ -72,7 +72,7 @@ You can view a [demo][demo_url] of this app.
 1. Run the application
 
     ```
-    npm serve
+    npm run serve
     ```
 
 1. View the application frontend in a browser at `localhost:8080`
