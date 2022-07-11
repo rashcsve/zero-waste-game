@@ -6,6 +6,10 @@
 
 You can view a [demo][demo_url] of this app.
 
+```diff
+-The game part with the chatbot does not work due to expired licence to IBM Watson.
+```
+
 <!---
 ## Prerequisites
 1. Sign up for an [IBM Cloud account](https://cloud.ibm.com/registration/).
